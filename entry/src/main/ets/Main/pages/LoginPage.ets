@@ -6,6 +6,7 @@ import http from '@ohos.net.http';
 interface LoginResponse {
   code: number;
   msg: string;
+  data?: Record<string, Object>;
 }
 
 interface BusinessError {
@@ -179,13 +180,15 @@ export struct LoginPage {
         return;
       }
 
-      console.info("解析后的结果:", JSON.stringify(result));
+      // 打印完整的 result 结构，查看后端返回了哪些字段
+      console.info("解析后的完整结果:", JSON.stringify(result));
 
       if (result.code === 200) {
-        // 登录成功，更新 AppStorage（PersistentStorage 会自动持久化）
+        // 登录成功，优先使用后端返回的真实昵称，否则用 username 兜底
+        const realNickname = (result.data?.['nickname'] as string) || (result.data?.['realName'] as string) || '';
         AppStorage.setOrCreate('isLoggedIn', true);
         AppStorage.setOrCreate('username', name);
-        AppStorage.setOrCreate('nickname', `${name}用户`);
+        AppStorage.setOrCreate('nickname', realNickname || `${name}用户`);
         AppStorage.setOrCreate('avatarPath', '');
 
         console.info("登录状态已保存:", AppStorage.get<boolean>('isLoggedIn'));
