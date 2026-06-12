@@ -19,7 +19,7 @@ export struct LoginPage {
   @State username: string = '';
   @State password: string = '';
   @State isLoggingIn: boolean = false;
-  private baseUrl: string = "http://121.40.222.207:13531/api/auth/login"
+  private baseUrl: string = "https://backend.hoshikaze.top/api/auth/login"
 
   build() {
     NavDestination() {
@@ -156,7 +156,7 @@ export struct LoginPage {
       if (res.responseCode !== 200) {
         console.error("HTTP状态码异常:", res.responseCode);
         this.getUIContext().getPromptAction().showToast({
-          message: `服务器错误: HTTP ${res.responseCode}`
+          message: `账号或密码错误` //服务器错误: HTTP ${res.responseCode}
         });
         return;
       }

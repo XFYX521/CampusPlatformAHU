@@ -26,9 +26,9 @@ export struct RegisterPage {
   @State sliderValue: number = 0;
   @State isCaptchaVerified: boolean = false;
   //发送验证码接口
-  private readonly sendCodeUrl: string = "http://121.40.222.207:13531/api/auth/send-code";
+  private readonly sendCodeUrl: string = "https://backend.hoshikaze.top/api/auth/send-code";
   //注册接口
-  private readonly registerUrl: string = "http://121.40.222.207:13531/api/auth/register-email";
+  private readonly registerUrl: string = "https://backend.hoshikaze.top/api/auth/register-email";
 
   // 邮箱格式正则校验
   private checkEmailFormat(emailStr: string): boolean {

@@ -12,7 +12,7 @@
         "domains": [
           {
             "include-subdomains": true,
-            "name": "121.40.222.207"
+            "name": ""
           }
         ],
         "cleartextTrafficPermitted": true,
