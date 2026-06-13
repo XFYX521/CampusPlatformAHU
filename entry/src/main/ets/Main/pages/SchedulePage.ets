@@ -1,10 +1,9 @@
-import web_webview from '@ohos.web.webview';
-import preferences from '@ohos.data.preferences';
-import common from '@ohos.app.ability.common';
+import { webview } from '@kit.ArkWeb';
+import { preferences } from '@kit.ArkData';
+import { common } from '@kit.AbilityKit';
 
 const SCHEDULE_URL_KEY = 'schedule_url';
 
-@Entry
 @Component
 export struct SchedulePage {
   @State scheduleUrl: string = '';
@@ -15,7 +14,7 @@ export struct SchedulePage {
 
   private context = getContext(this) as common.UIAbilityContext;
   private prefs: preferences.Preferences | null = null;
-  private webController: web_webview.WebviewController = new web_webview.WebviewController();
+  private webController: webview.WebviewController = new webview.WebviewController();
 
   async aboutToAppear() {
     // 初始化偏好设置并读取保存的链接
