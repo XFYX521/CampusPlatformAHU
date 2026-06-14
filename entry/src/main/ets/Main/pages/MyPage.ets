@@ -11,8 +11,6 @@ export struct MyPage {
   @StorageLink('username') username: string = '未登录';
   @StorageLink('nickname') nickname: string = '未登录';
   @StorageLink('avatarPath') userAvatar: string = '';
-  // 黑夜模式状态（预留接口）
-  @StorageLink('isDarkMode') isDarkMode: boolean = false;
 
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
@@ -191,7 +189,6 @@ export struct MyPage {
 
       // 设置项列表
       Column() {
-        this.SettingItemToggle('黑夜模式', $r('app.media.lib_icon_MoonMode'), this.isDarkMode)
         this.SettingItem('账号与安全', $r('app.media.lib_icon_Setifications'), true)
         this.SettingItem('通知设置', $r('app.media.lib_icon_Notifications'), false)
       }
@@ -253,44 +250,6 @@ export struct MyPage {
         .color($r('app.color.comp_divider'))
         .margin({ left: 16 })
     }
-  }
-
-  // ==================== 带开关的设置项 ====================
-  @Builder
-  SettingItemToggle(title: string, icon: Resource, isOn: boolean) {
-    Row({ space: 12 }) {
-      // 图标
-      Image(icon)
-        .width(20)
-        .height(20)
-        .fillColor($r('app.color.module_icon_color'))
-
-      // 标题
-      Text(title)
-        .fontSize(16)
-        .fontColor($r('app.color.content_main_title_font_color'))
-        .layoutWeight(1)
-
-      // Toggle开关
-      Toggle({ type: ToggleType.Switch, isOn: isOn })
-        .selectedColor($r('app.color.app_icon_pressed_color'))
-        .onChange((isOn: boolean) => {
-          this.handleDarkModeToggle(isOn);
-        })
-    }
-    .width('100%')
-    .height(56)
-    .padding({ left: 16, right: 16 })
-
-    // 分隔线
-    Divider()
-      .strokeWidth(1)
-      .color($r('app.color.comp_divider'))
-      .margin({ left: 16 })
-  }
-
-  handleDarkModeToggle(isOn: boolean) {
-    throw new Error('Method not implemented.');
   }
 
   // ==================== 关于和帮助区域====================
@@ -415,7 +374,13 @@ export struct MyPage {
   // 关于项点击处理
   handleAboutClick(aboutName: string) {
     try {
-      promptAction.showToast({ message: `打开${aboutName}` });//
+      if (aboutName === '隐私政策') {
+        this.appPathStack.pushPathByName('PrivacyPage', null);
+      } else if (aboutName === '用户协议') {
+        this.appPathStack.pushPathByName('AgreementPage', null);
+      } else {
+        promptAction.showToast({ message: `打开${aboutName}` });
+      }
     } catch (error) {
       console.error('handleAboutClick error: ' + JSON.stringify(error));
     }

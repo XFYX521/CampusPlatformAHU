@@ -18,6 +18,8 @@ import { WebContentPage } from '../detail/WebContentPage';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
 import { NewsPage } from '../pages/NewsPage';
+import { PrivacyPage } from '../pages/PrivacyPage';
+import { AgreementPage } from '../pages/AgreementPage';
 
 // import reference line
 @Builder
@@ -25,7 +27,6 @@ export function PageMap(name: string) {
   if (name === 'SearchPage') {
     SecondPageSearch()
   } else if (name === 'LoginPage') {
-    // 这里就是我们新加的登录页逻辑
     LoginPage()
   } else if (name === 'RegisterPage') {
     RegisterPage()
@@ -33,6 +34,10 @@ export function PageMap(name: string) {
     WebContentPage()
   } else if (name === 'NewsPage') {
     NewsPage()
+  } else if (name === 'PrivacyPage') {
+    PrivacyPage()
+  } else if (name === 'AgreementPage') {
+    AgreementPage()
   } else {
     EmptyPagePathStack()
   }

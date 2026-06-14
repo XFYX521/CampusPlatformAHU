@@ -2,6 +2,8 @@
   "src": [
     "Main/Index",
     "Main/pages/LoginPage",
-    "Main/pages/RegisterPage"
+    "Main/pages/RegisterPage",
+    "Main/pages/PrivacyPage",
+    "Main/pages/AgreementPage"
   ]
 }
