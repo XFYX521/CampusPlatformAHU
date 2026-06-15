@@ -3,6 +3,9 @@ import http from '@ohos.net.http';
 //import {RegisterPage} from './RegisterPage'
 // 导入华为账号服务所需模块（请确保在项目 oh-package.json5 中已添加相关依赖）
 // import { authentication } from '@kit.AccountKit';
+import { AvatarHelper } from '../util/AvatarHelper';
+import { common } from '@kit.AbilityKit';
+
 interface LoginResponse {
   code: number;
   msg: string;
@@ -13,6 +16,7 @@ interface BusinessError {
   code: number | string;
   message?: string;
 }
+
 @Entry
 export struct LoginPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
@@ -186,12 +190,22 @@ export struct LoginPage {
       if (result.code === 200) {
         // 登录成功，优先使用后端返回的真实昵称，否则用 username 兜底
         const realNickname = (result.data?.['nickname'] as string) || (result.data?.['realName'] as string) || '';
+        // 保存token（后端可能返回token或accessToken）
+        const token = (result.data?.['token'] as string) || (result.data?.['accessToken'] as string) || '';
+        
         AppStorage.setOrCreate('isLoggedIn', true);
         AppStorage.setOrCreate('username', name);
         AppStorage.setOrCreate('nickname', realNickname || `${name}用户`);
         AppStorage.setOrCreate('avatarPath', '');
+        if (token) {
+          AppStorage.setOrCreate('token', token);
+          console.info("Token已保存");
+        }
 
         console.info("登录状态已保存:", AppStorage.get<boolean>('isLoggedIn'));
+
+        // 登录成功后获取头像
+        this.fetchAvatarAfterLogin(name);
 
         this.getUIContext().getPromptAction().showToast({
           message: result.msg || '登录成功'
@@ -243,6 +257,50 @@ export struct LoginPage {
     }
   }
 
+  // 登录成功后获取头像
+  private async fetchAvatarAfterLogin(account: string): Promise<void> {
+    try {
+      console.info('[LoginPage] fetchAvatarAfterLogin: 开始获取头像');
+      console.info('[LoginPage] fetchAvatarAfterLogin: account =', account);
+      
+      const avatarHelper = AvatarHelper.getInstance();
+      // 设置context
+      avatarHelper.setContext(getContext(this) as common.UIAbilityContext);
+      console.info('[LoginPage] fetchAvatarAfterLogin: context已设置');
+      
+      console.info('[LoginPage] fetchAvatarAfterLogin: 调用fetchAvatarFromServer...');
+      const result = await avatarHelper.fetchAvatarFromServer(account);
+      console.info('[LoginPage] fetchAvatarAfterLogin: fetchAvatarFromServer返回, result =', result);
+      
+      if (result) {
+        // 检查返回的是本地路径还是URL
+        if (result.startsWith('/data') || result.includes('filesDir')) {
+          // 接口直接返回图片，result是本地路径
+          console.info('[LoginPage] fetchAvatarAfterLogin: 接口直接返回图片，本地路径 =', result);
+          AppStorage.setOrCreate('avatarPath', result);
+          console.info('[LoginPage] fetchAvatarAfterLogin: avatarPath已保存到AppStorage');
+        } else {
+          // 返回的是URL，需要下载
+          console.info('[LoginPage] fetchAvatarAfterLogin: 返回URL，开始下载...');
+          AppStorage.setOrCreate('avatarUrl', result);
+          
+          const localPath = await avatarHelper.downloadAndSaveAvatar(result, account);
+          console.info('[LoginPage] fetchAvatarAfterLogin: downloadAndSaveAvatar返回, localPath =', localPath);
+          
+          if (localPath) {
+            AppStorage.setOrCreate('avatarPath', localPath);
+            console.info('[LoginPage] fetchAvatarAfterLogin: avatarPath已保存到AppStorage =', localPath);
+          } else {
+            console.error('[LoginPage] fetchAvatarAfterLogin: 下载头像失败');
+          }
+        }
+      } else {
+        console.warn('[LoginPage] fetchAvatarAfterLogin: 未获取到头像');
+      }
+    } catch (error) {
+      console.error('[LoginPage] fetchAvatarAfterLogin: 异常 =', error);
+    }
+  }
 
 }
 

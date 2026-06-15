@@ -7,11 +7,11 @@
         "material": {
           "certpath": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001AC847809A7822E900C2E7CA5762C898A1EDD44CF1FB75314B343F41FB15EE887108EEA158C59D",
+          "keyPassword": "0000001A47BD409FDA011159AA8B0EFFBBB6481A81ED142D5087F4320CD40A7AC1DA53A2D96D6CC15064",
           "profile": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.p7b",
           "signAlg": "SHA256withECDSA",
           "storeFile": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.p12",
-          "storePassword": "0000001AA3987BA2774429D8A1B682F0F2F4BC768004457932B078F6FEC90FC0B1B3EC4C9001BDBBDC66"
+          "storePassword": "0000001A96080A7871DEF452A2D909F332238F6CEBEDFDAD398928BC2778E44125E5F82E7BFC5A4C50FB"
         }
       }
     ],

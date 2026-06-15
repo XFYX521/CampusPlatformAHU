@@ -32,5 +32,8 @@
   }, {
     "name" : "widget1_display_name",
     "value" : "widget1"
+  }, {
+    "name" : "camera_reason",
+    "value" : "用于拍摄头像照片"
   } ]
 }
