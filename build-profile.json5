@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.cer",
+          "certpath": "C:\\Users\\zec\\.ohos\\config\\default_CampusPlatformAHU_-8bG0qel1OgkpqQFHcXQfVTbqIr8pHIO4WY1rkRESPY=.cer",
           "keyAlias": "debugKey",
-          "keyPassword": "0000001AC847809A7822E900C2E7CA5762C898A1EDD44CF1FB75314B343F41FB15EE887108EEA158C59D",
-          "profile": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.p7b",
+          "keyPassword": "0000001B8E58C27BCEDFB13836941BDD449ABA698C2EAD0615D41C9920CC0B5A5E09987936C177DE0E876F",
+          "profile": "C:\\Users\\zec\\.ohos\\config\\default_CampusPlatformAHU_-8bG0qel1OgkpqQFHcXQfVTbqIr8pHIO4WY1rkRESPY=.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.p12",
-          "storePassword": "0000001AA3987BA2774429D8A1B682F0F2F4BC768004457932B078F6FEC90FC0B1B3EC4C9001BDBBDC66"
+          "storeFile": "C:\\Users\\zec\\.ohos\\config\\default_CampusPlatformAHU_-8bG0qel1OgkpqQFHcXQfVTbqIr8pHIO4WY1rkRESPY=.p12",
+          "storePassword": "0000001BF14EE4EAD91577C7B9776CB4E5445B3C1DC2B35EA968FC12DC2F8A3A5B1588D6ACDA305366CE2A"
         }
       }
     ],

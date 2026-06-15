@@ -4,6 +4,7 @@
     "Main/pages/LoginPage",
     "Main/pages/RegisterPage",
     "Main/pages/PrivacyPage",
-    "Main/pages/AgreementPage"
+    "Main/pages/AgreementPage",
+    "Main/pages/FeedbackPage"
   ]
 }
