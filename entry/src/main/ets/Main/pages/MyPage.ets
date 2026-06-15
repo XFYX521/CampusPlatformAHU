@@ -542,6 +542,8 @@ export struct MyPage {
         this.appPathStack.pushPathByName('PrivacyPage', null);
       } else if (aboutName === '用户协议') {
         this.appPathStack.pushPathByName('AgreementPage', null);
+      } else if (aboutName === '用户反馈') {
+        this.appPathStack.pushPathByName('FeedbackPage', null);
       } else {
         promptAction.showToast({ message: `打开${aboutName}` });
       }
