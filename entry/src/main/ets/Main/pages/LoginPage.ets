@@ -186,10 +186,18 @@ export struct LoginPage {
       if (result.code === 200) {
         // 登录成功，优先使用后端返回的真实昵称，否则用 username 兜底
         const realNickname = (result.data?.['nickname'] as string) || (result.data?.['realName'] as string) || '';
+        const token = (result.data?.['token'] as string) || '';
+        
         AppStorage.setOrCreate('isLoggedIn', true);
         AppStorage.setOrCreate('username', name);
         AppStorage.setOrCreate('nickname', realNickname || `${name}用户`);
         AppStorage.setOrCreate('avatarPath', '');
+        
+        // 保存登录token
+        if (token) {
+          AppStorage.setOrCreate('token', token);
+          console.info("Token已保存");
+        }
 
         console.info("登录状态已保存:", AppStorage.get<boolean>('isLoggedIn'));
 

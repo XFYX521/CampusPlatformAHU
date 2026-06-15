@@ -18,10 +18,10 @@ export struct FeedbackPage {
   @State feedbackTitle: string = '';
   @State feedbackContent: string = '';
   @State isSubmitting: boolean = false;
-  @StorageLink('username') username: string = '';
+  @StorageLink('token') token: string = '';
   
-  // 反馈接口地址（请根据实际后端地址修改）
-  private feedbackUrl: string = "https://backend.hoshikaze.top/api/feedback/submit";
+  // 反馈接口地址
+  private feedbackUrl: string = "https://backend.hoshikaze.top/api/feedback";
 
   build() {
     NavDestination() {
@@ -177,26 +177,32 @@ export struct FeedbackPage {
       return;
     }
 
+    // 检查是否登录
+    if (!this.token) {
+      promptAction.showToast({ message: '请先登录' });
+      return;
+    }
+
     this.isSubmitting = true;
 
     // 创建HTTP请求
     let httpRequest = http.createHttp();
     const reqData = JSON.stringify({
-      username: this.username || '匿名用户',
       title: title,
-      content: content,
-      submitTime: new Date().toISOString()
+      content: content
     });
 
     console.info("=== 反馈请求详情 ===");
     console.info("请求URL:", this.feedbackUrl);
+    console.info("请求头: Authorization: Bearer " + this.token);
     console.info("请求参数:", reqData);
 
     try {
       let res = await httpRequest.request(this.feedbackUrl, {
         method: http.RequestMethod.POST,
         header: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + this.token
         },
         extraData: reqData
       });
@@ -208,9 +214,20 @@ export struct FeedbackPage {
       // 检查HTTP状态码
       if (res.responseCode !== 200) {
         console.error("HTTP状态码异常:", res.responseCode);
-        promptAction.showToast({
-          message: `提交失败，请稍后重试`
-        });
+        
+        // 处理401鉴权失败
+        if (res.responseCode === 401) {
+          promptAction.showToast({ message: '登录已过期，请重新登录' });
+          // 清除token
+          AppStorage.setOrCreate('token', '');
+          AppStorage.setOrCreate('isLoggedIn', false);
+          // 返回登录页
+          setTimeout(() => {
+            this.appPathStack.pushPathByName('LoginPage', null);
+          }, 1500);
+        } else {
+          promptAction.showToast({ message: `提交失败，请稍后重试` });
+        }
         return;
       }
 
@@ -236,9 +253,7 @@ export struct FeedbackPage {
 
       if (result.code === 200) {
         // 提交成功
-        promptAction.showToast({
-          message: result.msg || '反馈提交成功，感谢您的反馈！'
-        });
+        promptAction.showToast({ message: '反馈已提交' });
 
         // 清空输入框
         this.feedbackTitle = '';
@@ -268,6 +283,11 @@ export struct FeedbackPage {
           errorMsg = '网络连接超时，请检查网络';
         } else if (errCode === -2 || errCode === '-2') {
           errorMsg = '服务器连接失败';
+        } else if (errCode === 401 || errCode === '401') {
+          errorMsg = '登录已过期，请重新登录';
+          // 清除token
+          AppStorage.setOrCreate('token', '');
+          AppStorage.setOrCreate('isLoggedIn', false);
         }
       }
 
