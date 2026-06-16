@@ -3,6 +3,9 @@
     "Main/Index",
     "Main/pages/LoginPage",
     "Main/pages/RegisterPage",
-    "Main/pages/CafeteriaDetailPage"
+    "Main/pages/PrivacyPage",
+    "Main/pages/AgreementPage",
+    "Main/pages/FeedbackPage",
+    "Main/pages/FeedbackHistoryPage"
   ]
 }
