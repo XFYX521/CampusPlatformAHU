@@ -20,6 +20,8 @@ import { RegisterPage } from '../pages/RegisterPage';
 import { NewsPage } from '../pages/NewsPage';
 import { PrivacyPage } from '../pages/PrivacyPage';
 import { AgreementPage } from '../pages/AgreementPage';
+import { FeedbackPage } from '../pages/FeedbackPage';
+import { FeedbackHistoryPage } from '../pages/FeedbackHistoryPage';
 
 // import reference line
 @Builder
@@ -38,6 +40,10 @@ export function PageMap(name: string) {
     PrivacyPage()
   } else if (name === 'AgreementPage') {
     AgreementPage()
+  } else if (name === 'FeedbackPage') {
+    FeedbackPage()
+  } else if (name === 'FeedbackHistoryPage') {
+    FeedbackHistoryPage()
   } else {
     EmptyPagePathStack()
   }

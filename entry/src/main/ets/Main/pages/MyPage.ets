@@ -338,6 +338,7 @@ export struct MyPage {
       // 关于项列表
       Column() {
         this.AboutItem('用户反馈', $r('app.media.lib_icon_Feedback'))
+        this.AboutItem('我的反馈', $r('app.media.lib_icon_Document'))
         this.AboutItem('帮助中心', $r('app.media.lib_icon_Headphone'))
         this.AboutItem('版本信息', $r('app.media.lib_icon_VersionInformation'), false, 'v0.9.2')
         this.AboutItem('隐私政策', $r('app.media.lib_icon_Check'))
@@ -544,6 +545,14 @@ export struct MyPage {
         this.appPathStack.pushPathByName('AgreementPage', null);
       } else if (aboutName === '用户反馈') {
         this.appPathStack.pushPathByName('FeedbackPage', null);
+      } else if (aboutName === '我的反馈') {
+        // 检查是否登录
+        if (!this.isLoggedIn) {
+          promptAction.showToast({ message: '请先登录账号' });
+          this.appPathStack.pushPathByName('LoginPage', null);
+          return;
+        }
+        this.appPathStack.pushPathByName('FeedbackHistoryPage', null);
       } else {
         promptAction.showToast({ message: `打开${aboutName}` });
       }
