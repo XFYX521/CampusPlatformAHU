@@ -92,12 +92,22 @@ export struct FeedbackPage {
   NavigationBar() {
     Row() {
       // 返回按钮
-      Image($r('app.media.IMG_0218'))
-        .width(30)
-        .height(30)
-        .onClick(() => {
-          this.appPathStack.pop();
-        })
+      Row({ space: 4 }) {
+        Text('〈')
+          .fontSize(24)
+          .fontColor($r('app.color.page_title_font_color'))
+          .fontWeight(FontWeight.Bold)
+        
+        Text('返回')
+          .fontSize(16)
+          .fontColor($r('app.color.page_title_font_color'))
+      }
+      .padding({ left: 12, right: 16, top: 8, bottom: 8 })
+      .borderRadius(20)
+      .backgroundColor($r('app.color.page_bg_color'))
+      .onClick(() => {
+        this.appPathStack.pop();
+      })
 
       // 页面标题
       Text('用户反馈')
@@ -109,7 +119,7 @@ export struct FeedbackPage {
     }
     .width('100%')
     .height(56)
-    .padding({ left: 20, right: 20 })
+    .padding({ left: 16, right: 20 })
     .backgroundColor(Color.White)
   }
 
