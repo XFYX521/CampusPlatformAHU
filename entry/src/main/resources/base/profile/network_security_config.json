@@ -1,0 +1,40 @@
+{
+  "network-security-config": {
+    "base-config": {
+      "trust-anchors": [
+        {
+          "certificates": "system"
+        }
+      ]
+    },
+    "domain-config": [
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "121.40.222.207"
+          }
+        ],
+        "cleartextTrafficPermitted": true,
+        "trust-anchors": [
+          {
+            "certificates": "system"
+          }
+        ]
+      },
+      {
+        "domains": [
+          {
+            "include-subdomains": true,
+            "name": "backend.hoshikaze.top"
+          }
+        ],
+        "trust-anchors": [
+          {
+            "certificates": "system"
+          }
+        ]
+      }
+    ]
+  }
+}
