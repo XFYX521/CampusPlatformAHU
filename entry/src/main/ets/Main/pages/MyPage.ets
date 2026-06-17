@@ -191,11 +191,7 @@ export struct MyPage {
             .height(20)
             .fillColor($r('app.color.font_tertiary'))
             .onClick(() => {
-              try {
-                promptAction.showToast({ message: '进入个人资料编辑' });
-              } catch (error) {
-                // TODO: Implement error handling.
-              }
+              this.appPathStack.pushPathByName('ProfileEditPage', null);
             })
         }
       }
@@ -215,11 +211,7 @@ export struct MyPage {
             .width('40%')
             .height(36)
             .onClick(() => {
-              try {
-                promptAction.showToast({ message: '编辑资料功能开发中' });
-              } catch (error) {
-                // TODO: Implement error handling.
-              }
+              this.appPathStack.pushPathByName('ProfileEditPage', null);
             })
 
           Button('退出登录')
@@ -531,7 +523,11 @@ export struct MyPage {
         return;
       }
 
-      promptAction.showToast({ message: `打开${settingName}` });
+      if (settingName === '账号与安全') {
+        this.appPathStack.pushPathByName('ProfileEditPage', null);
+      } else {
+        promptAction.showToast({ message: `打开${settingName}` });
+      }
     } catch (error) {
       console.error('handleSettingClick error: ' + JSON.stringify(error));
     }
