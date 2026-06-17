@@ -6,6 +6,7 @@
     "Main/pages/PrivacyPage",
     "Main/pages/AgreementPage",
     "Main/pages/FeedbackPage",
-    "Main/pages/FeedbackHistoryPage"
+    "Main/pages/FeedbackHistoryPage",
+    "Main/pages/ProfileEditPage"
   ]
 }

@@ -22,6 +22,7 @@ import { PrivacyPage } from '../pages/PrivacyPage';
 import { AgreementPage } from '../pages/AgreementPage';
 import { FeedbackPage } from '../pages/FeedbackPage';
 import { FeedbackHistoryPage } from '../pages/FeedbackHistoryPage';
+import { ProfileEditPage } from '../pages/ProfileEditPage';
 
 // import reference line
 @Builder
@@ -44,6 +45,8 @@ export function PageMap(name: string) {
     FeedbackPage()
   } else if (name === 'FeedbackHistoryPage') {
     FeedbackHistoryPage()
+  } else if (name === 'ProfileEditPage') {
+    ProfileEditPage()
   } else {
     EmptyPagePathStack()
   }
