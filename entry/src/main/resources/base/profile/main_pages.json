@@ -7,6 +7,10 @@
     "Main/pages/AgreementPage",
     "Main/pages/FeedbackPage",
     "Main/pages/FeedbackHistoryPage",
+    "Main/pages/CafeteriaPage",
+    "Main/pages/CafeteriaFloorPage",
+    "Main/pages/CafeteriaDetailPage",
+    "Main/pages/WindowDetailPage",
     "Main/pages/ProfileEditPage"
   ]
 }

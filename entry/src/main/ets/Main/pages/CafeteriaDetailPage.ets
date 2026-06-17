@@ -1,10 +1,25 @@
-import { GUIYUAN_DATA, JUYUAN_DATA, FloorItem, WindowItem, FoodItem } from '../data/CafeteriaData';
+import { 
+  GUIYUAN_DATA, 
+  JUYUAN_DATA, 
+  MEIYUAN_DATA, 
+  WUTONGYUAN_DATA,
+  HUIYUAN_DATA,
+  LIUYUAN_DATA,
+  WAIZHAO_DATA,
+  YISHITANG_DATA,
+  ERSHITANG_DATA,
+  SANSHITANG_DATA,
+  FloorItem, 
+  WindowItem, 
+  FoodItem 
+} from '../data/CafeteriaData';
 import router from '@ohos.router';
 
 @Entry
 @Component
 struct CafeteriaDetailPage {
   @State cafeteriaName: string = '';
+  @State floorName: string = ''; // 楼层名称（可选）
   @State cafeteriaData: FloorItem[] = [];
 
   aboutToAppear() {
@@ -12,6 +27,7 @@ struct CafeteriaDetailPage {
     const params = router.getParams() as Record<string, Object>;
     if (params) {
       this.cafeteriaName = params['cafeteriaName'] as string;
+      this.floorName = params['floorName'] as string || ''; // 获取楼层名称
       // 根据食堂名称加载对应数据
       this.loadCafeteriaData();
     }
@@ -19,17 +35,48 @@ struct CafeteriaDetailPage {
 
   loadCafeteriaData() {
     // 根据食堂名称匹配数据
+    let allData: FloorItem[] = [];
     switch (this.cafeteriaName) {
       case '桂园食堂':
-        this.cafeteriaData = GUIYUAN_DATA;
+        allData = GUIYUAN_DATA;
         break;
       case '桔园食堂':
-        this.cafeteriaData = JUYUAN_DATA;
+        allData = JUYUAN_DATA;
         break;
-      // 其他食堂待补充
+      case '梅园食堂':
+        allData = MEIYUAN_DATA;
+        break;
+      case '梧桐园食堂':
+        allData = WUTONGYUAN_DATA;
+        break;
+      case '蕙园食堂':
+        allData = HUIYUAN_DATA;
+        break;
+      case '榴园食堂':
+        allData = LIUYUAN_DATA;
+        break;
+      case '外招食堂':
+        allData = WAIZHAO_DATA;
+        break;
+      case '一食堂':
+        allData = YISHITANG_DATA;
+        break;
+      case '二食堂':
+        allData = ERSHITANG_DATA;
+        break;
+      case '三食堂':
+        allData = SANSHITANG_DATA;
+        break;
       default:
-        this.cafeteriaData = [];
+        allData = [];
         break;
+    }
+    
+    // 如果指定了楼层，只显示该楼层数据
+    if (this.floorName) {
+      this.cafeteriaData = allData.filter(floor => floor.floorName === this.floorName);
+    } else {
+      this.cafeteriaData = allData;
     }
   }
 
@@ -80,8 +127,8 @@ struct CafeteriaDetailPage {
           router.back();
         })
 
-      // 食堂名称
-      Text(this.cafeteriaName)
+      // 食堂名称（如果有楼层，显示"食堂名 - 楼层名"）
+      Text(this.floorName ? `${this.cafeteriaName} - ${this.floorName}` : this.cafeteriaName)
         .fontSize(18)
         .fontWeight(FontWeight.Bold)
         .fontColor($r('app.color.content_main_title_font_color'))
@@ -120,48 +167,46 @@ struct CafeteriaDetailPage {
   @Builder
   windowCard(window: WindowItem) {
     Column() {
-      // 窗口名称
-      Text(window.windowName)
-        .fontSize(16)
-        .fontWeight(FontWeight.Medium)
-        .fontColor($r('app.color.content_main_title_font_color'))
-        .width('100%')
-        .padding({ left: 12, top: 12, bottom: 8 })
-
-      // 菜品列表
-      Column() {
-        ForEach(window.foodList, (food: FoodItem, index: number) => {
-          Row() {
-            Text(food.name)
-              .fontSize(14)
-              .fontColor($r('app.color.font_primary'))
-              .layoutWeight(1)
-
-            Text(food.price)
-              .fontSize(14)
-              .fontColor($r('app.color.button_bg_color'))
-              .fontWeight(FontWeight.Medium)
-          }
+      // 窗口图片（如果有）
+      if (window.image && window.image !== '') {
+        Image($r(`app.media.${window.image}`))
           .width('100%')
-          .padding({ left: 12, right: 12, top: 8, bottom: 8 })
-          
-          // 分隔线（最后一项不显示）
-          if (index < window.foodList.length - 1) {
-            Divider()
-              .width('100%')
-              .height(0.5)
-              .color('#F0F0F0')
-              .margin({ left: 12, right: 12 })
-          }
-        })
+          .height(180)
+          .objectFit(ImageFit.Cover)
+          .borderRadius({ topLeft: 12, topRight: 12 })
+      }
+
+      // 窗口名称
+      Row() {
+        Text(window.windowName)
+          .fontSize(16)
+          .fontWeight(FontWeight.Medium)
+          .fontColor($r('app.color.content_main_title_font_color'))
+          .layoutWeight(1)
+
+        // 右箭头
+        Image($r('app.media.IMG_0219'))
+          .width(20)
+          .height(20)
       }
       .width('100%')
-      .padding({ bottom: 12 })
+      .padding({ left: 12, right: 12, top: 12, bottom: 12 })
     }
     .width('100%')
     .backgroundColor(Color.White)
     .borderRadius(12)
     .margin({ bottom: 12 })
     .shadow({ radius: 4, offsetX: 0, offsetY: 2, color: 'rgba(0, 0, 0, 0.05)' })
+    .onClick(() => {
+      // 跳转到窗口详情页
+      router.pushUrl({
+        url: 'Main/pages/WindowDetailPage',
+        params: {
+          windowName: window.windowName,
+          windowImage: window.image || '',
+          foodList: JSON.stringify(window.foodList)
+        }
+      });
+    })
   }
 }

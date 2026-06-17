@@ -22,6 +22,7 @@ const LONGHE_IMAGES: Resource[] = [
   $r('app.media.Old3'),
 ];
 
+@Entry
 @Component
 export struct CafeteriaPage {
   @State campusIndex: number = 0;
@@ -99,13 +100,22 @@ export struct CafeteriaPage {
     .borderRadius(12)
     .shadow({ radius: 6, offsetX: 0, offsetY: 2, color: 'rgba(0, 0, 0, 0.06)' })
     .onClick(() => {
-      // 跳转到食堂详情页
-      router.pushUrl({
-        url: 'Main/pages/CafeteriaDetailPage',
-        params: {
-          cafeteriaName: name
-        }
-      });
+      // 桂园和桔园跳转到楼层选择页，其他食堂直接跳转到详情页
+      if (name === '桂园食堂' || name === '桔园食堂') {
+        router.pushUrl({
+          url: 'Main/pages/CafeteriaFloorPage',
+          params: {
+            cafeteriaName: name
+          }
+        });
+      } else {
+        router.pushUrl({
+          url: 'Main/pages/CafeteriaDetailPage',
+          params: {
+            cafeteriaName: name
+          }
+        });
+      }
     })
   }
 }

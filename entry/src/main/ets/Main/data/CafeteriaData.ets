@@ -132,6 +132,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "温馨粥道",
+        image: "juyuan_wenxinzhoudao", // 桔园一楼-温馨粥道
         foodList: [
           { name: "白米粥", price: "0.5元" },
           { name: "燕麦粥", price: "2元" },
@@ -708,6 +709,7 @@ export const JUYUAN_DATA: FloorItem[] = [
     windowList: [
       {
         windowName: "麻辣烫",
+        image: "juyuan_malatang", // 桔园一楼-麻辣烫
         foodList: [
           { name: "麻辣烫", price: "1.78元/50克" },
           { name: "麻辣烫米饭", price: "" },
@@ -718,6 +720,7 @@ export const JUYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "烤鸭饭",
+        image: "juyuan_kaoyafan", // 桔园一楼-烤鸭饭
         foodList: [
           { name: "烤鸭饭", price: "12元/份" },
           { name: "烤鸭板", price: "12元/份" },
@@ -729,6 +732,7 @@ export const JUYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "自选菜",
+        image: "juyuan_zixuancai", // 桔园一楼-自选菜
         foodList: [
           { name: "蒸鸡蛋", price: "1.50元" },
           { name: "上汤娃娃菜", price: "2.00元" },
@@ -751,6 +755,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "营养早餐",
+        image: "juyuan_yingyangzaocan", // 桔园一楼-营养早餐
         foodList: [
           { name: "鲜汁肉包", price: "1.50元" },
           { name: "现磨豆浆", price: "1.50元" },
@@ -848,6 +853,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "酱香饼",
+        image: "juyuan_jiangxiangbing", // 桔园一楼-酱香饼
         foodList: [
           { name: "发面小笼包", price: "6元/笼（7个）" },
           { name: "小笼灌汤包", price: "7元/笼（7个）" },
@@ -867,6 +873,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "陕行记油泼面",
+        image: "juyuan_shanxingjiyouponmian", // 桔园一楼-陕行记油泼面
         foodList: [
           { name: "岐山臊子面（酸辣）", price: "10元" },
           { name: "农家肉臊子面（酱香）", price: "10元" },
@@ -909,6 +916,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "玖昊猪土豆泥拌饭",
+        image: "juyuan_jiuhaotudounibanfan", // 桔园一楼-玖昊猪土豆泥拌饭
         foodList: [
           { name: "甜辣黄焖鸡", price: "12元" },
           { name: "番茄牛肉", price: "12元" },
@@ -928,6 +936,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "云南生烫牛肉米线",
+        image: "juyuan_yunnanshengtangniuroumixian", // 桔园一楼-云南生烫牛肉米线
         foodList: [
           { name: "招牌肉酱米线", price: "9元" },
           { name: "山野泡椒肉酱米线", price: "10元" },
@@ -937,6 +946,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "粗粮渔粉",
+        image: "juyuan_culiangyufen", // 桔园一楼-粗粮渔粉
         foodList: [
           { name: "灵魂拌粉", price: "8元" },
           { name: "粗粮素粉", price: "8元" },
@@ -972,6 +982,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "517牛肉蛋炒饭/盖浇饭",
+        image: "juyuan_517niuroudanchaofan", // 桔园一楼-517牛肉蛋炒饭/盖浇饭
         foodList: [
           { name: "招牌牛肉蛋炒饭", price: "12元" },
           { name: "扬州碎金炒饭", price: "12元" },
@@ -1004,6 +1015,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "申向国鸡柳卷饼",
+        image: "juyuan_shenxiangguojiliujuanbing", // 桔园一楼-申向国鸡柳卷饼
         foodList: [
           { name: "香酥鸡柳卷饼 (小份)", price: "9元" },
           { name: "香酥鸡柳卷饼 (大份)", price: "11元" },
@@ -1015,6 +1027,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "手工馄饨",
+        image: "juyuan_shougonghuntun", // 桔园一楼-手工馄饨
         foodList: [
           { name: "鲜肉小馄饨", price: "7元/20个、9元/30个" },
           { name: "荠菜肉小馄饨", price: "7元/20个、9元/30个" },
@@ -1042,6 +1055,7 @@ export const JUYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "掉渣饼",
+        image: "juyuan_diaozhabing", // 桔园一楼-掉渣饼
         foodList: [
           { name: "土豆", price: "1元" },
           { name: "娃娃菜", price: "1元" },
@@ -1224,5 +1238,40 @@ export const JUYUAN_DATA: FloorItem[] = [
 
 
 export const MEIYUAN_DATA: FloorItem[] = [
+  // 待补充
+];
+
+// 梧桐园食堂数据（待补充）
+export const WUTONGYUAN_DATA: FloorItem[] = [
+  // 待补充
+];
+
+// 蕙园食堂数据（待补充）
+export const HUIYUAN_DATA: FloorItem[] = [
+  // 待补充
+];
+
+// 榴园食堂数据（待补充）
+export const LIUYUAN_DATA: FloorItem[] = [
+  // 待补充
+];
+
+// 外招食堂数据（待补充）
+export const WAIZHAO_DATA: FloorItem[] = [
+  // 待补充
+];
+
+// 一食堂数据（待补充）
+export const YISHITANG_DATA: FloorItem[] = [
+  // 待补充
+];
+
+// 二食堂数据（待补充）
+export const ERSHITANG_DATA: FloorItem[] = [
+  // 待补充
+];
+
+// 三食堂数据（待补充）
+export const SANSHITANG_DATA: FloorItem[] = [
   // 待补充
 ];
