@@ -968,7 +968,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       {
         windowName: "粗粮渔粉",
         windowId: "1111",
-        image: "juyuan_culiangyufen", // 桔园一楼-粗粮渔粉
+        image: "Window1111", // 桔园一楼-粗粮渔粉
         foodList: [
           { name: "灵魂拌粉", price: "8元" },
           { name: "粗粮素粉", price: "8元" },
@@ -1005,7 +1005,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       {
         windowName: "517牛肉蛋炒饭/盖浇饭",
         windowId: "1112",
-        image: "juyuan_517niuroudanchaofan", // 桔园一楼-517牛肉蛋炒饭/盖浇饭
+        image: "Window1112", // 桔园一楼-517牛肉蛋炒饭/盖浇饭
         foodList: [
           { name: "招牌牛肉蛋炒饭", price: "12元" },
           { name: "扬州碎金炒饭", price: "12元" },
@@ -1081,7 +1081,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       {
         windowName: "掉渣饼",
         windowId: "1115",
-        image: "juyuan_diaozhabing", // 桔园一楼-掉渣饼
+        image: "Window1115", // 桔园一楼-掉渣饼
         foodList: [
           { name: "土豆", price: "1元" },
           { name: "娃娃菜", price: "1元" },

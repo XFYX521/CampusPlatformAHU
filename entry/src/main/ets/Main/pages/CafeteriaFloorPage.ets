@@ -177,6 +177,7 @@ struct CafeteriaFloorPage {
       router.pushUrl({
         url: 'Main/pages/WindowDetailPage',
         params: {
+          windowId: window.windowId || '',
           windowName: window.windowName,
           windowImage: window.image || '',
           foodList: JSON.stringify(window.foodList)

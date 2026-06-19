@@ -202,6 +202,7 @@ struct CafeteriaDetailPage {
       router.pushUrl({
         url: 'Main/pages/WindowDetailPage',
         params: {
+          windowId: window.windowId || 0,  // 窗口ID，用于评论区
           windowName: window.windowName,
           windowImage: window.image || '',
           foodList: JSON.stringify(window.foodList)
