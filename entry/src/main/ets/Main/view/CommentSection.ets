@@ -169,7 +169,7 @@ export struct CommentSection {
         .padding({ top: 4, bottom: 4 })
         .onClick(() => {
           this.sortMode = this.sortMode === 'votes' ? 'time' : 'votes';
-          this.sortComments();
+          this.loadComments();
         })
     }
     .width('100%')
@@ -231,6 +231,46 @@ export struct CommentSection {
   }
 
   // ==================== 工具方法 ====================
+
+  /** 本地更新投票状态（赞、踩、取消、切换），避免全量刷新 */
+  private updateVoteLocally(commentId: string, voteType: number): void {
+    const comment = this.commentList.find(c => c.id === commentId);
+    if (!comment) return;
+
+    const oldVote = comment.my_vote;
+
+    if (voteType === 1) { // 点赞
+      if (oldVote === 1) {
+        // 取消赞
+        comment.likes -= 1;
+        comment.my_vote = null;
+      } else {
+        // 新增赞
+        comment.likes += 1;
+        if (oldVote === -1) comment.dislikes -= 1;
+        comment.my_vote = 1;
+      }
+    } else { // 点踩
+      if (oldVote === -1) {
+        // 取消踩
+        comment.dislikes -= 1;
+        comment.my_vote = null;
+      } else {
+        // 新增踩
+        comment.dislikes += 1;
+        if (oldVote === 1) comment.likes -= 1;
+        comment.my_vote = -1;
+      }
+    }
+
+    // 更新数组引用以触发 @State 重新渲染
+    this.commentList = [...this.commentList];
+
+    // 投票模式下重新排序（票数变了）
+    if (this.sortMode === 'votes') {
+      this.sortComments();
+    }
+  }
 
   /** 判断是否可以发表评论 */
   private canPost(): boolean {
@@ -419,7 +459,8 @@ export struct CommentSection {
         }
 
         if (result.code === 200) {
-          this.loadComments();
+          // 本地更新投票状态，避免全量刷新导致滚动位置重置
+          this.updateVoteLocally(commentId, voteType);
         } else {
           const msg = result.message ? result.message : '操作失败';
           promptAction.showToast({ message: msg });
