@@ -23,8 +23,24 @@ export const GUIYUAN_DATA: FloorItem[] = [
     floorName: "一楼",
     windowList: [
       {
+        windowName: "辣上瘾",
+        windowId: "5101",
+        image: "guiyuan_lashangyin",
+        foodList: [
+          { name: "招牌水煮肉片", price: "12元" },
+          { name: "特色酸菜鱼", price: "12元" },
+          { name: "一品肥牛", price: "12元" },
+          { name: "小酥肉", price: "11元" },
+          { name: "黄金鸡块", price: "11元" },
+          { name: "金汤蛋饺", price: "11元" },
+        { name: "麻辣花甲", price: "12元" }
+    ]
+  },
+      {
 
         windowName: "精品菜",
+        windowId: "5102",
+        image: "guiyuan_jingpincai",
         foodList: [
           { name: "西红柿鸡蛋", price: "3元" },
           { name: "丝瓜毛豆", price: "3元" },
@@ -66,19 +82,9 @@ export const GUIYUAN_DATA: FloorItem[] = [
         ]
       },
       {
-        windowName: "辣上瘾",
-        foodList: [
-          { name: "招牌水煮肉片", price: "12元" },
-          { name: "特色酸菜鱼", price: "12元" },
-          { name: "一品肥牛", price: "12元" },
-          { name: "小酥肉", price: "11元" },
-          { name: "黄金鸡块", price: "11元" },
-          { name: "金汤蛋饺", price: "11元" },
-        { name: "麻辣花甲", price: "12元" }
-    ]
-  },
-      {
         windowName: "精品面点",
+        windowId: "5103",
+        image: "guiyuan_jingpinmiandian",
         foodList: [
           { name: "白馒头", price: "0.5元" },
           { name: "煎包", price: "0.5元" },
@@ -98,6 +104,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "朱家小馆羊杂面",
+        windowId: "5104",
+        image: "guiyuan_zhujiaxiaoguanyangzamian",
         foodList: [
           { name: "小馆牛肉面", price: "12元" },
           { name: "小馆羊杂面", price: "11元" },
@@ -132,8 +140,10 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
 
       {
+
         windowName: "温馨粥道",
-        image: "juyuan_wenxinzhoudao", // 桔园一楼-温馨粥道
+        windowId: "5105",
+        image: "guiyuan_wenxinzhoudao",
         foodList: [
           { name: "白米粥", price: "0.5元" },
           { name: "燕麦粥", price: "2元" },
@@ -155,6 +165,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "微香公",
+        windowId: "5106",
+        image: "guiyuan_weixianggong",
         foodList: [
           { name: "奥尔良烤鸭饭", price: "12元" },
           { name: "黑椒烤鸭饭", price: "12元" },
@@ -170,6 +182,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "萌煮",
+        windowId: "5107",
+        image: "guiyuan_mengzhu",
         foodList: [
           { name: "青菜鸡蛋米线/面条/方便面/烫饭", price: "8元" },
           { name: "番茄鸡蛋米线/面条/方便面/烫饭", price: "8元" },
@@ -207,6 +221,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "杂粮饼",
+        windowId: "5108",
+        image: "guiyuan_zaliangbing",
         foodList: [
           { name: "杂粮煎饼原味", price: "5元" },
           { name: "生煎包", price: "0.5元/个" },
@@ -219,6 +235,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "超级双拼饭",
+        windowId: "5109",
+        image: "guiyuan_chaojishuangpinfan",
         foodList: [
           { name: "泰式咖喱鸡", price: "11元" },
           { name: "香辣鸡杂", price: "11元" },
@@ -243,6 +261,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "炉知府",
+        windowId: "5110",
+        image: "guiyuan_luzhifu",
         foodList: [
           { name: "香煎铁板鸡排饭", price: "12元" },
           { name: "五花肉酸菜饭", price: "12元" },
@@ -257,6 +277,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "燃她",
+        windowId: "5111",
+        image: "guiyuan_ranta",
         foodList: [
           { name: "鸡肉条谷物饭", price: "11元" },
           { name: "煎腿排谷物饭", price: "11元" },
@@ -279,7 +301,9 @@ export const GUIYUAN_DATA: FloorItem[] = [
     windowList: [
 
       {
-        windowName: "柴二爷",
+        windowName: "塔斯汀",
+        windowId: "5201",
+        image: "guiyuan_tasiting",
         foodList: [
           { name: "招牌香辣鸡肉饭", price: "12元" },
           { name: "葱爆鸡腿肉饭", price: "12元" },
@@ -297,6 +321,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "前浪猛火炒饭",
+        windowId: "5202",
+        image: "guiyuan_qianlangmenghuochaofan",
         foodList: [
         { name: "火腿炒饭", price: "10元" },
       { name: "酸菜肉丝炒饭", price: "11元" },
@@ -324,7 +350,27 @@ export const GUIYUAN_DATA: FloorItem[] = [
   },
       {
 
+        windowName: "辣椒炒肉",
+        windowId: "5203",
+        image: "guiyuan_lajiaochaorou",
+        foodList: [
+          { name: "招牌辣椒炒肉", price: "12元" },
+          { name: "下饭香干炒肉", price: "12元" },
+          { name: "湘西小炒鸡", price: "12元" },
+          { name: "家常一碗香", price: "11元" },
+          { name: "香辣鸡杂", price: "12元" },
+          { name: "外婆下饭菜炒肉", price: "11元" },
+          { name: "香辣炒肉", price: "12元" },
+          { name: "莴笋炒肉", price: "12元" },
+          { name: "腐竹炒肉", price: "12元" },
+          { name: "白木耳炒肉", price: "12元" },
+          ]
+      },
+      {
+
         windowName: "淮南牛肉汤",
+        windowId: "5204",
+        image: "guiyuan_huainanniuroutang",
         foodList: [
           { name: "鸡肉粉丝", price: "11元" },
           { name: "牛肉粉丝", price: "11元" },
@@ -344,6 +390,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "瓦香鸡米饭",
+        windowId: "5205",
+        image: "guiyuan_waxiangjimifan",
         foodList: [
           { name: "瓦香鸡米饭", price: "12元" },
           { name: "瓦香年糕鸡", price: "11元" },
@@ -356,6 +404,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "成都冒烤鸭",
+        windowId: "5206",
+        image: "guiyuan_chengdumaokaoya",
         foodList: [
           { name: "冒烤鸭", price: "12元" },
           { name: "冒酥肉", price: "12元" },
@@ -368,6 +418,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "阿现烧腊",
+        windowId: "5207",
+        image: "guiyuan_axianshaola",
         foodList: [
           { name: "广式烧鸭饭", price: "12元" },
           { name: "风味烧鸭饭", price: "12元" },
@@ -396,6 +448,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "特色水煎包",
+        windowId: "5208",
+        image: "guiyuan_teseshuijianbao",
         foodList: [
           { name: "水煮包（素）", price: "1元" },
           { name: "水煎包（素）", price: "1元" },
@@ -408,6 +462,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "串烧饭",
+        windowId: "5209",
+        image: "guiyuan_chuanshaofan",
         foodList: [
           { name: "鸡排饭", price: "10元" },
           { name: "里脊肉饭", price: "10元" },
@@ -417,6 +473,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "牛伯叔铁锅炖",
+        windowId: "5210",
+        image: "guiyuan_niuboshutieguodun",
         foodList: [
           { name: "素菜锅底", price: "10元" },
           { name: "肉末茄子/面饼", price: "2元" },
@@ -428,6 +486,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "正宗柳州螺狮粉",
+        windowId: "5211",
+        image: "guiyuan_zhengzongliuzhouluosifen",
         foodList: [
           { name: "招牌柳州螺狮粉", price: "12元" },
           { name: "炸蛋", price: "3元" },
@@ -442,6 +502,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "富庄阁",
+        windowId: "5212",
+        image: "guiyuan_fuzhuangge",
         foodList: [
           { name: "烤鸭拌饭", price: "12元" },
           ]
@@ -449,6 +511,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "超大猪排",
+        windowId: "5213",
+        image: "guiyuan_chaodazhupai",
         foodList: [
           { name: "大脸鸡排蛋包饭", price: "11元" },
           { name: "五香猪扒蛋包饭", price: "11元" },
@@ -462,6 +526,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
 
         windowName: "精品小碗菜",
+        windowId: "5214",
+        image: "guiyuan_jingpinxiaowancai",
         foodList: [
           { name: "宫爆鸡丁", price: "5元" },
           { name: "尖椒脆骨", price: "5元" },
@@ -496,22 +562,6 @@ export const GUIYUAN_DATA: FloorItem[] = [
           { name: "平包菜炒粉丝", price: "3元" },
       ]
       },
-    {
-
-        windowName: "辣椒炒肉",
-        foodList: [
-          { name: "招牌辣椒炒肉", price: "12元" },
-          { name: "下饭香干炒肉", price: "12元" },
-          { name: "湘西小炒鸡", price: "12元" },
-          { name: "家常一碗香", price: "11元" },
-          { name: "香辣鸡杂", price: "12元" },
-          { name: "外婆下饭菜炒肉", price: "11元" },
-          { name: "香辣炒肉", price: "12元" },
-          { name: "莴笋炒肉", price: "12元" },
-          { name: "腐竹炒肉", price: "12元" },
-          { name: "白木耳炒肉", price: "12元" },
-          ]
-      },
 
     ]
   },
@@ -521,6 +571,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
     windowList: [
       {
         windowName: "SALAD",
+        windowId: "5301",
+        image: "guiyuan_salad",
         foodList: [
           { name: "孜香蜜汁鸡排", price: "11元" },
           { name: "柠香鸡丝", price: "11元" },
@@ -539,6 +591,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "重庆鸡公煲",
+        windowId: "5302",
+        image: "guiyuan_chongqingjigongbao",
         foodList: [
           { name: "鸡公煲", price: "12元" },
           { name: "排骨煲", price: "12元" },
@@ -555,6 +609,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "各种盖浇饭",
+        windowId: "5303",
+        image: "guiyuan_gezhonggaijiaofan",
         foodList: [
           { name: "麻辣豆腐", price: "9元" },
           { name: "西红柿炒蛋", price: "10元" },
@@ -585,6 +641,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "袁记云饺",
+        windowId: "5304",
+        image: "guiyuan_yuanjiyunjiao",
         foodList: [
           { name: "玉米鲜肉饺", price: "12元" },
           { name: "韭菜鲜肉饺", price: "12元" },
@@ -600,6 +658,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "旋转小火锅",
+        windowId: "5305",
+        image: "guiyuan_xuanzhuanxiaohuoguo",
         foodList: [
           { name: "香辣红油", price: "2.5元" },
           { name: "清汤牛油", price: "2.5元" },
@@ -619,6 +679,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "原切烤肉/酒酿",
+        windowId: "5306",
+        image: "guiyuan_yuanqiekaoroujiuniang",
         foodList: [
           { name: "原切烤肉/酒酿", price: "12元" },
           { name: "蒜香烤肉饭", price: "12元" },
@@ -630,6 +692,8 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "舌尖大师",
+        windowId: "5307",
+        image: "guiyuan_shetjiandashi",
         foodList: [
           { name: "精选吃到撑套餐", price: "59元" },
           { name: "二人不纠结套餐", price: "66元" },
@@ -1523,7 +1587,702 @@ export const JUYUAN_DATA: FloorItem[] = [
 
 
 export const MEIYUAN_DATA: FloorItem[] = [
-  // 待补充
+  // 梅园一楼
+  {
+    floorName: "一楼",
+    windowList: [
+      {
+        windowName: "贵州花溪米线面条",
+        windowId: "2101",
+        image: "Window2101",
+        foodList: [
+          { name: "招牌肉酱米线/面", price: "9元" },
+          { name: "山野泡椒米线/面", price: "10元" },
+          { name: "香辣鸡杂米线/面", price: "10元" },
+          { name: "红烧牛肉米线/面", price: "12元" },
+          { name: "番茄汤米线/面", price: "9元" },
+          { name: "百香果米线/面", price: "10元" },
+          { name: "雪菜肉丝米线/面", price: "10元" },
+          { name: "香辣鸡丝米线/面", price: "11元" },
+          { name: "肉酱拌米线/面", price: "9元" },
+          { name: "山野泡椒拌米线/面", price: "10元" },
+          { name: "咸蛋黄拌米线/面", price: "9元" },
+          { name: "葱油拌米线/面", price: "9元" },
+          { name: "蟹黄拌米线/面", price: "9元" },
+          { name: "椒麻拌米线/面", price: "9元" },
+          { name: "雪菜肉丝拌米线/面", price: "10元" },
+          { name: "香辣鸡丝拌米线/面", price: "11元" },
+          { name: "鸡腿", price: "6元/个、9.9元/2个" },
+          { name: "鸡肉条", price: "12元/份" },
+          { name: "香骨鸡", price: "10元/份" },
+          { name: "蟹排", price: "10元/份" },
+          { name: "地瓜丸", price: "10元/份" },
+          { name: "炸蘑菇", price: "10元/份" },
+          { name: "鸡翅", price: "4元/个、10元/3个" },
+          { name: "翅根", price: "4元/个、10元/3个" }
+        ]
+      },
+      {
+        windowName: "麻辣拌&麻辣烫",
+        windowId: "2102",
+        image: "Window1201",
+        foodList: [
+          { name: "麻辣烫/麻辣香锅/麻辣拌", price: "1.75元/50克" },
+          { name: "米饭加0.5元，免费续饭", price: "" },
+          { name: "起烫", price: "9.9元起" },// 待补充具体菜品数据
+        ]
+      },
+      {
+        windowName: "稻香鸭腿饭",
+        windowId: "2103",
+        image: "Window2103",
+        foodList: [
+          { name: "招牌鸭腿饭", price: "12元" },
+          { name: "猪脚肘子饭", price: "12元" },
+          { name: "特色鸭肠饭", price: "12元" },
+          { name: "精品鸡排饭", price: "11元" },
+          { name: "精品鸡腿饭", price: "10元" },
+          { name: "特色丸子饭", price: "10元" },
+          { name: "肘子拼鸡排", price: "12元" },
+          { name: "鸭肠拼鸡排", price: "12元" },
+          { name: "肘子拼鸭肠", price: "12元" },
+          { name: "鸡腿", price: "5元/个" },
+          { name: "丸子", price: "5元/份" },
+          { name: "鸭锁骨", price: "3元/个" },
+          { name: "鸭心", price: "2元/5个" },
+          { name: "豆干", price: "1元/片" },
+          { name: "啵啵肠", price: "1元/个" },
+          { name: "藕片", price: "1.5元/2片" }
+        ]
+      },
+      {
+        windowName: "黑金卤肉咖喱猪排饭",
+        windowId: "2104",
+        image: "Window2104",
+        foodList: [
+          { name: "招牌卤肉饭", price: "11元" },
+          { name: "黑椒鸡排饭", price: "11元" },
+          { name: "原切猪排咖喱饭(小份)", price: "12元" },
+          { name: "孜然烤肉咖喱饭", price: "11元" },
+          { name: "可乐鸡咖喱饭", price: "11元" },
+          { name: "尊享鸡排咖喱饭", price: "11元" },
+          { name: "经典炸鸡咖喱饭", price: "11元" },
+          { name: "原切猪排加料", price: "3元" }
+        ]
+      },
+      {
+        windowName: "朱家小馆羊杂面",
+        windowId: "2105",
+        image: "Window2105",
+        foodList: [
+          { name: "特色羊杂面", price: "11元" },
+          { name: "招牌拌面", price: "12元" },
+          { name: "招牌烤拌面", price: "10元" },
+          { name: "麻辣汤面", price: "8元" },
+          { name: "酸辣面", price: "8元" },
+          { name: "卤肉面", price: "11元" },
+          { name: "酸豆角豆角面", price: "9元" },
+          { name: "鸡蛋烤拌面", price: "9元" },
+          { name: "麻香鸡丝拌面", price: "10元" },
+          { name: "酸豆角拌面", price: "9元" },
+          { name: "肉燥拌面", price: "9元" },
+          { name: "混合炸酱面", price: "10元" },
+          { name: "肠、煎蛋、卤豆干、卤肠、卤鸡胗、卤鸡腿", price: "2~5元" }
+        ]
+      },
+      {
+        windowName: "瓦香鸡米饭",
+        windowId: "2106",
+        image: "Window2106",
+        foodList: [
+          { name: "瓦香包菜", price: "8元/份" },
+          { name: "瓦香花菜", price: "8元/份" },
+          { name: "瓦香土豆", price: "10元/份" },
+          { name: "瓦香年糕", price: "12元/份" },
+          { name: "瓦香手撕面筋", price: "12元/份" },
+          { name: "瓦香小酥肉", price: "12元/份" },
+          { name: "瓦香锅包肉", price: "12元/份" },
+          { name: "瓦香鸡米饭", price: "12元/份" },
+          { name: "包菜", price: "1元" },
+          { name: "花菜", price: "1元" },
+          { name: "年糕", price: "2元" },
+          { name: "面筋", price: "2元" },
+          { name: "土豆", price: "2元" },
+          { name: "鸡肉（40g）", price: "4元" }
+        ]
+      },
+      {
+        windowName: "明厨优选",
+        windowId: "2107",
+        image: "Window2107",
+        foodList: [
+          { name: "紫米饭", price: "0.5元/份" },
+          { name: "白馒头", price: "0.5元/个" },
+          { name: "荤菜+素菜+豆干", price: "10~12元" }
+        ]
+      },
+      {
+        windowName: "广式烧腊饭",
+        windowId: "2108",
+        image: "Window2108",
+        foodList: [
+          { name: "金牌烧鸭饭+蒸蛋+素菜+豆干", price: "11元" },
+          { name: "蜜汁鸡腿饭+蒸蛋+素菜+豆干", price: "11元" },
+          { name: "蜜汁叉烧饭+蒸蛋+素菜+豆干", price: "12元" },
+          { name: "蜜汁鸡翅饭+蒸蛋+素菜+豆干", price: "12元" },
+          { name: "隆江猪脚饭+蒸蛋+素菜+豆干", price: "12元" },
+          { name: "美葱白切鸡饭+蒸蛋+素菜+豆干", price: "11元" },
+          { name: "东江手撕鸡饭+蒸蛋+素菜+豆干", price: "10元" },
+          { name: "吊烧鸭腿饭+蒸蛋+素菜+豆干", price: "12元" },
+          { name: "黑椒鸡扒饭+蒸蛋+素菜+豆干", price: "10元" },
+          { name: "脆皮鸭腿饭+蒸蛋+素菜+豆干", price: "11元" },
+          { name: "白切鸡腿饭+蒸蛋+素菜+豆干", price: "11元" },
+          { name: "卤水鸡腿饭+蒸蛋+素菜+豆干", price: "11元" },
+          { name: "潮汕肉卷饭+蒸蛋+素菜+豆干", price: "10元" },
+          { name: "红油猪耳饭+蒸蛋+素菜+豆干", price: "12元" },
+          { name: "脆皮烧肉饭+蒸蛋+素菜+豆干", price: "12元" },
+          { name: "卤水油鸡饭+蒸蛋+素菜+豆干", price: "11元" },
+          { name: "白切鸡", price: "3元/份" },
+          { name: "叉烧", price: "3元/份" },
+          { name: "手撕鸡", price: "3元/份" },
+          { name: "烧鸭", price: "3元/份" }
+        ]
+      },
+      {
+        windowName: "精品快餐",
+        windowId: "2109",
+        image: "Window2109",
+        foodList: [
+          { name: "紫米饭", price: "0.5元" },// 待补充具体菜品数据
+        ]
+      },
+      {
+        windowName: "手工鲜包",
+        windowId: "2110",
+        image: "Window2110",
+        foodList: [
+          { name: "青菜包", price: "1.2元" },
+          { name: "鲜肉包", price: "1.5元" },
+          { name: "梅干菜包", price: "1.5元" },
+          { name: "鸡腿包", price: "1.5元" },
+          { name: "茄子包", price: "1.5元" },
+          { name: "麻香鸡腿包", price: "1.5元" },
+          { name: "卤肉包", price: "2元" },
+          { name: "面包", price: "2元" },
+          { name: "小笼包", price: "6元/笼" },
+          { name: "杨枝甘露包", price: "1.5~3.5元" },
+          { name: "粉丝煎饺", price: "1.5~3.5元" },
+          { name: "烧麦", price: "1.5~3.5元" },
+          { name: "糯米粑", price: "1.5~3.5元" },
+          { name: "玉米蒸饺", price: "1.5~3.5元" },
+          { name: "玉米鲜肉饼", price: "1.5~3.5元" },
+          { name: "南瓜发糕", price: "1.5~3.5元" },
+          { name: "玉米热狗卷", price: "1.5~3.5元" },
+          { name: "糯米鸡", price: "1.5~3.5元" },
+          { name: "海苔饭团", price: "1.5~3.5元" },
+          { name: "豆浆", price: "1.8~2.5元" },
+          { name: "银耳汤", price: "1.8~2.5元" },
+          { name: "绿豆沙", price: "1.8~2.5元" },
+          { name: "红枣豆浆", price: "1.8~2.5元" },
+          { name: "黑米粥", price: "2~2.5元" },
+          { name: "八宝粥", price: "2~2.5元" },
+          { name: "牛奶燕麦粥", price: "2~2.5元" },
+          { name: "小米南瓜粥", price: "2~2.5元" }
+        ]
+      },
+      {
+        windowName: "土豆泥拌饭",
+        windowId: "2111",
+        image: "Window2111",
+        foodList: [
+          { name: "可乐鸡", price: "12元" },
+          { name: "糖醋鸡丁", price: "12元" },
+          { name: "咖喱鸡", price: "12元" },
+          { name: "黑椒肉柳", price: "12元" },
+          { name: "下饭辣椒炒肉", price: "12元" },
+          { name: "藤椒酸菜鱼丸", price: "11~12元" },
+          { name: "灶香卤肉", price: "11~12元" },
+          { name: "辣子鸡丁", price: "11~12元" },
+          { name: "土匪黑鸭", price: "11~12元" },
+          { name: "黑椒鸡丁", price: "11~12元" },
+          { name: "麻香肉沫豆腐", price: "9~12元" },
+          { name: "鱼香肉丝", price: "9~12元" },
+          { name: "招牌半只鸡", price: "9~12元" },
+          { name: "飘香鸭腿", price: "9~12元" },
+          { name: "鲜香鸡腿", price: "9~12元" }
+        ]
+      },
+      {
+        windowName: "千里香馄饨",
+        windowId: "2112",
+        image: "Window2112",
+        foodList: [
+          { name: "鲜肉小馄饨小份", price: "6.5元/20只" },
+          { name: "鲜肉小馄饨大份", price: "8.5元/30只" },
+          { name: "海苔肉小馄饨小份", price: "7.5元/20只" },
+          { name: "海苔肉小馄饨大份", price: "9.5元/30只" },
+          { name: "蟹黄肉小馄饨小份", price: "8.5元/20只" },
+          { name: "蟹黄肉小馄饨大份", price: "11元/30只" },
+          { name: "鲜肉大馄饨小份", price: "10元/9只" },
+          { name: "鲜肉大馄饨大份", price: "12元/11只" },
+          { name: "荠菜肉大馄饨小份", price: "10元/9只" },
+          { name: "荠菜肉大馄饨大份", price: "12元/11只" },
+          { name: "香菇肉大馄饨小份", price: "10~12元/9只" },
+          { name: "香菇肉大馄饨大份", price: "12元/11只" },
+          { name: "韭菜肉大馄饨小份", price: "10~12元/9只" },
+          { name: "韭菜肉大馄饨大份", price: "12元/11只" },
+          { name: "玉米肉大馄饨小份", price: "10~12元/9只" },
+          { name: "玉米肉大馄饨大份", price: "12元/11只" },
+          { name: "虾仁肉大馄饨小份", price: "10~12元/9只" },
+          { name: "虾仁肉大馄饨大份", price: "12元/11只" },
+          { name: "蟹黄肉大馄饨小份", price: "10~12元/9只" },
+          { name: "蟹黄肉大馄饨大份", price: "12元/11只" },
+          { name: "自选水饺", price: "1.65元/两" }
+        ]
+      }
+    ]
+  },
+  // 梅园二楼
+  {
+    floorName: "二楼",
+    windowList: [
+      {
+        windowName: "稻香捞面",
+        windowId: "2201",
+        image: "Window2201",
+        foodList: [
+          { name: "皖北拌面", price: "17.5元/份" },
+          { name: "虎皮鸡蛋", price: "1元/个" },
+          { name: "秘制卤干", price: "1元/个" },
+          { name: "纯肉烤肠", price: "3元/根" },
+          { name: "兰花干", price: "2元/块" }
+        ]
+      },
+      {
+        windowName: "南昌瓦罐汤",
+        windowId: "2202",
+        image: "Window2202",
+        foodList: [
+          { name: "鸡蛋肉饼汤", price: "5元/份" },
+          { name: "皮蛋肉饼汤", price: "5元/份" },
+          { name: "墨鱼肉饼汤", price: "5元/份" },
+          { name: "海带排骨汤", price: "5元/份" },
+          { name: "香菇母鸡汤", price: "5元/份" },
+          { name: "茶树菇肉饼汤", price: "5元/份" },
+          { name: "玉米排骨汤", price: "5元/份" }
+        ]
+      },
+      {
+        windowName: "徽州家常菜",
+        windowId: "2203",
+        image: "Window2203",
+        foodList: [
+          { name: "山药木耳", price: "3.5元/份" },
+          { name: "茄子豆角", price: "3.5元/份" },
+          { name: "小炒藕片", price: "3.5元/份" },
+          { name: "丝瓜毛豆", price: "3.5元/份" },
+          { name: "蒜泥西兰花", price: "4元/份" },
+          { name: "香辣腐竹", price: "4元/份" },
+          { name: "青椒肉片", price: "4元/份" },
+          { name: "土豆肉片", price: "4元/份" },
+          { name: "毛豆烧鸡", price: "4.5元/份" },
+          { name: "葱油鸡", price: "4.5元/份" },
+          { name: "宫爆鸡丁", price: "4.5元/份" },
+          { name: "鱼香肉丝", price: "4.5元/份" },
+          { name: "红烧大排", price: "5元/份" },
+          { name: "椒麻鸡腿", price: "5元/份" },
+          { name: "干锅鸭腿", price: "5元/份" },
+          { name: "椒盐大虾", price: "5元/份" },
+          { name: "糖醋鱼片", price: "5元/份" },
+          { name: "土豆烧牛肉", price: "5元/份" },
+          { name: "特色红烧肉", price: "5元/份" },
+          { name: "炒茄子肉丝", price: "5元/份" }
+        ]
+      },
+      {
+        windowName: "徽州咸肉饭",
+        windowId: "2204",
+        image: "Window2204",
+        foodList: [
+          { name: "基础套餐小菜+菜饭", price: "7元" },
+          { name: "基础套餐两素+菜饭", price: "9元" },
+          { name: "荤菜套餐两素+荤菜+米饭", price: "12元" }
+        ]
+      },
+      {
+        windowName: "橘生南淮南牛肉汤",
+        windowId: "2205",
+        image: "Window2205",
+        foodList: [
+          { name: "淮南牛肉汤", price: "12元/碗" },
+          { name: "鲜吊龙牛肉汤", price: "12元/碗" },
+          { name: "牛肉米线汤", price: "12元/碗" },
+          { name: "烧饼", price: "1.5元/个" },
+          { name: "鱼豆腐", price: "1元/2个" },
+          { name: "牛肉丸", price: "1元/1个" },
+          { name: "鹌鹑蛋", price: "1.5元/2个" },
+          { name: "鲜牛肉", price: "5元/50g" }
+        ]
+      },
+      {
+        windowName: "新潮双拼饭",
+        windowId: "2206",
+        image: "Window2206",
+        foodList: [
+          { name: "鲜牛肉双拼盖饭", price: "暂未标价" }
+        ]
+      },
+      {
+        windowName: "吊炉烤肉饭",
+        windowId: "2207",
+        image: "Window2207",
+        foodList: [
+          { name: "吊炉烤鸡饭", price: "12元/份" },
+          { name: "烤肉饭", price: "12元/份" },
+          { name: "烧鸭饭", price: "12元/份" },
+          { name: "大肉饭", price: "12元/份" },
+          { name: "叉烧饭", price: "12元/份" },
+          { name: "鸭肠饭", price: "12元/份" },
+          { name: "烤肠", price: "12元/单点" },
+          { name: "叉烧小肋排", price: "12元/单点" },
+          { name: "脱骨鸡", price: "12元/单点" },
+          { name: "夫妻肺片", price: "12元/单点" },
+          { name: "鸭全翅", price: "4元" },
+          { name: "红油鸭肠", price: "9元" },
+          { name: "红油猪耳", price: "12元" },
+          { name: "肉汁荷包蛋", price: "1元/个" }
+        ]
+      },
+      {
+        windowName: "蘸水牛肉菜",
+        windowId: "2208",
+        image: "Window2208",
+        foodList: [
+          { name: "7种时蔬+蘸水+米饭", price: "9元/份" },
+          { name: "轻腌鸡胸肉", price: "3.5元/两" },
+          { name: "鲜嫩里脊", price: "3.5元/两" },
+          { name: "鲜弹大虾", price: "3.5元/两" },
+          { name: "大刀牛肉", price: "5元/两" },
+          { name: "牛肉拼鸡胸肉", price: "5元/两" },
+          { name: "牛肉拼里脊", price: "5元/两" }
+        ]
+      },
+      {
+        windowName: "螺鼎记螺蛳粉",
+        windowId: "2209",
+        image: "Window2209",
+        foodList: [
+          { name: "招牌螺蛳粉", price: "12元/份" },
+          { name: "炸蛋、卤蛋、豆腐干、卤干", price: "1元/份" },
+          { name: "豆腐果", price: "1元/3个" },
+          { name: "花干、生菜、酸笋、豆角、腐竹", price: "3元/份" },
+          { name: "鸡爪", price: "3.5元/只" },
+          { name: "鸭爪、鸭翅、腊肠", price: "3元/只" },
+          { name: "猪脚", price: "9.9元/只" }
+        ]
+      },
+      {
+        windowName: "川渝水煮菜",
+        windowId: "2210",
+        image: "Window2210",
+        foodList: [
+          { name: "豆腐火腿", price: "9元/份" },
+          { name: "鸭血火腿", price: "9元/份" },
+          { name: "鸭血土豆", price: "9元/份" },
+          { name: "鸭血培根", price: "9元/份" },
+          { name: "豆腐鸭血", price: "9元/份" },
+          { name: "鸡片鸭血", price: "9元/份" },
+          { name: "酥肉年糕", price: "9元/份" },
+          { name: "土豆片土豆", price: "9元/份" },
+          { name: "鸡片豆腐", price: "12元/份" },
+          { name: "鸭血酥肉", price: "12元/份" },
+          { name: "青椒毛豆肉丝", price: "12元/份" },
+          { name: "鱼香肉丝", price: "12元/份" },
+          { name: "回锅肉", price: "12元/份" },
+          { name: "土豆鸡块", price: "12元/份" },
+          { name: "三鲜鸭血", price: "10元/份" },
+          { name: "其他菜品", price: "8元/份" }
+        ]
+      },
+      {
+        windowName: "匠心卤热卤拌饭",
+        windowId: "2211",
+        image: "Window2211",
+        foodList: [
+          { name: "卤汁海带饭", price: "8元" },
+          { name: "卤汁莲藕饭", price: "9元" },
+          { name: "蒜香茄子饭", price: "9元" },
+          { name: "辣卤腐竹饭", price: "9元" },
+          { name: "孜然土豆饭", price: "9元" },
+          { name: "卤汁肉肠饭", price: "10元" },
+          { name: "卤香鸭腿饭", price: "11元" },
+          { name: "甜辣鸭翅饭", price: "11元" },
+          { name: "椒麻鸭肠饭", price: "11元" },
+          { name: "脆笋肉丝饭", price: "12元" },
+          { name: "卤汁肉卷饭", price: "12元" },
+          { name: "青椒肉丝饭", price: "12元" },
+          { name: "卤香鸡腿", price: "4元/份" },
+          { name: "武汉黑鸭", price: "4元/份" },
+          { name: "超级卤肉", price: "4元/份" },
+          { name: "金牌肘子", price: "5元/份" },
+          { name: "鲜椒牛肉", price: "5元/份" }
+        ]
+      },
+      {
+        windowName: "武汉黑鸭",
+        windowId: "2212",
+        image: "Window2212",
+        foodList: [
+          { name: "麻辣黑鸭系列卤菜", price: "暂未标价" }
+        ]
+      },
+      {
+        windowName: "杨国福麻辣烫",
+        windowId: "2213",
+        image: "Window2213",
+        foodList: [
+          { name: "荤素各类食材", price: "1.86元/50g" }
+        ]
+      },
+      {
+        windowName: "甲味轩",
+        windowId: "2214",
+        image: "Window2214",
+        foodList: [
+          { name: "水饺小份(12个)", price: "7元" },
+          { name: "水饺中份(18个)", price: "10元" },
+          { name: "水饺大份(22个)", price: "12元" },
+          { name: "馄饨小份(12个)", price: "10元" },
+          { name: "馄饨大份(15个)", price: "12元" },
+          { name: "汤圆小份(6个)", price: "6元" },
+          { name: "汤圆中份(10个+赠送1个)", price: "10元" },
+          { name: "汤圆大份(12个+赠送2个)", price: "12元" },
+          { name: "水饺、馄饨、汤圆散称", price: "1.98元/两" }
+        ]
+      }
+    ]
+  },
+  // 梅园三楼
+  {
+    floorName: "三楼",
+    windowList: [
+      {
+        windowName: "堡Q弹",
+        windowId: "2301",
+        image: "Window2301",
+        foodList: [
+          { name: "A1两件套 (汉堡+可乐)", price: "11元" },
+          { name: "A2两件套 (鸡腿堡+可乐)", price: "11元" },
+          { name: "B1三件套", price: "13.8元" },
+          { name: "B2三件套", price: "14元" },
+          { name: "B3三件套", price: "14元" },
+          { name: "B4三件套", price: "16.8元" },
+          { name: "C1四件套", price: "17元" },
+          { name: "C2四件套", price: "18.8元" },
+          { name: "C3四件套", price: "19元" },
+          { name: "C4四件套", price: "19元" },
+          { name: "E1堡垒餐 (汉堡+鸡肉卷+可乐)", price: "17元" },
+          { name: "E2堡垒餐 (双汉堡+可乐)", price: "18元" },
+          { name: "E3堡垒餐", price: "20元" },
+          { name: "E4小食全家桶套餐", price: "18.8元" },
+          { name: "S1欢乐小食餐", price: "12元" },
+          { name: "S2欢乐小食餐", price: "13元" },
+          { name: "S3欢乐小食餐", price: "14元" },
+          { name: "好事成双双汉堡", price: "13元" },
+          { name: "快乐单人餐 (汉堡+鸡块+可乐)", price: "14元" },
+          { name: "F1双人套餐", price: "28元" },
+          { name: "F2双人套餐", price: "30元" },
+          { name: "F3双人套餐", price: "31元" },
+          { name: "F4双人套餐", price: "33元" },
+          { name: "老北京鸡肉卷", price: "7元" },
+          { name: "招牌香辣汉堡", price: "8元" },
+          { name: "培根煎蛋汉堡", price: "10元" },
+          { name: "多汁牛肉汉堡", price: "10元" },
+          { name: "板烧鸡腿汉堡", price: "10元" },
+          { name: "霸王大肉串×2", price: "4元" },
+          { name: "玉米条", price: "4元" },
+          { name: "上校鸡块", price: "5元" },
+          { name: "藤椒鸡肉条×3", price: "5元" },
+          { name: "盐酥鸡米花", price: "7元" },
+          { name: "厚切粗薯", price: "7元" },
+          { name: "香辣翅尖", price: "7元" },
+          { name: "黄金鸡柳", price: "7元" },
+          { name: "脆皮鸡腿", price: "8元" },
+          { name: "地瓜丸×5个", price: "4元" },
+          { name: "手枪腿", price: "12元" },
+          { name: "藤椒半边鸡", price: "12元" },
+          { name: "冰柠可乐", price: "4元" },
+          { name: "冰柠七喜", price: "4元" },
+          { name: "咖啡", price: "6元" },
+          { name: "牛奶", price: "6元" }
+        ]
+      },
+      {
+        windowName: "兰州拉面",
+        windowId: "2302",
+        image: "Window2302",
+        foodList: [
+          { name: "兰州拉面", price: "9元" },
+          { name: "鸡蛋刀削面", price: "8元" },
+          { name: "青菜拉面", price: "8元" },
+          { name: "鸡蛋拉面", price: "8元" },
+          { name: "牛肉刀削面", price: "9元" },
+          { name: "番茄牛肉面", price: "12元" },
+          { name: "红烧牛肉拉面", price: "12元" },
+          { name: "酸菜牛肉拉面", price: "12元" },
+          { name: "笋尖牛肉面", price: "12元" },
+          { name: "牛肉水饺", price: "12元" },
+          { name: "牛肉泡馍", price: "12元" },
+          { name: "青椒土豆丝拌面", price: "10元" },
+          { name: "西红柿鸡蛋拌面/饭", price: "11元" },
+          { name: "土豆牛肉拌面/饭", price: "12元" },
+          { name: "蘑菇炒肉拌面/饭", price: "12元" },
+          { name: "孜然牛肉拌面/饭", price: "12元" },
+          { name: "青椒牛肉拌面/饭", price: "12元" },
+          { name: "葱爆牛肉拌面/饭", price: "12元" },
+          { name: "大盘鸡拌面/饭", price: "12元" },
+          { name: "牛肉烩面", price: "12元" },
+          { name: "过油肉拌面", price: "12元" },
+          { name: "红烧鸡块盖面/饭", price: "12元" },
+          { name: "土豆鸡块盖面/饭", price: "12元" },
+          { name: "鸡蛋炒拉面", price: "11元" },
+          { name: "牛肉炒拉面", price: "12元" },
+          { name: "牛肉刀削炒面", price: "12元" },
+          { name: "鸡蛋刀削炒面", price: "11元" },
+          { name: "西红柿鸡蛋刀削面", price: "11元" },
+          { name: "干煸炒面", price: "12元" },
+          { name: "蛋炒饭", price: "9元" },
+          { name: "牛肉炒饭", price: "10元" },
+          { name: "兰州炒饭", price: "12元" },
+          { name: "孜然牛肉炒饭", price: "12元" },
+          { name: "笋尖牛肉炒饭", price: "12元" },
+          { name: "酸菜牛肉炒饭", price: "12元" },
+          { name: "鸡蛋炒饼", price: "11元" },
+          { name: "牛肉炒饼", price: "12元" },
+          { name: "煎蛋", price: "1元" },
+          { name: "兰花干", price: "3元" },
+          { name: "牛肉丸子", price: "3元" },
+          { name: "面筋", price: "3元" },
+          { name: "油炸饼", price: "3元" },
+          { name: "肉夹馍", price: "8元" },
+          { name: "牛肉（一份）", price: "8元" },
+          { name: "A套餐", price: "12元" },
+          { name: "B套餐", price: "18元" },
+          { name: "C套餐", price: "15元" },
+          { name: "D套餐", price: "15元" },
+          { name: "A1套餐", price: "18元" },
+          { name: "A2套餐", price: "19元" },
+          { name: "A3套餐", price: "15元" },
+          { name: "A4套餐", price: "20元" },
+          { name: "A5套餐", price: "19元" }
+        ]
+      },
+      {
+        windowName: "淮北烫面",
+        windowId: "2303",
+        image: "Window2303",
+        foodList: [
+          { name: "原味烫面", price: "8元" },
+          { name: "羊油烫面", price: "11元" },
+          { name: "肉酱烫面", price: "12元" },
+          { name: "羊油+肉酱烫面", price: "12元" },
+          { name: "干拌烫面", price: "7元" },
+          { name: "卤蛋", price: "1元" },
+          { name: "花干", price: "2元" },
+          { name: "油条", price: "2元" },
+          { name: "香肠 (2根)", price: "3元" }
+        ]
+      },
+      {
+        windowName: "闽南小馆",
+        windowId: "2304",
+        image: "Window2304",
+        foodList: [
+          { name: "黑金卤肉饭", price: "9.9元" },
+          { name: "黑金卤肉拌面", price: "9.9元" },
+          { name: "椰香咖喱芝士鸡排饭", price: "9.9元" },
+          { name: "椰香咖喱黄金猪排饭", price: "9.9元" },
+          { name: "话梅排骨饭", price: "9.9元" },
+          { name: "红烧牛杂饭/面/粉", price: "9.9元" },
+          { name: "百香果酸汤鸡肉饭", price: "9.9元" },
+          { name: "闽南咸饭", price: "9.9元" },
+          { name: "三拼饭 (卤肉+百香果+咖喱)", price: "9.9元" },
+          { name: "泰式冬阴功米粉", price: "9.9元" },
+          { name: "泰式冬阴功面", price: "9.9元" },
+          { name: "卤蛋", price: "9.9元" },
+          { name: "卤豆干", price: "9.9元" },
+          { name: "荷包蛋", price: "9.9元" },
+          { name: "牛杂", price: "9.9元" },
+          { name: "南美对虾", price: "9.9元" },
+          { name: "芝士鸡排", price: "9.9元" },
+          { name: "猪排", price: "9.9元" }
+        ]
+      },
+      {
+        windowName: "锦康风味",
+        windowId: "2305",
+        image: "Window2305",
+        foodList: [
+          { name: "锦康特色风味·米糍甜品", price: "3元" },
+          { name: "芝麻米糍", price: "4元" },
+          { name: "红豆米糍", price: "4元" },
+          { name: "紫米米糍", price: "4元" },
+          { name: "芋泥米糍", price: "6元" },
+          { name: "芋泥红豆双拼", price: "6元" },
+          { name: "芋泥紫米双拼", price: "6元" },
+          { name: "红豆奶酪双拼", price: "6元" },
+          { name: "紫米肉松双拼", price: "6元" },
+          { name: "芋泥奥利奥双拼", price: "7元" },
+          { name: "芋泥奶酪双拼", price: "7元" },
+          { name: "紫米奶酪双拼", price: "6元" },
+          { name: "蛋黄肉松双拼", price: "7元" },
+          { name: "芋泥蛋黄肉松三拼", price: "8元" },
+          { name: "芋泥奥利奥奶酪三拼", price: "8元" },
+          { name: "芋泥紫米奶酪三拼", price: "8元" },
+          { name: "锦康风味紫米蛋黄肉松三拼", price: "8元" },
+          { name: "红豆", price: "1元" },
+          { name: "芋泥", price: "2元" },
+          { name: "芝麻", price: "1元" },
+          { name: "肉松", price: "2元" },
+          { name: "紫米", price: "1元" },
+          { name: "蛋黄", price: "2元" },
+          { name: "奥利奥", price: "2元" },
+          { name: "奶酪", price: "2元" },
+          { name: "芋泥奶酪球", price: "10元" },
+          { name: "芋泥奶酪盖砖", price: "10元" },
+          { name: "芋泥奶酪盒", price: "12元" },
+          { name: "赤豆酒酿", price: "5元" },
+          { name: "赤豆糊小圆子", price: "6元" },
+          { name: "红豆小圆子", price: "6元" }
+        ]
+      },
+      {
+        windowName: "UDIAN轻食",
+        windowId: "2306",
+        image: "Window2306",
+        foodList: [
+          { name: "鸡胸肉三明治", price: "8元" },
+          { name: "牛排凤梨三明治", price: "9元" },
+          { name: "谷物饭", price: "10元" },
+          { name: "咖喱饭", price: "12元" },
+          { name: "泡菜鸡胸肉拌饭", price: "12元" },
+          { name: "黑椒意面", price: "8元" },
+          { name: "番茄肉酱意面", price: "11元" },
+          { name: "墨西哥鸡肉卷", price: "11元" },
+          { name: "泡菜鸡肉卷", price: "11元" },
+          { name: "UDIAN轻食照烧鸡丁拌饭", price: "10.5元" },
+          { name: "时蔬鸡胸肉", price: "8.5元" },
+          { name: "螺旋肉酱意面", price: "9.5元" },
+          { name: "低卡荞麦面", price: "7.5元" },
+          { name: "糙米饭团", price: "8元" },
+          { name: "煎蛋", price: "1元" },
+          { name: "贝贝南瓜", price: "1.5元" },
+          { name: "牛排", price: "6元" },
+          { name: "鸡胸肉", price: "3元" }
+        ]
+      }
+    ]
+  }
 ];
 
 // 梧桐园食堂数据（待补充）
@@ -1536,9 +2295,676 @@ export const HUIYUAN_DATA: FloorItem[] = [
   // 待补充
 ];
 
-// 榴园食堂数据（待补充）
+// 榴园食堂数据（三层楼框架）
 export const LIUYUAN_DATA: FloorItem[] = [
-  // 待补充
+  // 榴园一楼
+  {
+    floorName: "一楼",
+    windowList: [
+      {
+        windowName: "窗口1",
+        windowId: "3101",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口2",
+        windowId: "3102",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口3",
+        windowId: "3103",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口4",
+        windowId: "3104",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口5",
+        windowId: "3105",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口6",
+        windowId: "3106",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口7",
+        windowId: "3107",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口8",
+        windowId: "3108",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口9",
+        windowId: "3109",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口10",
+        windowId: "3110",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口11",
+        windowId: "3111",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口12",
+        windowId: "3112",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      }
+    ]
+  },
+  // 榴园二楼
+  {
+    floorName: "二楼",
+    windowList: [
+      {
+        windowName: "哎呦喂浓骨捞汤麻辣烫麻辣香锅",
+        foodList: [
+          { name: "麻辣烫/麻辣香锅（荤素同价，口味：原味/番茄）", price: "1.78元/50克" },
+        ]
+      },
+      {
+        windowName: "营养粥",
+        foodList: [
+          { name: "白米粥", price: "0.5元" },
+          { name: "酒酿小圆子", price: "2.5元" },
+          { name: "紫菜蛋花汤", price: "1元" },
+          { name: "桂花糊+椰奶", price: "2.5元" },
+          { name: "绿豆粥", price: "2元" },
+          { name: "椰奶", price: "2.5元" },
+          { name: "小米南瓜粥", price: "2.5元" },
+          { name: "椰奶西米露", price: "3元" },
+          { name: "红枣黑米粥", price: "2.5元" },
+          { name: "红枣银耳粥", price: "3元" },
+          { name: "皮蛋瘦肉粥", price: "2.5元" },
+          { name: "原味豆浆", price: "2.5元" },
+          { name: "椰奶燕麦粥", price: "2.5元" },
+          { name: "红枣豆浆", price: "2.5元" },
+          { name: "红枣山药粥", price: "2.5元" },
+          { name: "黑芝麻糊", price: "2.5元" }
+        ]
+      },
+      {
+        windowName: "口水鸡",
+        foodList: [
+          { name: "招牌口水鸡(酸甜麻)", price: "11元" },
+          { name: "百媚口水鸡(酸甜辣)", price: "11元" },
+          { name: "红油口水鸡(香辣)", price: "11元" },
+          { name: "口味: 原味微辣", price: "11元" },
+          { name: "鱼香口水鸡", price: "11元" },
+          { name: "黄焖鸡", price: "12元" },
+          { name: "黄焖排骨", price: "12元" },
+          { name: "黄焖酥肉", price: "11元" },
+          { name: "重辣", price: "11元" },
+          { name: "葱油口水鸡", price: "11元" }
+        ]
+      },
+      {
+        windowName: "小锅菜",
+        foodList: [
+          { name: "特色豆腐", price: "1.0元" },
+          { name: "鱼豆腐肉片", price: "4.5元" },
+          { name: "泡菜炒肉", price: "5.0元" },
+          { name: "香辣鸡杂", price: "5.0元" },
+          { name: "西红柿炒鸡蛋", price: "3.0元" },
+          { name: "土豆肉丝", price: "3.5元" },
+          { name: "牛心菜", price: "2.5元" },
+          { name: "西兰花炒木耳", price: "4.0元" },
+          { name: "香焖啤酒鸭", price: "5.0元" },
+          { name: "山药肉片", price: "5.0元" },
+          { name: "花菜回锅肉", price: "4.5元" },
+          { name: "小青菜", price: "2.0元" },
+          { name: "杭椒炒肉", price: "5.0元" },
+          { name: "韭菜豆芽菜", price: "1.0元" }
+        ]
+      },
+      {
+        windowName: "重庆川味面",
+        foodList: [
+          { name: "糖醋排骨面", price: "12元" },
+          { name: "红烧牛肉面", price: "11元" },
+          { name: "土豆牛肉面", price: "11元" },
+          { name: "鸡丝面", price: "11元" },
+          { name: "川味辣子鸡面", price: "11元" },
+          { name: "香菇鸡块面", price: "11元" },
+          { name: "香辣鸡杂面", price: "10元" },
+          { name: "香脆鸡腿面", price: "10元" },
+          { name: "脆香鸡排面", price: "10元" },
+          { name: "青椒肉丝面", price: "9元" },
+          { name: "青鱼肉丝面", price: "9元" },
+          { name: "金针肉丝面", price: "9元" },
+          { name: "酸菜肉丝面", price: "8元" },
+          { name: "酸辣笋尖面", price: "9元" },
+          { name: "鲜笋面", price: "9元" },
+          { name: "番茄鸡蛋面", price: "8元" },
+          { name: "土豆炸酱面", price: "8元" },
+          { name: "豆干面", price: "7元" },
+          { name: "鸡蛋面", price: "7元" },
+          { name: "青菜面", price: "5.5元" },
+          { name: "招牌炸酱面", price: "8元" },
+          { name: "糖醋排骨拌面", price: "12元" },
+          { name: "红烧牛肉拌面", price: "11元" },
+          { name: "土豆牛肉拌面", price: "11元" },
+          { name: "鸡丝拌面", price: "11元" },
+          { name: "川味辣子鸡拌面", price: "11元" },
+          { name: "香菇鸡块拌面", price: "11元" },
+          { name: "香辣鸡杂拌面", price: "10元" },
+          { name: "三鲜拌面", price: "9元" },
+          { name: "青椒肉丝拌面", price: "9元" },
+          { name: "青鱼肉丝拌面", price: "9元" },
+          { name: "金针肉丝拌面", price: "8元" },
+          { name: "酸菜肉丝拌面", price: "8元" },
+          { name: "酸辣笋尖拌面", price: "9元" },
+          { name: "番茄鸡蛋拌面", price: "8元" },
+          { name: "土豆杂酱拌面", price: "8元" },
+          { name: "花生酱拌面", price: "7元" },
+          { name: "葱油拌面", price: "7元" },
+          { name: "糖醋排骨米线/粉丝", price: "12元" },
+          { name: "红烧牛肉米线/粉丝", price: "11元" },
+          { name: "土豆牛肉米线/粉丝", price: "11元" },
+          { name: "鸡丝米线/粉丝", price: "12元" },
+          { name: "川味辣子鸡米线/粉丝", price: "12元" },
+          { name: "香菇鸡块米线/粉丝", price: "12元" },
+          { name: "香辣鸡杂米线/粉丝", price: "11元" },
+          { name: "香菇鸡腿米线/粉丝", price: "11元" },
+          { name: "脆香鸡排米线/粉丝", price: "11元" },
+          { name: "三鲜米线/粉丝", price: "10元" },
+          { name: "青椒肉丝米线/粉丝", price: "10元" },
+          { name: "鱼香肉丝米线/粉丝", price: "10元" },
+          { name: "金针肉丝米线/粉丝", price: "9元" },
+          { name: "酸菜肉丝米线/粉丝", price: "9元" },
+          { name: "酸辣笋尖米线/粉丝", price: "10元" },
+          { name: "番茄鸡蛋米线/粉丝", price: "9元" },
+          { name: "土豆炸酱米线/粉丝", price: "9元" },
+          { name: "方便面加鸡蛋", price: "6.5元" },
+          { name: "方便面加火腿", price: "6元" },
+          { name: "方便面加锅巴", price: "6.5元" },
+          { name: "卤豆干", price: "1.5元/2片" },
+          { name: "卤蛋", price: "1.5元/1个" },
+          { name: "煎蛋", price: "1.5元/1个" },
+          { name: "鸡排", price: "5元" },
+          { name: "卤鸡腿", price: "5元" }
+        ]
+      },
+      {
+        windowName: "鲜煎猪扒饭",
+        foodList: [
+          { name: "鲜煎猪扒饭", price: "12元" },
+          { name: "特色鸡扒饭", price: "12元" },
+          { name: "双椒猪扒饭", price: "12元" },
+          { name: "黑椒肉肠意大利面", price: "12元" },
+          { name: "特色猪扒饭", price: "12元" },
+          { name: "照烧猪扒饭", price: "12元" },
+          { name: "深海鳕鱼意大利面", price: "12元" },
+          { name: "双椒鸡扒饭", price: "12元" },
+          { name: "番茄鸡扒饭", price: "12元" },
+          { name: "双椒鸡扒意大利面", price: "12元" },
+          { name: "照烧鸡扒饭", price: "12元" },
+          { name: "芝士猪扒饭", price: "12元" },
+          { name: "黑椒鸡扒意大利面", price: "12元" },
+          { name: "番茄猪扒饭", price: "12元" },
+          { name: "黑椒猪扒意大利面", price: "12元" },
+          { name: "芝士鸡扒意大利面", price: "12元" },
+          { name: "芝士鸡扒饭", price: "12元" },
+          { name: "黑椒肉肠饭", price: "12元" },
+          { name: "照烧鸡扒意大利面", price: "12元" },
+          { name: "照烧肉肠意大利面", price: "12元" },
+          { name: "芝士猪扒意大利面", price: "12元" },
+          { name: "照烧猪扒意大利面", price: "12元" },
+          { name: "深海鳕鱼饭", price: "12元" },
+          { name: "脆皮鸡扒饭", price: "12元" },
+          { name: "双椒猪扒意大利面", price: "12元" },
+          { name: "肉肠", price: "3.5元/个" },
+          { name: "鸡扒", price: "6元/份" }
+        ]
+      },
+      {
+        windowName: "轻食简餐",
+        foodList: [
+          { name: "鸡肉条谷物饭", price: "11元" },
+          { name: "鸡肉条意面", price: "12元/份" },
+          { name: "紫米芋泥芝士火烧", price: "8元/个" },
+          { name: "麦香谷物饭", price: "9.9元/份" },
+          { name: "麦香意面", price: "9.9元/份" },
+          { name: "紫米芋泥肉松", price: "8元/个" },
+          { name: "日式烧肉谷物饭", price: "12元/份" },
+          { name: "鸡腿肉意面", price: "12元/份" },
+          { name: "鸡腿肉谷物饭", price: "12元/份" },
+          { name: "牛肉意面", price: "12元/份" },
+          { name: "牛肉谷物饭", price: "12元/份" },
+          { name: "鱼丸意面", price: "12元/份" }
+        ]
+      },
+      {
+        windowName: "健康营养",
+        foodList: [
+          { name: "干锅平包菜", price: "1元" },
+          { name: "水晶冬瓜", price: "1元" },
+          { name: "雪菜烧豆腐", price: "1元" },
+          { name: "韭菜绿豆芽", price: "1元" },
+          { name: "青椒萝卜丝", price: "1元" },
+          { name: "肉末蒸鸡蛋", price: "1.5元" },
+          { name: "鱼香土豆丝", price: "1.5元" },
+          { name: "卤花干", price: "1.5元" },
+          { name: "虎皮鸡蛋", price: "1.5元" },
+          { name: "青椒茄子", price: "2元" },
+          { name: "白菜豆腐", price: "1.5元" },
+          { name: "洋葱干丝", price: "2.5元" },
+          { name: "豆芽粉丝", price: "2.5元" },
+          { name: "青椒炒干菜", price: "2.5元" },
+          { name: "青椒酱汁", price: "2.5元" },
+          { name: "萝卜炒干菜", price: "3元" },
+          { name: "红烧圆子", price: "3元" },
+          { name: "青椒海带丝", price: "3元" },
+          { name: "西红柿炒鸡蛋", price: "3元" },
+          { name: "生瓜炒肉片", price: "3.5元" },
+          { name: "芹菜香干肉丝", price: "3.5元" },
+          { name: "鱼香茄子", price: "4元" },
+          { name: "蒜西兰花", price: "4元" },
+          { name: "川香回锅肉", price: "4.5元" },
+          { name: "豆角肉丝", price: "4.5元" },
+          { name: "干锅花菜肉片", price: "4.5元" },
+          { name: "干锅千页豆腐", price: "4.5元" },
+          { name: "家常豆腐", price: "4.5元" },
+          { name: "爆炒猪肝", price: "4.5元" },
+          { name: "笋瓜肉片", price: "4.5元" },
+          { name: "木耳肉片", price: "4.5元" },
+          { name: "冬瓜炖排骨", price: "5元" },
+          { name: "红烧大排", price: "5元" },
+          { name: "雪菜烧肉", price: "5元" },
+          { name: "海带炖肉", price: "5元" },
+          { name: "毛豆烧铁板烧", price: "5元" },
+          { name: "卤香酱鸭", price: "5元" },
+          { name: "土豆鸡丁", price: "5元" },
+          { name: "蒜苗炒心肉", price: "5元" },
+          { name: "红烧琵琶腿", price: "5元" },
+          { name: "杭椒鸡心", price: "5元" },
+          { name: "蒜香米粉肉", price: "5元" },
+          { name: "沙拉雪花鸡条", price: "5元" },
+          { name: "麻辣鱼块", price: "5元" },
+          { name: "黄豆烧猪手", price: "5元" },
+          { name: "土豆烧鸡仔", price: "5元" },
+          { name: "麻辣豆腐", price: "1元" },
+          { name: "酸辣大白菜", price: "1元" },
+          { name: "红烧冬瓜", price: "1元" },
+          { name: "土豆丝", price: "1.5元" },
+          { name: "蒸鸡蛋", price: "1.5元" },
+          { name: "红烧茄子", price: "1.5元" },
+          { name: "青椒粉丝", price: "2元" },
+          { name: "洋葱干丝", price: "2元" },
+          { name: "木耳炒青菜", price: "2元" },
+          { name: "白菜香干", price: "2元" },
+          { name: "黄瓜干丝", price: "2元" },
+          { name: "鸭血豆腐", price: "2元" },
+          { name: "干锅土豆片", price: "2.5元" },
+          { name: "青椒蛋丝", price: "2.5元" },
+          { name: "青椒豆腐果", price: "2.5元" },
+          { name: "萝卜干丝", price: "2.5元" },
+          { name: "红烧鸡翅根", price: "2.5元" },
+          { name: "豆芽粉丝", price: "2.5元" },
+          { name: "青椒酱干丝", price: "3元" },
+          { name: "西红柿炒蛋", price: "3元" },
+          { name: "蒜泥木耳菜", price: "3元" },
+          { name: "小炒藕条", price: "3元" },
+          { name: "青椒海带丝", price: "3元" },
+          { name: "火腿冬瓜", price: "3.5元" },
+          { name: "土豆肉丝", price: "3.5元" },
+          { name: "生瓜肉片", price: "4元" },
+          { name: "肉末茄子", price: "4元" },
+          { name: "火腿炒鸡蛋", price: "4.5元" },
+          { name: "川香回锅肉", price: "4.5元" },
+          { name: "家常豆腐", price: "4.5元" },
+          { name: "平菇炒鸡蛋", price: "4.5元" },
+          { name: "银耳肉片", price: "4.5元" },
+          { name: "新奥尔良鸡腿肉", price: "5元" },
+          { name: "红烧豆块鱼", price: "5元" },
+          { name: "啤酒仔鸭", price: "5元" },
+          { name: "米粉肉", price: "5元" }
+        ]
+      },
+      {
+        windowName: "精美点心",
+        foodList: [
+          { name: "鱼香肉丝包", price: "1元" },
+          { name: "梅干菜包", price: "1元" },
+          { name: "豆沙包", price: "1元" },
+          { name: "香菇青菜包", price: "1元" },
+          { name: "鲜肉包", price: "1元" },
+          { name: "豆腐包", price: "1元" },
+          { name: "蒸饺", price: "1元/2个" },
+          { name: "白馒头", price: "0.5元" },
+          { name: "葱油花卷", price: "1元" },
+          { name: "鸡蛋", price: "1元" },
+          { name: "脆骨肠", price: "2.5元" },
+          { name: "火腿肠", price: "1.5元" },
+          { name: "肉饼", price: "3元" },
+          { name: "香菇青菜饼", price: "3元" },
+          { name: "梅干菜饼", price: "3元" },
+          { name: "杂粮土豆丝饼", price: "5元" },
+          { name: "鸡蛋香肠饼", price: "2.5元" },
+          { name: "手抓饼卷土豆丝", price: "4.5元" },
+          { name: "芙蓉鸡蛋饼", price: "3元" },
+          { name: "青椒鸡蛋饼", price: "3.5元" },
+          { name: "肉夹馍", price: "3.5元" },
+          { name: "牛肉饼", price: "4元" },
+          { name: "芹菜饼", price: "3元" },
+          { name: "鸡蛋饼", price: "1元" },
+          { name: "糖糕", price: "1.5元" },
+          { name: "麻球糕", price: "1.5元" },
+          { name: "糕糕", price: "1.5元" },
+          { name: "地瓜丸", price: "2元/3个" },
+          { name: "烧饼", price: "1.5元" },
+          { name: "蛋挞", price: "2.5元" },
+          { name: "桂花米糕", price: "2元" },
+          { name: "黑米糕", price: "2.5元" },
+          { name: "红糖枣糕", price: "2元" },
+          { name: "红糖馒头", price: "1元" },
+          { name: "小米发糕", price: "3元" },
+          { name: "肉松花卷", price: "1.5元" },
+          { name: "大馍", price: "0.5元" },
+          { name: "春卷", price: "1.5元" },
+          { name: "肉松烤馍", price: "2元" },
+          { name: "鸡蛋饼卷火腿", price: "2.5元" },
+          { name: "火腿煎蛋", price: "3元" },
+          { name: "肉松饭团", price: "3元" },
+          { name: "杂粮馒头", price: "1元" }
+        ]
+      },
+      {
+        windowName: "鸡汤面",
+        foodList: [
+          { name: "鸡汤面", price: "7元" },
+          { name: "土豆肉丝汤面", price: "8元" },
+          { name: "西红柿鸡蛋汤面", price: "9元" },
+          { name: "香辣鸭血汤面", price: "9元" },
+          { name: "酸菜肉丝汤面", price: "9元" },
+          { name: "毛豆鸡汤面", price: "10元" },
+          { name: "鸡丝汤面", price: "10元" },
+          { name: "香辣鸡杂汤面", price: "11元" },
+          { name: "豆角肉丝汤面", price: "11元" },
+          { name: "肉沫茄子汤面", price: "11元" },
+          { name: "红烧牛肉汤面", price: "12元" },
+          { name: "大盘鸡汤面", price: "12元" },
+          { name: "红烧肉汤面", price: "12元" },
+          { name: "孜然肉汤面", price: "12元" },
+          { name: "小炒肉汤面", price: "11元" },
+          { name: "大排汤面", price: "11元" },
+          { name: "葱油拌面", price: "7元" },
+          { name: "炸酱面", price: "10元" },
+          { name: "土豆肉丝拌面", price: "8元" },
+          { name: "西红柿鸡蛋拌面", price: "9元" },
+          { name: "香辣鸭血拌面", price: "9元" },
+          { name: "酸菜肉丝拌面", price: "9元" },
+          { name: "三鲜菌菇汤面", price: "10元" },
+          { name: "鸡汤刀削面", price: "7元" },
+          { name: "土豆肉丝刀削面", price: "8元" },
+          { name: "西红柿鸡蛋刀削面", price: "9元" },
+          { name: "香辣鸭血刀削面", price: "9元" },
+          { name: "酸菜肉丝刀削面", price: "9元" },
+          { name: "毛豆刀削面", price: "10元" },
+          { name: "炸酱米线", price: "10元" },
+          { name: "土豆肉丝米线", price: "8元" },
+          { name: "香辣鸭血米线", price: "9元" },
+          { name: "温州瘦肉丸", price: "11元" },
+          { name: "孜然肉丝刀削面", price: "10元" },
+          { name: "爆螺蛳", price: "11元" },
+          { name: "煎蛋", price: "1.5元/个" }
+        ]
+      },
+      {
+        windowName: "滋士客",
+        foodList: [
+          { name: "香辣鸡腿堡", price: "7元" },
+          { name: "新奥尔良烤鱼堡", price: "8元" },
+          { name: "墨西哥鸡肉卷", price: "7元" },
+          { name: "劲爆鸡米花", price: "6元" },
+          { name: "泰式鸡肉卷", price: "8元" },
+          { name: "上校鸡块", price: "5元" },
+          { name: "牛肉堡", price: "6元" },
+          { name: "薯条+鸡肉卷+中可", price: "14元" },
+          { name: "双层牛肉堡", price: "8元" },
+          { name: "无骨鸡柳", price: "6元" },
+          { name: "田园蔬菜堡", price: "6元" },
+          { name: "骨肉相连", price: "4元" },
+          { name: "深海鳕鱼堡", price: "8元" },
+          { name: "炸鸡腿", price: "6元" },
+          { name: "蟹黄堡", price: "9元" },
+          { name: "蛋挞", price: "6元" },
+          { name: "藤椒鸡腿堡", price: "7元" },
+          { name: "拉丝芝士棒", price: "7元" },
+          { name: "蜜汁手扒鸡", price: "9.9元" },
+          { name: "黄金蝴蝶虾", price: "6元" },
+          { name: "脆皮金鸡", price: "9.9元" },
+          { name: "洋葱卷", price: "5元" },
+          { name: "台湾鸡排", price: "10元" },
+          { name: "整只堡", price: "5元" },
+          { name: "烤全腿", price: "9元" },
+          { name: "鸡肉卷套餐 (汉堡+鸡肉卷+中可)", price: "14元" },
+          { name: "鸡排套餐 (鸡排+大可)", price: "13元" },
+          { name: "辣翅套餐 (汉堡+辣翅+中可)", price: "14元" },
+          { name: "休闲小吃套餐 (鸡米花+鸡块+小薯+中可)", price: "16元" },
+          { name: "烤翅套餐 (鸡肉卷+烤翅+中可)", price: "15元" },
+          { name: "吉祥三宝 (汉堡+烤堡+牛堡)", price: "16元" },
+          { name: "牛堡套餐 (牛堡+小薯+鸡块+中可)", price: "15元" },
+          { name: "A套餐 (汉堡+鸡块+中可)", price: "13元" },
+          { name: "薯条套餐 (7堡+大薯+中可)", price: "14元" },
+          { name: "虾堡套餐 (虾堡+大薯+中可)", price: "15元" },
+          { name: "手扒鸡套餐 (手扒鸡+中可)", price: "18元" },
+          { name: "B套餐 (汉堡+鸡柳+小薯+中可)", price: "17元" },
+          { name: "超值套餐 (汉堡+汉堡)", price: "11元" },
+          { name: "特惠套餐 (汉堡+小可)", price: "8元" },
+          { name: "烤堡套餐 (烤堡+鸡块+烤翅+中可)", price: "19元" },
+          { name: "全家福套餐 (3个汉堡+手扒鸡+鸡柳+鸡块+鸡米花+大薯+3杯中可)", price: "58元" }
+        ]
+      },
+      {
+        windowName: "益禾堂",
+        foodList: [
+          { name: "薄荷巧乐冰", price: "中杯15元大杯13.9元" },
+          { name: "薄荷甜碗", price: "中杯8元大杯6.9元" },
+          { name: "薄荷蜜桃", price: "12元" },
+          { name: "薄荷奥利奥旋风", price: "9.9元" },
+          { name: "薄荷西瓜爽", price: "11元" },
+          { name: "薄荷柠檬冰水", price: "5元" },
+          { name: "薄荷奶绿", price: "9元" },
+          { name: "珍珠奶茶", price: "9元" },
+          { name: "奶砖抹茶冰冻", price: "14元" },
+          { name: "益禾烤奶", price: "8元" },
+          { name: "禾风奶绿", price: "8元" },
+          { name: "益禾烧仙草", price: "10元" },
+          { name: "小桃荔绵绵冰NEW", price: "12元" },
+          { name: "小桃荔冰乌龙NEW", price: "中杯13元大杯12元" },
+          { name: "白玉荔枝茶NEW", price: "中杯13元大杯12元" },
+          { name: "西瓜鲜果茶", price: "中杯12元大杯10元" },
+          { name: "杨枝甘露", price: "中杯12元大杯16元" },
+          { name: "多肉百香葡萄", price: "12元" },
+          { name: "蜜桃乌龙Plus", price: "11元" },
+          { name: "冰果葡萄", price: "15元" },
+          { name: "益杯百香果", price: "13元" },
+          { name: "蜂蜜柚子茶", price: "8元" },
+          { name: "鲜榨西瓜汁", price: "10元" },
+          { name: "粉黛苹果桃", price: "12元" },
+          { name: "爆打柠檬绿", price: "8元" },
+          { name: "柠檬小麦青汁", price: "9元" },
+          { name: "茉莉青柠檬茶", price: "7元" },
+          { name: "荔枝轻乳茶NEW", price: "10元" },
+          { name: "烤奶牛乳茶", price: "9元" },
+          { name: "茉莉白轻乳茶", price: "中杯9元大杯11元" },
+          { name: "粉黛苹果", price: "中杯10元大杯12元" },
+          { name: "四季春轻乳茶", price: "中杯9元大杯11元" },
+          { name: "薄荷拿铁", price: "12元" },
+          { name: "橙C美式", price: "12元" },
+          { name: "生椰拿铁", price: "13元" },
+          { name: "拿铁咖啡", price: "13元" },
+          { name: "英式咖啡", price: "10元" },
+          { name: "深烤茉莉奶盖", price: "6元" },
+          { name: "绿妍茉莉", price: "6元" },
+          { name: "清香乌龙", price: "6元" }
+        ]
+      },
+      {
+        windowName: "古法炸鸡腿",
+        foodList: [
+          { name: "黄金炸鸡腿", price: "6元/1支, 9.9元/2支" },
+          { name: "黄金鸡腿肉", price: "11元/250g" },
+          { name: "黄金鸡米花", price: "10元/250g" },
+          { name: "黄金鸡翅根", price: "3元/个, 10元/4个" },
+          { name: "黄金鸡腿肉", price: "12元/250g" },
+          { name: "黄金鸡腿肉", price: "4元/个, 10元/3个" },
+          { name: "黄金带骨鸡", price: "10元/250g" },
+          { name: "甘梅地瓜条", price: "7元/5条" }
+        ]
+      },
+    ]
+  },
+  // 榴园三楼
+  {
+    floorName: "三楼",
+    windowList: [
+      {
+        windowName: "窗口1",
+        windowId: "3301",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口2",
+        windowId: "3302",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口3",
+        windowId: "3303",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口4",
+        windowId: "3304",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口5",
+        windowId: "3305",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口6",
+        windowId: "3306",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口7",
+        windowId: "3307",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口8",
+        windowId: "3308",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口9",
+        windowId: "3309",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口10",
+        windowId: "3310",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口11",
+        windowId: "3311",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      },
+      {
+        windowName: "窗口12",
+        windowId: "3312",
+        image: "",
+        foodList: [
+          { name: "待补充菜品", price: "待补充价格" }
+        ]
+      }
+    ]
+  }
 ];
 
 // 外招食堂数据（待补充）

@@ -1,6 +1,8 @@
 import { 
   GUIYUAN_DATA, 
   JUYUAN_DATA, 
+  MEIYUAN_DATA,
+  LIUYUAN_DATA,
   FloorItem, 
   WindowItem 
 } from '../data/CafeteriaData';
@@ -30,6 +32,12 @@ struct CafeteriaFloorPage {
         break;
       case '桔园食堂':
         this.allFloorData = JUYUAN_DATA;
+        break;
+      case '梅园食堂':
+        this.allFloorData = MEIYUAN_DATA;
+        break;
+      case '榴园食堂':
+        this.allFloorData = LIUYUAN_DATA;
         break;
       default:
         this.allFloorData = [];
