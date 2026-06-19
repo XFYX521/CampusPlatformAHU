@@ -1,4 +1,5 @@
 import { WindowItem, FoodItem } from '../data/CafeteriaData';
+import { CommentSection } from '../view/CommentSection';
 import router from '@ohos.router';
 
 // 展开图标配置（修改此处更换图标）
@@ -10,6 +11,7 @@ const EXPAND_ICON_SIZE = 20; // 图标大小
 struct WindowDetailPage {
   @State windowName: string = '';
   @State windowImage: string = '';
+  @State windowId: string = ''; // 窗口ID，用于评论区API调用
   @State foodList: FoodItem[] = [];
   @State isMenuExpanded: boolean = false; // 菜单列表展开状态（默认关闭）
   
@@ -26,6 +28,11 @@ struct WindowDetailPage {
     if (params) {
       this.windowName = params['windowName'] as string || '';
       this.windowImage = params['windowImage'] as string || '';
+      // 窗口ID（支持string和number两种类型兼容）
+      const rawId = params['windowId'];
+      if (rawId !== undefined && rawId !== null) {
+        this.windowId = String(rawId);
+      }
       // 解析菜品列表
       const foodListStr = params['foodList'] as string;
       if (foodListStr) {
@@ -72,6 +79,11 @@ struct WindowDetailPage {
 
             // 可折叠的菜品列表卡片
             this.collapsibleMenuCard()
+
+            // 评论区（放在菜单列表下方）
+            if (this.windowId !== '') {
+              CommentSection({ windowId: this.windowId })
+            }
           }
           .width('100%')
           .alignItems(HorizontalAlign.Start) // 内容置顶排列
