@@ -1,16 +1,22 @@
 import { WindowItem, FoodItem } from '../data/CafeteriaData';
 import router from '@ohos.router';
 
+// 展开图标配置（修改此处更换图标）
+const EXPAND_ICON_RESOURCE = 'app.media.IMG_0220'; // 图标资源路径
+const EXPAND_ICON_SIZE = 20; // 图标大小
+
 @Entry
 @Component
 struct WindowDetailPage {
   @State windowName: string = '';
   @State windowImage: string = '';
   @State foodList: FoodItem[] = [];
+  @State isMenuExpanded: boolean = false; // 菜单列表展开状态（默认关闭）
   
   // 图片预览相关状态
   @State isImagePreview: boolean = false; // 是否显示图片预览
   @State imageScale: number = 1; // 图片缩放比例
+  @State pinchStartScale: number = 1; // 捏合手势开始时的缩放值（用于正确计算缩放）
   @State imageOffsetX: number = 0; // 图片X偏移
   @State imageOffsetY: number = 0; // 图片Y偏移
 
@@ -64,45 +70,17 @@ struct WindowDetailPage {
                 })
             }
 
-            // 菜品列表卡片
-            Column() {
-              ForEach(this.foodList, (food: FoodItem, index: number) => {
-                Row() {
-                  Text(food.name)
-                    .fontSize(15)
-                    .fontColor($r('app.color.font_primary'))
-                    .layoutWeight(1)
-
-                  Text(food.price)
-                    .fontSize(15)
-                    .fontColor($r('app.color.button_bg_color'))
-                    .fontWeight(FontWeight.Medium)
-                }
-                .width('100%')
-                .padding({ left: 16, right: 16, top: 12, bottom: 12 })
-
-                // 分隔线（最后一项不显示）
-                if (index < this.foodList.length - 1) {
-                  Divider()
-                    .width('100%')
-                    .height(0.5)
-                    .color('#F0F0F0')
-                    .margin({ left: 16, right: 16 })
-                }
-              })
-            }
-            .width('100%')
-            .backgroundColor(Color.White)
-            .borderRadius(12)
-            .padding({ top: 8, bottom: 8 })
-            .shadow({ radius: 4, offsetX: 0, offsetY: 2, color: 'rgba(0, 0, 0, 0.05)' })
+            // 可折叠的菜品列表卡片
+            this.collapsibleMenuCard()
           }
           .width('100%')
+          .alignItems(HorizontalAlign.Start) // 内容置顶排列
           .padding({ left: 16, right: 16, top: 16, bottom: 16 })
         }
         .scrollBar(BarState.Off)
         .width('100%')
         .layoutWeight(1)
+        .align(Alignment.Top) // 滚动区域内容置顶
       }
       .width('100%')
       .height('100%')
@@ -117,6 +95,116 @@ struct WindowDetailPage {
     .height('100%')
   }
 
+  // 可折叠的菜品列表卡片
+  @Builder
+  collapsibleMenuCard() {
+    Column() {
+      // 标题栏（可点击折叠/展开）
+      Row() {
+        Text('菜单列表')
+          .fontSize(16)
+          .fontWeight(FontWeight.Bold)
+          .fontColor($r('app.color.content_main_title_font_color'))
+        
+        Blank()
+          .layoutWeight(1)
+        
+        // 菜品数量提示
+        Text(`${this.foodList.length}道菜品`)
+          .fontSize(13)
+          .fontColor($r('app.color.font_secondary'))
+          .margin({ right: 12 })
+        
+        // 折叠/展开箭头（修改 EXPAND_ICON_RESOURCE 常量更换图标）
+        Image($r(EXPAND_ICON_RESOURCE))
+          .width(EXPAND_ICON_SIZE)
+          .height(EXPAND_ICON_SIZE)
+          .fillColor($r('app.color.font_secondary'))
+          .rotate({ angle: this.isMenuExpanded ? 90 : 0 }) // 展开时旋转90度
+          .animation({
+            duration: 200,
+            curve: Curve.EaseInOut
+          })
+      }
+      .width('100%')
+      .padding({ left: 16, right: 16, top: 14, bottom: 14 })
+      .onClick(() => {
+        this.isMenuExpanded = !this.isMenuExpanded;
+      })
+      
+      // 分隔线
+      if (this.isMenuExpanded) {
+        Divider()
+          .width('100%')
+          .height(0.5)
+          .color('#F0F0F0')
+          .margin({ left: 16, right: 16 })
+      }
+      
+      // 菜品网格列表（展开时显示）
+      if (this.isMenuExpanded && this.foodList.length > 0) {
+        Column() {
+          Grid() {
+            ForEach(this.foodList, (food: FoodItem, index: number) => {
+              GridItem() {
+                this.foodItemCard(food)
+              }
+            })
+          }
+          .columnsTemplate('1fr 1fr')
+          .rowsGap(12)
+          .columnsGap(12)
+          .width('100%')
+        }
+        .width('100%')
+        .padding({ left: 16, right: 16, top: 12, bottom: 16 })
+      } else if (this.isMenuExpanded && this.foodList.length === 0) {
+        // 无数据提示
+        Column() {
+          Text('暂无菜品信息')
+            .fontSize(14)
+            .fontColor($r('app.color.font_secondary'))
+        }
+        .width('100%')
+        .padding({ top: 20, bottom: 20 })
+      }
+    }
+    .width('100%')
+    .backgroundColor(Color.White)
+    .borderRadius(12)
+    .shadow({ radius: 4, offsetX: 0, offsetY: 2, color: 'rgba(0, 0, 0, 0.05)' })
+  }
+
+  // 单个菜品卡片（两列布局中的一项）
+  @Builder
+  foodItemCard(food: FoodItem) {
+    Column() {
+      Row() {
+        Column() {
+          Text(food.name)
+            .fontSize(14)
+            .fontColor($r('app.color.font_primary'))
+            .maxLines(2)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
+            .width('100%')
+          
+          Text(food.price)
+            .fontSize(15)
+            .fontColor($r('app.color.button_bg_color'))
+            .fontWeight(FontWeight.Medium)
+            .margin({ top: 6 })
+        }
+        .alignItems(HorizontalAlign.Start)
+        .layoutWeight(1)
+      }
+      .width('100%')
+    }
+    .width('100%')
+    .padding(12)
+    .backgroundColor($r('app.color.page_bg_color'))
+    .borderRadius(8)
+  }
+
   // 图片预览遮罩层
   @Builder
   imagePreviewOverlay() {
@@ -126,7 +214,7 @@ struct WindowDetailPage {
         Blank()
           .layoutWeight(1)
         
-        Image($r('app.media.IMG_0218'))
+        Image($r('app.media.IMG_0223'))
           .width(28)
           .height(28)
           .fillColor(Color.White)
@@ -147,11 +235,16 @@ struct WindowDetailPage {
           .translate({ x: this.imageOffsetX, y: this.imageOffsetY })
           .gesture(
             GestureGroup(GestureMode.Parallel,
-              // 双指缩放手势
-              PinchGesture({ fingers: 2 })
+              // 双指缩放手势（distance: 0.1 提高触控板灵敏度）
+              PinchGesture({ fingers: 2, distance: 0.1 })
+                .onActionStart(() => {
+                  // 记录手势开始时的缩放值
+                  this.pinchStartScale = this.imageScale;
+                })
                 .onActionUpdate((event: GestureEvent) => {
+                  // 正确计算缩放比例：初始缩放值 * 手势缩放比例
+                  let newScale = this.pinchStartScale * event.scale;
                   // 限制缩放范围 0.5 - 3
-                  let newScale = this.imageScale * event.scale;
                   if (newScale < 0.5) {
                     newScale = 0.5;
                   } else if (newScale > 3) {
@@ -164,6 +257,9 @@ struct WindowDetailPage {
                   if (this.imageScale < 1) {
                     this.imageScale = 1;
                   }
+                  // 重置偏移量
+                  this.imageOffsetX = 0;
+                  this.imageOffsetY = 0;
                 }),
               // 拖动手势（缩放后可拖动）
               PanGesture({ fingers: 1 })
@@ -202,7 +298,7 @@ struct WindowDetailPage {
   navigationBar() {
     Row() {
       // 返回按钮
-      Image($r('app.media.IMG_0218'))
+      Image($r('app.media.IMG_0221'))
         .width(24)
         .height(24)
         .onClick(() => {

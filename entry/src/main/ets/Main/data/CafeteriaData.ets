@@ -8,6 +8,7 @@ export interface WindowItem {
   windowName: string;
   foodList: FoodItem[];
   image?: string; // 窗口图片（可选）
+  windowId?: string; // 窗口编号（可选）
 }
 
 export interface FloorItem {
@@ -708,7 +709,8 @@ export const JUYUAN_DATA: FloorItem[] = [
     floorName: "一楼",
     windowList: [
       {
-        windowName: "麻辣烫",
+        windowName: "麻辣烫/香锅/拌",
+        windowId: "1101",
         image: "juyuan_malatang", // 桔园一楼-麻辣烫
         foodList: [
           { name: "麻辣烫", price: "1.78元/50克" },
@@ -720,6 +722,7 @@ export const JUYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "烤鸭饭",
+        windowId: "1102",
         image: "juyuan_kaoyafan", // 桔园一楼-烤鸭饭
         foodList: [
           { name: "烤鸭饭", price: "12元/份" },
@@ -731,7 +734,8 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
 
       {
-        windowName: "自选菜",
+        windowName: "精品自选菜",
+        windowId: "1103",
         image: "juyuan_zixuancai", // 桔园一楼-自选菜
         foodList: [
           { name: "蒸鸡蛋", price: "1.50元" },
@@ -755,6 +759,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "营养早餐",
+        windowId: "1104",
         image: "juyuan_yingyangzaocan", // 桔园一楼-营养早餐
         foodList: [
           { name: "鲜汁肉包", price: "1.50元" },
@@ -828,6 +833,8 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "温馨粥道",
+        windowId: "1105",
+        image: "juyuan_wenxinzhoudao",
         foodList: [
           { name: "白米粥", price: "0.5元/碗" },
           { name: "燕麦粥", price: "2元" },
@@ -852,7 +859,18 @@ export const JUYUAN_DATA: FloorItem[] = [
         ]
       },
       {
+        windowName: "特色小吃",
+        windowId: "1106",
+        image: "juyuan_tesexiaochi",
+        foodList: [
+          { name: "发面小笼包", price: "6元/笼（7个）" },
+          { name: "小笼灌汤包", price: "7元/笼（7个）" },
+          { name: "小笼蒸饺", price: "6元/笼（7个）" },
+        ]
+      },
+      {
         windowName: "酱香饼",
+        windowId: "1107",
         image: "juyuan_jiangxiangbing", // 桔园一楼-酱香饼
         foodList: [
           { name: "发面小笼包", price: "6元/笼（7个）" },
@@ -873,6 +891,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "陕行记油泼面",
+        windowId: "1108",
         image: "juyuan_shanxingjiyouponmian", // 桔园一楼-陕行记油泼面
         foodList: [
           { name: "岐山臊子面（酸辣）", price: "10元" },
@@ -916,6 +935,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "玖昊猪土豆泥拌饭",
+        windowId: "1109",
         image: "juyuan_jiuhaotudounibanfan", // 桔园一楼-玖昊猪土豆泥拌饭
         foodList: [
           { name: "甜辣黄焖鸡", price: "12元" },
@@ -936,6 +956,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "云南生烫牛肉米线",
+        windowId: "1110",
         image: "juyuan_yunnanshengtangniuroumixian", // 桔园一楼-云南生烫牛肉米线
         foodList: [
           { name: "招牌肉酱米线", price: "9元" },
@@ -946,6 +967,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "粗粮渔粉",
+        windowId: "1111",
         image: "juyuan_culiangyufen", // 桔园一楼-粗粮渔粉
         foodList: [
           { name: "灵魂拌粉", price: "8元" },
@@ -982,6 +1004,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "517牛肉蛋炒饭/盖浇饭",
+        windowId: "1112",
         image: "juyuan_517niuroudanchaofan", // 桔园一楼-517牛肉蛋炒饭/盖浇饭
         foodList: [
           { name: "招牌牛肉蛋炒饭", price: "12元" },
@@ -1015,6 +1038,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "申向国鸡柳卷饼",
+        windowId: "1113",
         image: "juyuan_shenxiangguojiliujuanbing", // 桔园一楼-申向国鸡柳卷饼
         foodList: [
           { name: "香酥鸡柳卷饼 (小份)", price: "9元" },
@@ -1027,6 +1051,7 @@ export const JUYUAN_DATA: FloorItem[] = [
       },
       {
         windowName: "手工馄饨",
+        windowId: "1114",
         image: "juyuan_shougonghuntun", // 桔园一楼-手工馄饨
         foodList: [
           { name: "鲜肉小馄饨", price: "7元/20个、9元/30个" },
@@ -1055,6 +1080,7 @@ export const JUYUAN_DATA: FloorItem[] = [
 
       {
         windowName: "掉渣饼",
+        windowId: "1115",
         image: "juyuan_diaozhabing", // 桔园一楼-掉渣饼
         foodList: [
           { name: "土豆", price: "1元" },
