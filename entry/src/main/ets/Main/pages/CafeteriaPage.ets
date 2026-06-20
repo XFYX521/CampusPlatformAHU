@@ -3,7 +3,7 @@ import router from '@ohos.router';
 const CAMPUS_NAMES: string[] = ['磬苑校区', '龙河校区'];
 
 // 磬苑校区食堂数据（按顺序：New1~New6）
-const QINGYUAN_NAMES: string[] = ['桂园食堂', '桔园食堂', '梅园食堂', '梧桐园食堂', '榴园食堂', '惠园食堂'];
+const QINGYUAN_NAMES: string[] = ['桂园食堂', '桔园食堂', '梅园食堂', '梧桐园食堂', '榴园食堂', '蕙园食堂'];
 const QINGYUAN_IMAGES: Resource[] = [
   $r('app.media.New1'),
   $r('app.media.New2'),
