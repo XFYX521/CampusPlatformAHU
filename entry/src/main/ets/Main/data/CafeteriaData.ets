@@ -222,7 +222,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
         windowName: "杂粮饼",
         windowId: "5108",
-        //image: "guiyuan_zaliangbing",
+        image: "Window5108",
         foodList: [
           { name: "杂粮煎饼原味", price: "5元" },
           { name: "生煎包", price: "0.5元/个" },
@@ -303,7 +303,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
         windowName: "塔斯汀",
         windowId: "5201",
-        //image: "guiyuan_tasiting",
+        image: "Window5201",
         foodList: [
           { name: "招牌香辣鸡肉饭", price: "12元" },
           { name: "葱爆鸡腿肉饭", price: "12元" },
@@ -419,7 +419,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
         windowName: "阿现烧腊",
         windowId: "5207",
-        //image: "guiyuan_axianshaola",
+        image: "Window5207",
         foodList: [
           { name: "广式烧鸭饭", price: "12元" },
           { name: "风味烧鸭饭", price: "12元" },
@@ -449,7 +449,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
         windowName: "特色水煎包",
         windowId: "5208",
-        //image: "guiyuan_teseshuijianbao",
+        image: "Window5208",
         foodList: [
           { name: "水煮包（素）", price: "1元" },
           { name: "水煎包（素）", price: "1元" },
@@ -463,7 +463,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
         windowName: "串烧饭",
         windowId: "5209",
-        //image: "guiyuan_chuanshaofan",
+        image: "Window5209",
         foodList: [
           { name: "鸡排饭", price: "10元" },
           { name: "里脊肉饭", price: "10元" },
@@ -474,7 +474,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
         windowName: "牛伯叔铁锅炖",
         windowId: "5210",
-        image: "Window520Window5210",
+        image: "Window5210",
         foodList: [
           { name: "素菜锅底", price: "10元" },
           { name: "肉末茄子/面饼", price: "2元" },
@@ -503,7 +503,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
         windowName: "富庄阁",
         windowId: "5212",
-        //image: "guiyuan_fuzhuangge",
+        image: "Window5212",
         foodList: [
           { name: "烤鸭拌饭", price: "12元" },
           ]
@@ -512,7 +512,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
 
         windowName: "超大猪排",
         windowId: "5213",
-        //image: "guiyuan_chaodazhupai",
+        image: "Window5213",
         foodList: [
           { name: "大脸鸡排蛋包饭", price: "11元" },
           { name: "五香猪扒蛋包饭", price: "11元" },
@@ -572,7 +572,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
         windowName: "SALAD",
         windowId: "5301",
-        //image: "guiyuan_salad",
+        image: "Window5301",
         foodList: [
           { name: "孜香蜜汁鸡排", price: "11元" },
           { name: "柠香鸡丝", price: "11元" },
@@ -610,7 +610,7 @@ export const GUIYUAN_DATA: FloorItem[] = [
       {
         windowName: "各种盖浇饭",
         windowId: "5303",
-        //image: "guiyuan_gezhonggaijiaofan",
+        image: "Window5303",
         foodList: [
           { name: "麻辣豆腐", price: "9元" },
           { name: "西红柿炒蛋", price: "10元" },
@@ -2403,7 +2403,7 @@ export const WUTONGYUAN_DATA: FloorItem[] = [
       {
         windowName: "小锅米线馄饨",
         windowId: "4105",
-        //image: "Window",
+        image: "Window4105",
         foodList: [
           { name: "三鲜（不辣丸子+配菜）", price: "11元" },
           { name: "麻辣（鸭血+配菜）", price: "11元" },
@@ -2436,7 +2436,7 @@ export const WUTONGYUAN_DATA: FloorItem[] = [
       {
         windowName: "猪排大王",
         windowId: "4106",
-        //image: "Window",
+        image: "Window4106",
         foodList: [
           { name: "招牌咖喱猪排饭", price: "12元" },
           { name: "番茄滑蛋猪排饭", price: "12元" },
@@ -3248,7 +3248,7 @@ export const LIUYUAN_DATA: FloorItem[] = [
       {
         windowName: "益禾堂",
         windowId: "3112",
-        //image: "Window3112",
+        image: "Window3112",
         foodList: [
           { name: "薄荷巧乐冰", price: "中杯15元 大杯13.9元" },
           { name: "薄荷奶芙", price: "中杯15元 大杯13.9元" },
@@ -3322,7 +3322,7 @@ export const LIUYUAN_DATA: FloorItem[] = [
       {
         windowName: "瓦香鸡米饭",
         windowId: "3201",
-        //image: "Window3201",
+        image: "Window3201",
         foodList: [
           { name: "瓦香鸡米饭", price: "12元" },
           { name: "瓦香年糕鸡", price: "11元" },
@@ -3490,7 +3490,7 @@ export const LIUYUAN_DATA: FloorItem[] = [
       {
         windowName: "麻辣烫/麻辣拌/麻辣香锅",
         windowId: "3302",
-        //image: "Window3211",
+        image: "Window3302",
         foodList: [
           { name: "荤素统一价", price: "17.8元/500克" },
           { name: "娃娃菜", price: "1元" },
