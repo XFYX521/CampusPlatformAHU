@@ -100,8 +100,9 @@ export struct CafeteriaPage {
     .borderRadius(12)
     .shadow({ radius: 6, offsetX: 0, offsetY: 2, color: 'rgba(0, 0, 0, 0.06)' })
     .onClick(() => {
-      // 桂园、桔园、梅园和榴园跳转到楼层选择页，其他食堂直接跳转到详情页
-      if (name === '桂园食堂' || name === '桔园食堂' || name === '梅园食堂' || name === '榴园食堂') {
+      // 桂园、桔园、梅园、梧桐园、榴园、蕙园跳转到楼层选择页，其他食堂直接跳转到详情页
+      if (name === '桂园食堂' || name === '桔园食堂' || name === '梅园食堂' || 
+          name === '梧桐园食堂' || name === '榴园食堂' || name === '蕙园食堂') {
         router.pushUrl({
           url: 'Main/pages/CafeteriaFloorPage',
           params: {

@@ -2844,7 +2844,14 @@ export const HUIYUAN_DATA: FloorItem[] = [
   {
     floorName: "二楼",
     windowList: [
+      {
+        windowName: "罗森便利店",
+        windowId: "6201",
+        //image: "Window6105",
+        foodList: [
 
+        ]
+      },
     ]
   }
 ];
@@ -3292,7 +3299,7 @@ export const LIUYUAN_DATA: FloorItem[] = [
       {
         windowName: "古法炸鸡腿",
         windowId: "3113",
-        //image: "Window3113",
+        image: "Window3113",
         foodList: [
           { name: "古法炸鸡腿", price: "6元/个" },
           { name: "古法炸鸡翅", price: "3元/个" },
@@ -3392,19 +3399,7 @@ export const LIUYUAN_DATA: FloorItem[] = [
           { name: "小香葱蛋炒饭", price: "12元" }
         ]
       },
-      {
-        windowName: "江南小灶",
-        windowId: "3206",
-        //image: "liuyuan_jiangnanxiaozao",
-        foodList: [
-          { name: "小炒肉", price: "12元" },
-          { name: "农家小炒鸡", price: "12元" },
-          { name: "香干炒肉", price: "11元" },
-          { name: "芹菜炒肉", price: "11元" },
-          { name: "蒜苔炒肉", price: "11元" },
-          { name: "豆角炒肉", price: "11元" }
-        ]
-      },
+
       {
         windowName: "精品快餐",
         windowId: "3207",
@@ -3425,7 +3420,7 @@ export const LIUYUAN_DATA: FloorItem[] = [
       {
         windowName: "李府甲味轩",
         windowId: "3208",
-        //image: "liuyuan_lifujianweixuan",
+        image: "Window3208",
         foodList: [
           { name: "甲鱼炖鸡", price: "15元" },
           { name: "红烧甲鱼", price: "14元" },
@@ -3435,17 +3430,7 @@ export const LIUYUAN_DATA: FloorItem[] = [
           { name: "红烧鸡块", price: "11元" }
         ]
       },
-      {
-        windowName: "麻辣香锅",
-        windowId: "3209",
-        //image: "liuyuan_malaxiangguo",
-        foodList: [
-          { name: "麻辣香锅（素）", price: "10元" },
-          { name: "麻辣香锅（荤素搭配）", price: "12元" },
-          { name: "麻辣香锅（全荤）", price: "15元" },
-          { name: "加米饭", price: "1元" }
-        ]
-      },
+
       {
         windowName: "酸菜肉煲",
         windowId: "3210",
