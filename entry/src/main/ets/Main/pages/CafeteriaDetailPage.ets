@@ -120,7 +120,7 @@ struct CafeteriaDetailPage {
   navigationBar() {
     Row() {
       // 返回按钮
-      Image($r('app.media.IMG_0218'))
+      Image($r('app.media.IMG_0221'))
         .width(24)
         .height(24)
         .onClick(() => {
@@ -185,7 +185,7 @@ struct CafeteriaDetailPage {
           .layoutWeight(1)
 
         // 右箭头
-        Image($r('app.media.IMG_0219'))
+        Image($r('app.media.IMG_0220'))
           .width(20)
           .height(20)
       }
