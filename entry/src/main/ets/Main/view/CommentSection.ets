@@ -123,7 +123,7 @@ export struct CommentSection {
           .backgroundColor($r('app.color.button_bg_color'))
           .borderRadius(16)
           .padding({ left: 16, right: 16 })
-          .enabled(this.canPost())
+          .enabled(!this.isPosting && this.newCommentContent.trim() !== '')
           .opacity(this.canPost() ? 1 : 0.5)
           .onClick(() => this.postComment())
       }
@@ -239,6 +239,7 @@ export struct CommentSection {
 
     const oldVote = comment.my_vote;
 
+    // 直接修改 @Observed 对象的属性，会触发 @ObjectLink 更新
     if (voteType === 1) { // 点赞
       if (oldVote === 1) {
         // 取消赞
@@ -262,9 +263,6 @@ export struct CommentSection {
         comment.my_vote = -1;
       }
     }
-
-    // 更新数组引用以触发 @State 重新渲染
-    this.commentList = [...this.commentList];
 
     // 投票模式下重新排序（票数变了）
     if (this.sortMode === 'votes') {
@@ -335,7 +333,8 @@ export struct CommentSection {
         }
 
         if (result.code === 200 && result.data) {
-          this.commentList = result.data;
+          // 将API返回的数据转换为 CommentItem 类实例
+          this.commentList = result.data.map(item => new CommentItem(item));
           this.sortComments();
         } else {
           const msg = result.message ? result.message : '加载失败';

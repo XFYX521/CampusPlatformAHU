@@ -1,6 +1,20 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A1BC925D4E6BCAEEF205773B77E1EC023781D675CBC2FF29D55446DCA1E0AF65D364A61D81E73",
+          "profile": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\ELYSIA's XFYX\\.ohos\\config\\default_CampusPlatformAHU_WgNUx8o1IATj-iSZfxvhmp2EUwApeUJyTU8KNwW7VMU=.p12",
+          "storePassword": "0000001A0C5DDF4C270329851AEDD8E2106D48540AC4A3EA50CE17DA1412AF7BF086DE7908F37EA75D6F"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",

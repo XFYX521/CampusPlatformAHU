@@ -3,15 +3,11 @@ import { CommentItem } from '../data/CommentData';
 /**
  * 单条评论子组件
  * 字段名严格对齐实际API返回格式
+ * 使用 @ObjectLink 接收 @Observed 对象，支持深度观察
  */
 @Component
 export struct CommentItemComponent {
-  @Prop comment: CommentItem = {
-    id: '', window_id: 0, content: '',
-    likes: 0, dislikes: 0, created_at: '',
-    my_vote: null,
-    user: { id: 0, username: '', nickname: '', avatar: '' }
-  };
+  @ObjectLink comment: CommentItem;
 
   // 当前登录用户名（用来判断删除按钮显隐）
   @StorageLink('username') currentUsername: string = '';
