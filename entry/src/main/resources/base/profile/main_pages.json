@@ -11,6 +11,7 @@
     "Main/pages/CafeteriaFloorPage",
     "Main/pages/CafeteriaDetailPage",
     "Main/pages/WindowDetailPage",
-    "Main/pages/ProfileEditPage"
+    "Main/pages/ProfileEditPage",
+    "Main/pages/NotificationPage"
   ]
 }

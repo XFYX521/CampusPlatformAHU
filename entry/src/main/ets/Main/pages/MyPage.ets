@@ -3,6 +3,7 @@ import { image } from '@kit.ImageKit';
 import { AvatarSelectDialog } from '../view/AvatarSelectDialog';
 import { AvatarHelper } from '../util/AvatarHelper';
 import { common } from '@kit.AbilityKit';
+import http from '@ohos.net.http';
 
 @Component
 export struct MyPage {
@@ -270,7 +271,7 @@ export struct MyPage {
 
   // ==================== 设置项 ====================
   @Builder
-  SettingItem(title: string, icon: Resource, showArrow: boolean, value?: string) {
+  SettingItem(title: string, icon: Resource, showArrow: boolean, value?: string, badgeCount?: number) {
     Row({ space: 12 }) {
       // 图标
       Image(icon)
@@ -283,6 +284,22 @@ export struct MyPage {
         .fontSize(16)
         .fontColor($r('app.color.content_main_title_font_color'))
         .layoutWeight(1)
+
+      // 未读红点徽标
+      if (badgeCount !== undefined && badgeCount > 0) {
+        Stack() {
+          Circle()
+            .width(20)
+            .height(20)
+            .fill(Color.Red)
+
+          Text(badgeCount > 99 ? '99+' : `${badgeCount}`)
+            .fontSize(11)
+            .fontColor(Color.White)
+            .fontWeight(FontWeight.Bold)
+        }
+        .margin({ right: 4 })
+      }
 
       // 值显示（如果有）
       if (value) {

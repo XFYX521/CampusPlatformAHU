@@ -1,4 +1,4 @@
-import router from '@ohos.router';
+﻿import router from '@ohos.router';
 
 const CAMPUS_NAMES: string[] = ['磬苑校区', '龙河校区'];
 

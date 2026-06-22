@@ -23,6 +23,7 @@ import { AgreementPage } from '../pages/AgreementPage';
 import { FeedbackPage } from '../pages/FeedbackPage';
 import { FeedbackHistoryPage } from '../pages/FeedbackHistoryPage';
 import { ProfileEditPage } from '../pages/ProfileEditPage';
+import { NotificationPage } from '../pages/NotificationPage';
 
 // import reference line
 @Builder
@@ -47,6 +48,8 @@ export function PageMap(name: string) {
     FeedbackHistoryPage()
   } else if (name === 'ProfileEditPage') {
     ProfileEditPage()
+  } else if (name === 'NotificationPage') {
+    NotificationPage()
   } else {
     EmptyPagePathStack()
   }
