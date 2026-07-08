@@ -61,11 +61,20 @@ export struct WebContentPage {
             Web({ src: this.pageUrl, controller: this.controller })
               .width(CommonConstants.FULL_PERCENT)
               .layoutWeight(1)
+              .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
               .javaScriptAccess(true)
               .domStorageAccess(true)
+              .fileAccess(true)
+              .databaseAccess(true)
               .geolocationAccess(true)
               .mixedMode(MixedMode.All)
               .cacheMode(CacheMode.Default)
+              .onSslErrorEvent((event) => {
+                // 忽略SSL证书错误，继续加载页面（大学网站证书可能不在系统信任链中）
+                if (event && event.handler) {
+                  event.handler.handleConfirm();
+                }
+              })
               .onPageBegin(() => {
                 this.isLoading = true;
                 this.errorMsg = '';
@@ -82,7 +91,11 @@ export struct WebContentPage {
                 this.isLoading = false;
                 this.errorMsg = '加载失败，请检查网络后重试';
               })
-              .onHttpErrorReceive(() => {
+              .onHttpErrorReceive((event) => {
+                this.isLoading = false;
+                if (event?.response) {
+                  this.errorMsg = `HTTP ${event.response.getResponseCode()} - ${event.response.getReasonMessage()}`;
+                }
               })
 
             if (this.isLoading) {

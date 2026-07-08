@@ -60,8 +60,16 @@ export struct NewsPage {
           Web({ src: this.JWKX_URL, controller: this.jwkxController })
             .width('100%')
             .layoutWeight(1)
+            .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
             .javaScriptAccess(true)
             .domStorageAccess(true)
+            .fileAccess(true)
+            .databaseAccess(true)
+            .onSslErrorEvent((event) => {
+              if (event && event.handler) {
+                event.handler.handleConfirm();
+              }
+            })
             .onLoadIntercept((event) => {
               // 模拟器 mock Web 组件 event.data 或其方法可能为 undefined
               if (!event || !event.data) {
@@ -107,8 +115,16 @@ export struct NewsPage {
           Web({ src: this.NOTICE_URL, controller: this.noticeController })
             .width('100%')
             .layoutWeight(1)
+            .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
             .javaScriptAccess(true)
             .domStorageAccess(true)
+            .fileAccess(true)
+            .databaseAccess(true)
+            .onSslErrorEvent((event: SslErrorEvent) => {
+              if (event && event.handler) {
+                event.handler.handleConfirm();
+              }
+            })
             .onLoadIntercept((event) => {
               if (!event || !event.data) {
                 return false;

@@ -476,11 +476,9 @@ export struct MyPage {
       // 调用AvatarHelper的上传方法
       const result = await this.avatarHelper.uploadAvatarToServer(compressedPixelMap, token);
       
-      if (result.success && result.url) {
-        // 更新服务器返回的头像URL
-        AppStorage.setOrCreate('avatarUrl', result.url);
+      if (result.success) {
         promptAction.showToast({ message: result.message || '头像上传成功' });
-        console.info('MyPage: avatar uploaded, url =', result.url);
+        console.info('MyPage: avatar uploaded successfully');
       } else {
         promptAction.showToast({ message: result.message || '头像上传失败' });
         console.error('MyPage: upload failed, message =', result.message);

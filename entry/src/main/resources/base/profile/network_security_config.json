@@ -1,6 +1,7 @@
 {
   "network-security-config": {
     "base-config": {
+      "cleartextTrafficPermitted": true,
       "trust-anchors": [
         {
           "certificates": "system"
@@ -12,10 +13,9 @@
         "domains": [
           {
             "include-subdomains": true,
-            "name": ""
+            "name": "backend.hoshikaze.top"
           }
         ],
-        "cleartextTrafficPermitted": true,
         "trust-anchors": [
           {
             "certificates": "system"
@@ -26,9 +26,10 @@
         "domains": [
           {
             "include-subdomains": true,
-            "name": "backend.hoshikaze.top"
+            "name": "ahu.edu.cn"
           }
         ],
+        "cleartextTrafficPermitted": true,
         "trust-anchors": [
           {
             "certificates": "system"

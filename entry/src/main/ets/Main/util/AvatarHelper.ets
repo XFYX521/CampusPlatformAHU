@@ -7,25 +7,16 @@ import http from '@ohos.net.http';
 import { ApiClient } from './ApiClient';
 import type { ApiRequestOptions } from './ApiClient';
 import { promptAction } from '@kit.ArkUI';
-import { common } from '@kit.AbilityKit';
+import { common, abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { abilityAccessCtrl, Permissions } from '@kit.AbilityKit';
 import { util } from '@kit.ArkTS';
 
 /**
- * 上传头像响应数据
- */
-interface UploadAvatarData {
-  avatar?: string;
-}
-
-/**
- * 上传头像响应接口
+ * 上传头像响应接口（服务端返回: {code, message}）
  */
 interface UploadAvatarResponse {
   code: number;
   message?: string;
-  data?: UploadAvatarData;
 }
 
 /**
@@ -502,15 +493,15 @@ export class AvatarHelper {
       
       const buffer = await imagePackerApi.packToData(pixelMap, packOpts);
       
-      // 2. 转换为base64字符串
+      // 2. 转换为base64字符串（纯base64，不带data:前缀）
       const base64String = this.arrayBufferToBase64(buffer);
       const avatarData = `data:image/jpeg;base64,${base64String}`;
       
       console.info('AvatarHelper: base64 length =', base64String.length);
       console.info('AvatarHelper: buffer size =', buffer.byteLength, 'bytes');
       
-      // 3. 发送HTTP请求
-      const requestBody = JSON.stringify({ avatar: avatarData });
+      // 3. 发送HTTP请求，body: {avatar: 纯base64}
+      const requestBody = JSON.stringify({ avatar: base64String });
       const postOptions: ApiRequestOptions = { token: token };
       const response = await ApiClient.post('user/avatar', requestBody, postOptions);
       
@@ -519,11 +510,11 @@ export class AvatarHelper {
       // 4. 处理响应
       if (response.responseCode === 200) {
         const result: UploadAvatarResponse = JSON.parse(response.result as string);
-        if (result.code === 200 && result.data?.avatar) {
-          console.info('AvatarHelper: upload success, avatar =', result.data.avatar);
+        // 服务端成功响应: {code: 200, message: "头像已更新"}
+        if (result.code === 200) {
+          console.info('AvatarHelper: upload success, message =', result.message);
           return {
             success: true,
-            url: result.data.avatar,
             message: result.message || '头像上传成功'
           };
         } else {
@@ -559,64 +550,64 @@ export class AvatarHelper {
     try {
       console.info('[AvatarHelper] fetchAvatarFromServer: 开始获取头像');
       console.info('[AvatarHelper] fetchAvatarFromServer: account =', account);
-      
-      const response = await ApiClient.get(`user/avatar?account=${encodeURIComponent(account)}`);
-      
+
+      // 从AppStorage获取token用于鉴权
+      const token = AppStorage.get<string>('token') || '';
+      const options: ApiRequestOptions = { token: token };
+
+      const response = await ApiClient.get(`user/avatar?account=${encodeURIComponent(account)}`, undefined, options);
+
       console.info('[AvatarHelper] fetchAvatarFromServer: responseCode =', response.responseCode);
       console.info('[AvatarHelper] fetchAvatarFromServer: result type =', typeof response.result);
-      
+
       if (response.responseCode === 200 && response.result) {
-        // 检查返回的是图片还是JSON
-        if (response.result instanceof ArrayBuffer) {
-          const arrayBuffer = response.result as ArrayBuffer;
-          const uint8Array = new Uint8Array(arrayBuffer);
-          
-          // 检查是否是PNG图片 (PNG文件头: 89 50 4E 47)
-          const isPNG = uint8Array[0] === 0x89 && uint8Array[1] === 0x50 && 
-                        uint8Array[2] === 0x4E && uint8Array[3] === 0x47;
-          
-          // 检查是否是JPEG图片 (JPEG文件头: FF D8 FF)
-          const isJPEG = uint8Array[0] === 0xFF && uint8Array[1] === 0xD8 && uint8Array[2] === 0xFF;
-          
-          if (isPNG || isJPEG) {
-            console.info('[AvatarHelper] fetchAvatarFromServer: 接口直接返回图片, type =', isPNG ? 'PNG' : 'JPEG');
-            // 直接保存图片
-            const fileName = `avatar_${account}.jpg`;
-            const localPath = await this.saveArrayBufferToPersistent(arrayBuffer, fileName);
-            console.info('[AvatarHelper] fetchAvatarFromServer: 图片已保存到 =', localPath);
-            return localPath; // 返回本地路径
-          }
-          
-          // 尝试解析为JSON
-          const decoder = new util.TextDecoder('utf-8');
-          const resultStr = decoder.decodeToString(uint8Array);
-          console.info('[AvatarHelper] fetchAvatarFromServer: result string =', resultStr);
-          
+        const resultStr = response.result as string;
+        console.info('[AvatarHelper] fetchAvatarFromServer: result string =', resultStr.substring(0, 200));
+
+        try {
           const result: FetchAvatarResponse = JSON.parse(resultStr);
           console.info('[AvatarHelper] fetchAvatarFromServer: parsed code =', result.code);
-          console.info('[AvatarHelper] fetchAvatarFromServer: parsed data =', JSON.stringify(result.data));
-          
+
           if (result.code === 200 && result.data?.avatar) {
             const avatarUrl = result.data.avatar;
             console.info('[AvatarHelper] fetchAvatarFromServer: 成功获取头像URL =', avatarUrl);
             return avatarUrl;
-          } else {
-            console.warn('[AvatarHelper] fetchAvatarFromServer: avatar字段为空或不存在');
           }
-        } else {
-          // 字符串类型
-          const resultStr = response.result as string;
-          console.info('[AvatarHelper] fetchAvatarFromServer: result string =', resultStr);
-          
-          const result: FetchAvatarResponse = JSON.parse(resultStr);
-          if (result.code === 200 && result.data?.avatar) {
-            return result.data.avatar;
+          console.warn('[AvatarHelper] fetchAvatarFromServer: avatar字段为空或不存在');
+        } catch (parseErr) {
+          // JSON解析失败，服务端可能直接返回了二进制图片
+          console.info('[AvatarHelper] fetchAvatarFromServer: JSON解析失败，尝试按二进制处理');
+          // 使用ARRAY_BUFFER重新请求获取二进制图片
+          const binaryOptions: ApiRequestOptions = {
+            token: token,
+            expectDataType: http.HttpDataType.ARRAY_BUFFER
+          };
+          const binaryResponse = await ApiClient.get(
+            `user/avatar?account=${encodeURIComponent(account)}`,
+            undefined,
+            binaryOptions
+          );
+          if (binaryResponse.responseCode === 200 && binaryResponse.result) {
+            const arrayBuffer = binaryResponse.result as ArrayBuffer;
+            const uint8Array = new Uint8Array(arrayBuffer);
+            const isJPEG = uint8Array[0] === 0xFF && uint8Array[1] === 0xD8 && uint8Array[2] === 0xFF;
+            const isPNG = uint8Array[0] === 0x89 && uint8Array[1] === 0x50 &&
+                          uint8Array[2] === 0x4E && uint8Array[3] === 0x47;
+
+            if (isJPEG || isPNG) {
+              const ext = isPNG ? 'png' : 'jpg';
+              const fileName = `avatar_${account}.${ext}`;
+              const localPath = await this.saveArrayBufferToPersistent(arrayBuffer, fileName);
+              console.info('[AvatarHelper] fetchAvatarFromServer: 二进制图片已保存到 =', localPath);
+              return localPath;
+            }
           }
+          console.error('[AvatarHelper] fetchAvatarFromServer: 二进制请求也失败');
         }
       } else {
         console.error('[AvatarHelper] fetchAvatarFromServer: HTTP错误, code =', response.responseCode);
       }
-      
+
       return null;
     } catch (error) {
       const err = error as BusinessError;
@@ -728,41 +719,45 @@ export class AvatarHelper {
       console.info('[AvatarHelper] downloadAndSaveAvatar: 开始下载头像');
       console.info('[AvatarHelper] downloadAndSaveAvatar: avatarUrl =', avatarUrl);
       console.info('[AvatarHelper] downloadAndSaveAvatar: account =', account);
-      
+
       if (!this.context) {
         console.error('[AvatarHelper] downloadAndSaveAvatar: context is null');
         return null;
       }
-      
-      // 下载图片
-      const downloadHeaders: Record<string, string> = { 'Accept': 'image/*' };
-      const downloadOptions: ApiRequestOptions = { header: downloadHeaders };
+
+      // 下载图片：需要token鉴权，并设置ARRAY_BUFFER以接收二进制数据
+      const token = AppStorage.get<string>('token') || '';
+      const downloadOptions: ApiRequestOptions = {
+        token: token,
+        header: { 'Accept': 'image/*' },
+        expectDataType: http.HttpDataType.ARRAY_BUFFER
+      };
       const response = await ApiClient.get(avatarUrl, undefined, downloadOptions);
-      
+
       console.info('[AvatarHelper] downloadAndSaveAvatar: responseCode =', response.responseCode);
       console.info('[AvatarHelper] downloadAndSaveAvatar: result type =', typeof response.result);
-      
+
       if (response.responseCode === 200 && response.result) {
         const imageData = response.result as ArrayBuffer;
         console.info('[AvatarHelper] downloadAndSaveAvatar: imageData size =', imageData.byteLength);
-        
+
         // 将ArrayBuffer转换为PixelMap
         const imageSource = image.createImageSource(imageData);
         const pixelMap = await imageSource.createPixelMap();
         imageSource.release();
-        
+
         console.info('[AvatarHelper] downloadAndSaveAvatar: PixelMap创建成功');
-        
+
         // 保存到本地
         const fileName = `avatar_${account}.jpg`;
         console.info('[AvatarHelper] downloadAndSaveAvatar: 保存到本地, fileName =', fileName);
-        
+
         const localPath = await this.saveToPersistent(pixelMap, fileName);
-        
+
         console.info('[AvatarHelper] downloadAndSaveAvatar: 保存成功, localPath =', localPath);
         return localPath;
       }
-      
+
       console.error('[AvatarHelper] downloadAndSaveAvatar: 下载失败, code =', response.responseCode);
       return null;
     } catch (error) {

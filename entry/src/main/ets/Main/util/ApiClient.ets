@@ -8,12 +8,13 @@ export interface ApiRequestOptions {
   connectTimeout?: number;
   readTimeout?: number;
   header?: Record<string, string>;
+  expectDataType?: http.HttpDataType;
 }
 
 /**
  * API请求基础URL
  */
-const BASE_URL = 'https://example.com';
+const BASE_URL = 'https://backend.hoshikaze.top';
 
 /**
  * 统一API客户端
@@ -131,6 +132,7 @@ export class ApiClient {
       header: headers,
       connectTimeout: options?.connectTimeout ?? 15000,
       readTimeout: options?.readTimeout ?? 15000,
+      expectDataType: options?.expectDataType ?? http.HttpDataType.STRING,
     };
 
     if (extraData !== undefined) {

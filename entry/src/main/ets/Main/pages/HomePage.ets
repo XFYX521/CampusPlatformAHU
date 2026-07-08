@@ -32,6 +32,7 @@ export struct HomePage {
                 .height(this.calendarHeight)
                 .backgroundColor(Color.White)
                 .domStorageAccess(true)
+                .fileAccess(true)
                 .hitTestBehavior(HitTestMode.None)
             }
             .width('100%')
@@ -45,6 +46,7 @@ export struct HomePage {
                 .height(this.calendarHeight)
                 .backgroundColor(Color.White)
                 .domStorageAccess(true)
+                .fileAccess(true)
                 .hitTestBehavior(HitTestMode.None)
             }
             .width('100%')

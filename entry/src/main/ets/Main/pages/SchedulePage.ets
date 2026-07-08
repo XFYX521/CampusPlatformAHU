@@ -65,12 +65,19 @@ export struct SchedulePage {
             .key(this.refreshKey.toString())
             .width('100%')
             .height('100%')
+            .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
             .javaScriptAccess(true)
             .domStorageAccess(true)
+            .fileAccess(true)
             .mixedMode(MixedMode.All)
             .cacheMode(CacheMode.Default)
             .databaseAccess(true)
             .geolocationAccess(false)
+            .onSslErrorEvent((event) => {
+              if (event && event.handler) {
+                event.handler.handleConfirm();
+              }
+            })
             .onPageBegin(() => {
               this.isLoading = true;
             })
