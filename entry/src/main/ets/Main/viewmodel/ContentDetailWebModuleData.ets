@@ -3,8 +3,7 @@ export class Data {
   private headPhoneIcon: Resource = $r('app.media.ic_headphones_lined');
   private VerticalGraphicTextFunctionItemModel: DataSource[] = [];
   static readonly IMAGES: Resource[] =
-    [$r(('app.media.realImageGen_education_5')), $r(('app.media.realImageGen_education_3')),
-      $r(('app.media.realImageGen_education_2'))];
+    [$r('app.media.New1'), $r('app.media.New2'), $r('app.media.New3')];
   static readonly TITLES: string[] = ['教务通知', '新闻动态', '学术公告'];
   static readonly DESCRIPTIONS: string[] = ['', '', ''];
 

@@ -1,8 +1,4 @@
-import http from '@ohos.net.http';
-// 同目录用 ./ ，去掉多余../pages
-//import {RegisterPage} from './RegisterPage'
-// 导入华为账号服务所需模块（请确保在项目 oh-package.json5 中已添加相关依赖）
-// import { authentication } from '@kit.AccountKit';
+import { ApiClient } from '../util/ApiClient';
 import { AvatarHelper } from '../util/AvatarHelper';
 import { common } from '@kit.AbilityKit';
 
@@ -23,7 +19,6 @@ export struct LoginPage {
   @State username: string = '';
   @State password: string = '';
   @State isLoggingIn: boolean = false;
-  private baseUrl: string = "https://backend.hoshikaze.top/api/auth/login"
 
   build() {
     NavDestination() {
@@ -126,29 +121,20 @@ export struct LoginPage {
     }
     this.isLoggingIn = true;
 
-    // 发起POST请求
-    let httpRequest = http.createHttp();
     let reqData = JSON.stringify({
       username: name,
       password: pwd
     })
 
-    // 打印请求信息用于调试
     console.info("=== 登录请求详情 ===");
-    console.info("请求URL:", this.baseUrl);
+    console.info("请求路径:", 'api/auth/login');
     console.info("请求参数:", reqData);
 
     try {
-      let res = await httpRequest.request(this.baseUrl, {
-        method: http.RequestMethod.POST,
-        header: {
-          "Content-Type": "application/json"
-        },
-        extraData: JSON.stringify({
-          username:this.username,
-          password:this.password
-        })
-      })
+      let res = await ApiClient.post('api/auth/login', JSON.stringify({
+        username: this.username,
+        password: this.password
+      }))
 
       // 打印响应详情用于调试
       console.info("=== 登录响应详情 ===");
@@ -251,9 +237,8 @@ export struct LoginPage {
 
       this.getUIContext().getPromptAction().showToast({ message: errorMsg });
     } finally {
-      // 结束加载状态、销毁请求
+      // 结束加载状态
       this.isLoggingIn = false;
-      httpRequest.destroy();
     }
   }
 

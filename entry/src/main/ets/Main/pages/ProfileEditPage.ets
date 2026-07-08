@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';
+import { ApiClient, ApiRequestOptions } from '../util/ApiClient';
 import { promptAction } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 
@@ -32,10 +32,7 @@ export struct ProfileEditPage {
   @State private isUpdatingPassword: boolean = false;
   @State private isDeletingAccount: boolean = false;
   @State private showDeleteDialog: boolean = false;
-  
-  // API基础URL
-  private baseUrl: string = 'https://backend.hoshikaze.top/api';
-  
+
   aboutToAppear(): void {
     // 初始化昵称编辑框
     this.editNickname = this.nickname;
@@ -362,26 +359,10 @@ export struct ProfileEditPage {
     this.isUpdatingNickname = true;
     
     try {
-      const httpModule = http.createHttp();
-      const url = `${this.baseUrl}/user/nickname`;
-      
-      console.info('updateNickname request:', JSON.stringify({
-        url: url,
-        token: this.token ? 'exists' : 'empty',
-        nickname: this.editNickname.trim()
-      }));
-      
-      const response = await httpModule.request(url, {
-        method: http.RequestMethod.PUT,
-        header: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.token}`
-        },
-        extraData: {
-          nickname: this.editNickname.trim()
-        }
-      });
-      
+      const response = await ApiClient.put('api/user/nickname',
+        JSON.stringify({ nickname: this.editNickname.trim() }),
+        { token: this.token });
+
       console.info('updateNickname response:', JSON.stringify({
         responseCode: response.responseCode,
         result: response.result
@@ -409,8 +390,6 @@ export struct ProfileEditPage {
         promptAction.showToast({ message: errorMsg });
         console.error('updateNickname failed:', response.responseCode, response.result);
       }
-      
-      httpModule.destroy();
     } catch (error) {
       console.error('updateNickname error:', error);
       promptAction.showToast({ message: '修改失败，请重试' });
@@ -434,28 +413,10 @@ export struct ProfileEditPage {
     this.isUpdatingPassword = true;
     
     try {
-      const httpModule = http.createHttp();
-      const url = `${this.baseUrl}/user/password`;
-      
-      console.info('updatePassword request:', JSON.stringify({
-        url: url,
-        token: this.token ? 'exists' : 'empty',
-        oldPassword: this.oldPassword,
-        newPassword: this.newPassword
-      }));
-      
-      const response = await httpModule.request(url, {
-        method: http.RequestMethod.PUT,
-        header: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.token}`
-        },
-        extraData: {
-          oldPassword: this.oldPassword,
-          newPassword: this.newPassword
-        }
-      });
-      
+      const response = await ApiClient.put('api/user/password',
+        JSON.stringify({ oldPassword: this.oldPassword, newPassword: this.newPassword }),
+        { token: this.token });
+
       console.info('updatePassword response:', JSON.stringify({
         responseCode: response.responseCode,
         result: response.result
@@ -491,8 +452,6 @@ export struct ProfileEditPage {
         promptAction.showToast({ message: errorMsg });
         console.error('updatePassword failed:', response.responseCode, response.result);
       }
-      
-      httpModule.destroy();
     } catch (error) {
       console.error('updatePassword error:', error);
       promptAction.showToast({ message: '修改失败，请重试' });
@@ -506,22 +465,10 @@ export struct ProfileEditPage {
     this.isDeletingAccount = true;
     
     try {
-      const httpModule = http.createHttp();
-      const url = `${this.baseUrl}/user/account`;
-      
-      console.info('deleteAccount request:', JSON.stringify({
-        url: url,
-        token: this.token ? 'exists' : 'empty'
-      }));
-      
-      const response = await httpModule.request(url, {
-        method: http.RequestMethod.DELETE,
-        header: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.token}`
-        }
+      const response = await ApiClient.delete('api/user/account', {
+        token: this.token
       });
-      
+
       console.info('deleteAccount response:', JSON.stringify({
         responseCode: response.responseCode,
         result: response.result
@@ -552,8 +499,6 @@ export struct ProfileEditPage {
         promptAction.showToast({ message: errorMsg });
         console.error('deleteAccount failed:', response.responseCode, response.result);
       }
-      
-      httpModule.destroy();
     } catch (error) {
       console.error('deleteAccount error:', error);
       promptAction.showToast({ message: '注销失败，请重试' });

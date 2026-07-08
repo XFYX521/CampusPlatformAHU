@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';
+import { ApiClient, ApiRequestOptions } from '../util/ApiClient';
 import { promptAction } from '@kit.ArkUI';
 import router from '@ohos.router';
 import {
@@ -22,8 +22,6 @@ export struct NotificationPage {
 
   @State notificationList: NotificationItem[] = [];
   @State isLoading: boolean = false;
-
-  private readonly baseUrl: string = "https://backend.hoshikaze.top/api";
 
   aboutToAppear() {
     this.loadNotifications();
@@ -237,19 +235,15 @@ export struct NotificationPage {
       return;
     }
     this.isLoading = true;
-    const httpRequest = http.createHttp();
     try {
-      const response = await httpRequest.request(
-        this.baseUrl + '/notifications?page=1&page_size=50',
+      const response = await ApiClient.get(
+        'api/notifications?page=1&page_size=50',
+        undefined,
         {
-          method: http.RequestMethod.GET,
-          header: {
-            "Content-Type": "application/json",
-            "Authorization": 'Bearer ' + this.token
-          },
+          token: this.token,
           connectTimeout: 15000,
           readTimeout: 15000
-        }
+        } as ApiRequestOptions
       );
       if (response.responseCode === 200) {
         let result: NotificationListResponse;
@@ -267,24 +261,20 @@ export struct NotificationPage {
       console.error('[NotificationPage] load error:', error);
     } finally {
       this.isLoading = false;
-      httpRequest.destroy();
     }
   }
 
   async markNotificationRead(id: string): Promise<void> {
-    const httpRequest = http.createHttp();
     try {
-      await httpRequest.request(
-        this.baseUrl + '/notifications/mark-read?id=' + id,
-        {
-          method: http.RequestMethod.POST,
-          header: {
-            "Content-Type": "application/json",
-            "Authorization": 'Bearer ' + this.token
-          },
-          connectTimeout: 10000,
-          readTimeout: 10000
-        }
+      const options: ApiRequestOptions = {
+        token: this.token,
+        connectTimeout: 10000,
+        readTimeout: 10000
+      };
+      await ApiClient.post(
+        'api/notifications/mark-read?id=' + id,
+        undefined,
+        options
       );
       const target = this.notificationList.find((n: NotificationItem) => n.id === id);
       if (target) {
@@ -293,25 +283,20 @@ export struct NotificationPage {
       this.updateUnreadCount();
     } catch (error) {
       console.error('[NotificationPage] mark read error:', error);
-    } finally {
-      httpRequest.destroy();
     }
   }
 
   async markAllAsRead(): Promise<void> {
-    const httpRequest = http.createHttp();
     try {
-      await httpRequest.request(
-        this.baseUrl + '/notifications/mark-all-read',
-        {
-          method: http.RequestMethod.POST,
-          header: {
-            "Content-Type": "application/json",
-            "Authorization": 'Bearer ' + this.token
-          },
-          connectTimeout: 10000,
-          readTimeout: 10000
-        }
+      const options: ApiRequestOptions = {
+        token: this.token,
+        connectTimeout: 10000,
+        readTimeout: 10000
+      };
+      await ApiClient.post(
+        'api/notifications/mark-all-read',
+        undefined,
+        options
       );
       for (const item of this.notificationList) {
         item.is_read = true;
@@ -320,8 +305,6 @@ export struct NotificationPage {
       promptAction.showToast({ message: '已全部标记为已读' });
     } catch (error) {
       console.error('[NotificationPage] mark all error:', error);
-    } finally {
-      httpRequest.destroy();
     }
   }
 
@@ -375,7 +358,7 @@ export struct NotificationPage {
     if (avatar.startsWith('http://') || avatar.startsWith('https://')) {
       return avatar;
     }
-    return 'https://backend.hoshikaze.top/avatars/' + avatar;
+    return ApiClient.getAvatarUrl('avatars/' + avatar);
   }
 
   private truncateContent(content: string): string {

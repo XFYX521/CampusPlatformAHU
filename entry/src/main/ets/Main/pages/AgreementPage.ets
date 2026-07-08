@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';
+import { ApiClient } from '../util/ApiClient';
 
 interface PolicyData {
   title: string;
@@ -20,8 +20,6 @@ export struct AgreementPage {
   @State updateTime: string = '';
   @State isLoading: boolean = true;
   @State loadError: boolean = false;
-  
-  private readonly apiUrl: string = "https://backend.hoshikaze.top/api/agreement?token=harmong_doc_sk_2024";
 
   aboutToAppear(): void {
     this.fetchUserAgreement();
@@ -31,14 +29,8 @@ export struct AgreementPage {
     this.isLoading = true;
     this.loadError = false;
     
-    let httpRequest = http.createHttp();
     try {
-      let res = await httpRequest.request(this.apiUrl, {
-        method: http.RequestMethod.GET,
-        header: {
-          "Content-Type": "application/json"
-        }
-      });
+      let res = await ApiClient.get('api/agreement?token=harmong_doc_sk_2024');
 
       console.info("=== 用户协议响应详情 ===");
       console.info("HTTP状态码:", res.responseCode);
@@ -85,7 +77,6 @@ export struct AgreementPage {
       this.getUIContext().getPromptAction().showToast({ message: '网络异常，请稍后重试' });
     } finally {
       this.isLoading = false;
-      httpRequest.destroy();
     }
   }
 

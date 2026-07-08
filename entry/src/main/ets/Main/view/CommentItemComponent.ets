@@ -1,4 +1,5 @@
 import { CommentItem } from '../data/CommentData';
+import { ApiClient } from '../util/ApiClient';
 
 /**
  * 单条评论子组件
@@ -19,7 +20,7 @@ export struct CommentItemComponent {
   onDelete?: (commentId: string) => void = undefined;
 
   // 头像完整URL（后端文件路径基址 + 文件名）
-  private readonly avatarBaseUrl: string = 'https://backend.hoshikaze.top/avatars/';
+  private get avatarBaseUrl(): string { return `${ApiClient.getBaseUrl()}/avatars/`; }
 
   build() {
     Column() {

@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';
+import { ApiClient, ApiRequestOptions } from '../util/ApiClient';
 import { promptAction } from '@kit.ArkUI';
 
 interface FeedbackItem {
@@ -26,9 +26,6 @@ export struct FeedbackHistoryPage {
   @State isLoading: boolean = true;
   @State hasError: boolean = false;
   @StorageLink('token') token: string = '';
-  
-  // 历史反馈接口地址
-  private feedbackUrl: string = "https://backend.hoshikaze.top/api/feedback";
 
   aboutToAppear() {
     // 页面加载时获取历史反馈
@@ -223,22 +220,9 @@ export struct FeedbackHistoryPage {
     this.isLoading = true;
     this.hasError = false;
 
-    // 创建HTTP请求
-    let httpRequest = http.createHttp();
-
-    console.info("=== 获取历史反馈请求详情 ===");
-    console.info("请求URL:", this.feedbackUrl);
-    console.info("请求方法: GET");
-    console.info("请求头: Authorization: Bearer " + this.token);
-
     try {
-      let res = await httpRequest.request(this.feedbackUrl, {
-        method: http.RequestMethod.GET,
-        header: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer " + this.token
-        }
-      });
+      let requestOptions: ApiRequestOptions = { token: this.token };
+      let res = await ApiClient.get('api/feedback', undefined, requestOptions);
 
       console.info("=== 历史反馈响应详情 ===");
       console.info("HTTP状态码:", res.responseCode);
@@ -324,7 +308,6 @@ export struct FeedbackHistoryPage {
       promptAction.showToast({ message: errorMsg });
     } finally {
       this.isLoading = false;
-      httpRequest.destroy();
     }
   }
 }

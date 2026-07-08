@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';
+import { ApiClient } from '../util/ApiClient';
 import promptAction from '@ohos.promptAction';
 
 // 全局定义后端返回类型
@@ -25,10 +25,6 @@ export struct RegisterPage {
   @State showCaptchaDialog: boolean = false;
   @State sliderValue: number = 0;
   @State isCaptchaVerified: boolean = false;
-  //发送验证码接口
-  private readonly sendCodeUrl: string = "https://backend.hoshikaze.top/api/auth/send-code";
-  //注册接口
-  private readonly registerUrl: string = "https://backend.hoshikaze.top/api/auth/register-email";
 
   // 邮箱格式正则校验
   private checkEmailFormat(emailStr: string): boolean {
@@ -66,13 +62,8 @@ export struct RegisterPage {
     // 关闭验证弹窗
     this.showCaptchaDialog = false;
     // 发起请求调用后端发送验证码接口
-    let httpReq = http.createHttp();
     try {
-      let res = await httpReq.request(this.sendCodeUrl, {
-        method: http.RequestMethod.POST,
-        header: { "Content-Type": "application/json" },
-        extraData: JSON.stringify({ email: this.email })
-      })
+      let res = await ApiClient.post('api/auth/send-code', JSON.stringify({ email: this.email }))
 
       // 打印响应详情用于调试
       console.info("=== 发送验证码响应详情 ===");
@@ -113,28 +104,24 @@ export struct RegisterPage {
       }
     } catch (err) {
       promptAction.showToast({ message: '网络异常，验证码发送失败' });
-      // 增强错误日志输出
       if (err) {
         console.error("发送验证码报错：", err);
-        // 尝试提取关键错误信息
         if (typeof err === 'object') {
           console.error("错误对象属性：", JSON.stringify(err, Object.getOwnPropertyNames(err)));
         }
       } else {
         console.error("发送验证码报错：未知错误");
       }
-    } finally {
-      httpReq.destroy();
     }
   }
 
   async finishRegister() {
     //====新增表单校验 start====
-    let name = this.username.trim();
-    let pwd = this.password.trim();
-    let nick = this.nickname.trim();
-    let email = this.email.trim();
-    let code = this.verifyCode.trim();
+    let name: string = this.username.trim();
+    let pwd: string = this.password.trim();
+    let nick: string = this.nickname.trim();
+    let email: string = this.email.trim();
+    let code: string = this.verifyCode.trim();
     if(name === ""){
       promptAction.showToast({message:"请填写学号"});
       return;
@@ -168,9 +155,6 @@ export struct RegisterPage {
       return;
     }
     //====新增表单校验 end====
-    // 1. 先创建请求实例（漏掉了这行）
-    let httpReq = http.createHttp();
-
     try {
       let reqData = JSON.stringify({
         username: this.username,
@@ -179,11 +163,7 @@ export struct RegisterPage {
         code: this.verifyCode,
         nickname: this.nickname
       })
-      let res = await httpReq.request(this.registerUrl, {
-        method: http.RequestMethod.POST,
-        header: { "Content-Type": "application/json" },
-        extraData: reqData
-      })
+      let res = await ApiClient.post('api/auth/register-email', reqData)
 
       // 打印响应详情用于调试
       console.info("=== 注册接口响应详情 ===");
@@ -224,8 +204,6 @@ export struct RegisterPage {
         console.error("【注册接口报错详情】未知错误");
       }
       promptAction.showToast({ message: '服务器连接失败' });
-    } finally {
-      httpReq.destroy();
     }
   }
 

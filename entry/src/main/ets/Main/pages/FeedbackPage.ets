@@ -1,5 +1,6 @@
-import http from '@ohos.net.http';
+import { ApiClient, ApiRequestOptions } from '../util/ApiClient';
 import { promptAction } from '@kit.ArkUI';
+import http from '@ohos.net.http';
 
 /**
  * 后端响应接口
@@ -51,7 +52,6 @@ export struct FeedbackPage {
   @StorageLink('isLoggedIn') isLoggedIn: boolean = false;
   
   // 反馈接口地址
-  private readonly feedbackUrl: string = "https://backend.hoshikaze.top/api/feedback";
 
   build() {
     NavDestination() {
@@ -409,29 +409,21 @@ export struct FeedbackPage {
     // 接口规范：POST /api/feedback
     // 请求头：Authorization: Bearer token
     // 请求体：{ title: string, content: string }
-    const httpRequest = http.createHttp();
+
     const requestData = JSON.stringify({
       title: this.feedbackTitle.trim(),
       content: this.feedbackContent.trim()
     });
 
     console.info("=== 反馈提交请求 ===");
-    console.info("URL:", this.feedbackUrl);
+    console.info("URL:", ApiClient.getBaseUrl() + "/api/feedback");
     console.info("Method: POST");
     console.info("Header: Authorization: Bearer [token]");
     console.info("Body:", requestData);
 
     try {
-      const response = await httpRequest.request(this.feedbackUrl, {
-        method: http.RequestMethod.POST,
-        header: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.token}`
-        },
-        extraData: requestData,
-        connectTimeout: 30000,
-        readTimeout: 30000
-      });
+      const requestOptions: ApiRequestOptions = { token: this.token };
+      const response = await ApiClient.post('api/feedback', requestData, requestOptions);
 
       console.info("=== 反馈提交响应 ===");
       console.info("HTTP状态码:", response.responseCode);
@@ -445,7 +437,6 @@ export struct FeedbackPage {
       this.handleNetworkError(error);
     } finally {
       this.isSubmitting = false;
-      httpRequest.destroy();
     }
   }
 

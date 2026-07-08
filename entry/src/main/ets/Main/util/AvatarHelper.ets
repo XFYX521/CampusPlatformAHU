@@ -4,6 +4,8 @@ import { camera } from '@kit.CameraKit';
 import { image } from '@kit.ImageKit';
 import { fileIo } from '@kit.CoreFileKit';
 import http from '@ohos.net.http';
+import { ApiClient } from './ApiClient';
+import type { ApiRequestOptions } from './ApiClient';
 import { promptAction } from '@kit.ArkUI';
 import { common } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -508,21 +510,9 @@ export class AvatarHelper {
       console.info('AvatarHelper: buffer size =', buffer.byteLength, 'bytes');
       
       // 3. 发送HTTP请求
-      const httpRequest = http.createHttp();
-      const url = 'https://backend.hoshikaze.top/api/user/avatar';
-      
-      const response = await httpRequest.request(url, {
-        method: http.RequestMethod.POST,
-        header: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        extraData: {
-          avatar: avatarData
-        },
-        connectTimeout: 30000,
-        readTimeout: 30000
-      });
+      const requestBody = JSON.stringify({ avatar: avatarData });
+      const postOptions: ApiRequestOptions = { token: token };
+      const response = await ApiClient.post('user/avatar', requestBody, postOptions);
       
       console.info('AvatarHelper upload response:', JSON.stringify(response));
       
@@ -567,21 +557,10 @@ export class AvatarHelper {
    */
   async fetchAvatarFromServer(account: string): Promise<string | null> {
     try {
-      const httpRequest = http.createHttp();
-      const url = `https://backend.hoshikaze.top/api/user/avatar/${account}`;
-      
       console.info('[AvatarHelper] fetchAvatarFromServer: 开始获取头像');
       console.info('[AvatarHelper] fetchAvatarFromServer: account =', account);
-      console.info('[AvatarHelper] fetchAvatarFromServer: url =', url);
       
-      const response = await httpRequest.request(url, {
-        method: http.RequestMethod.GET,
-        header: {
-          'Content-Type': 'application/json'
-        },
-        connectTimeout: 10000,
-        readTimeout: 10000
-      });
+      const response = await ApiClient.get(`user/avatar?account=${encodeURIComponent(account)}`);
       
       console.info('[AvatarHelper] fetchAvatarFromServer: responseCode =', response.responseCode);
       console.info('[AvatarHelper] fetchAvatarFromServer: result type =', typeof response.result);
@@ -755,24 +734,10 @@ export class AvatarHelper {
         return null;
       }
       
-      // 构建完整URL
-      const baseUrl = 'https://backend.hoshikaze.top';
-      const fullUrl = avatarUrl.startsWith('http') ? avatarUrl : `${baseUrl}${avatarUrl}`;
-      
-      console.info('[AvatarHelper] downloadAndSaveAvatar: fullUrl =', fullUrl);
-      
       // 下载图片
-      const httpRequest = http.createHttp();
-      const response = await httpRequest.request(fullUrl, {
-        method: http.RequestMethod.GET,
-        header: {
-          'Accept': 'image/*'
-        },
-        connectTimeout: 30000,
-        readTimeout: 30000
-      });
-      
-      httpRequest.destroy();
+      const downloadHeaders: Record<string, string> = { 'Accept': 'image/*' };
+      const downloadOptions: ApiRequestOptions = { header: downloadHeaders };
+      const response = await ApiClient.get(avatarUrl, undefined, downloadOptions);
       
       console.info('[AvatarHelper] downloadAndSaveAvatar: responseCode =', response.responseCode);
       console.info('[AvatarHelper] downloadAndSaveAvatar: result type =', typeof response.result);

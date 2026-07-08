@@ -1,4 +1,4 @@
-import http from '@ohos.net.http';
+import { ApiClient, ApiRequestOptions } from '../util/ApiClient';
 import { promptAction } from '@kit.ArkUI';
 import {
   CommentItem,
@@ -37,9 +37,6 @@ export struct CommentSection {
   // 用户认证信息
   @StorageLink('token') token: string = '';
   @StorageLink('isLoggedIn') isLoggedIn: boolean = false;
-
-  // API基础URL
-  private readonly baseUrl: string = "https://backend.hoshikaze.top/api/canteen";
 
   // 组件即将显示时加载评论
   aboutToAppear() {
@@ -304,23 +301,14 @@ export struct CommentSection {
     }
 
     this.isLoading = true;
-    const httpRequest = http.createHttp();
-    const url = `${this.baseUrl}/windows/comments?id=${this.windowId}`;
 
     try {
-      const headers: Record<string, string> = {
-        "Content-Type": "application/json"
-      };
+      const options: ApiRequestOptions = {};
       if (this.isLoggedIn && this.token) {
-        headers["Authorization"] = `Bearer ${this.token}`;
+        options.token = this.token;
       }
 
-      const response = await httpRequest.request(url, {
-        method: http.RequestMethod.GET,
-        header: headers,
-        connectTimeout: 15000,
-        readTimeout: 15000
-      });
+      const response = await ApiClient.get(`api/canteen/windows/comments?id=${this.windowId}`, undefined, options);
 
       console.info("[CommentSection] 加载评论响应:", response.responseCode, response.result);
 
@@ -347,7 +335,6 @@ export struct CommentSection {
       console.error("[CommentSection] 加载评论失败:", error);
     } finally {
       this.isLoading = false;
-      httpRequest.destroy();
     }
   }
 
@@ -373,20 +360,11 @@ export struct CommentSection {
     }
 
     this.isPosting = true;
-    const httpRequest = http.createHttp();
-    const url = `${this.baseUrl}/windows/comments?id=${this.windowId}`;
 
     try {
-      const response = await httpRequest.request(url, {
-        method: http.RequestMethod.POST,
-        header: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.token}`
-        },
-        extraData: JSON.stringify({ content: content }),
-        connectTimeout: 15000,
-        readTimeout: 15000
-      });
+      const response = await ApiClient.post(`api/canteen/windows/comments?id=${this.windowId}`,
+        JSON.stringify({ content: content }),
+        { token: this.token });
 
       console.info("[CommentSection] 发表评论响应:", response.responseCode);
 
@@ -418,7 +396,6 @@ export struct CommentSection {
       promptAction.showToast({ message: '网络错误，请重试' });
     } finally {
       this.isPosting = false;
-      httpRequest.destroy();
     }
   }
 
@@ -432,20 +409,10 @@ export struct CommentSection {
       return;
     }
 
-    const httpRequest = http.createHttp();
-    const url = `${this.baseUrl}/comments/vote?id=${commentId}`;
-
     try {
-      const response = await httpRequest.request(url, {
-        method: http.RequestMethod.POST,
-        header: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.token}`
-        },
-        extraData: JSON.stringify({ type: voteType }),
-        connectTimeout: 10000,
-        readTimeout: 10000
-      });
+      const response = await ApiClient.post(`api/canteen/comments/vote?id=${commentId}`,
+        JSON.stringify({ type: voteType }),
+        { token: this.token });
 
       console.info("[CommentSection] 投票响应:", response.responseCode, response.result);
 
@@ -471,8 +438,6 @@ export struct CommentSection {
       }
     } catch (error) {
       console.error("[CommentSection] 投票失败:", error);
-    } finally {
-      httpRequest.destroy();
     }
   }
 
@@ -486,16 +451,9 @@ export struct CommentSection {
       return;
     }
 
-    const httpRequest = http.createHttp();
-    const url = `${this.baseUrl}/comments?id=${commentId}`;
-
     try {
-      const response = await httpRequest.request(url, {
-        method: http.RequestMethod.DELETE,
-        header: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${this.token}`
-        },
+      const response = await ApiClient.delete(`api/canteen/comments?id=${commentId}`, {
+        token: this.token,
         connectTimeout: 10000,
         readTimeout: 10000
       });
@@ -525,8 +483,6 @@ export struct CommentSection {
     } catch (error) {
       console.error("[CommentSection] 删除评论失败:", error);
       promptAction.showToast({ message: '网络错误，请重试' });
-    } finally {
-      httpRequest.destroy();
     }
   }
 }

@@ -3,7 +3,6 @@ import { image } from '@kit.ImageKit';
 import { AvatarSelectDialog } from '../view/AvatarSelectDialog';
 import { AvatarHelper } from '../util/AvatarHelper';
 import { common } from '@kit.AbilityKit';
-import http from '@ohos.net.http';
 
 @Component
 export struct MyPage {

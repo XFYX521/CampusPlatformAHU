@@ -18,7 +18,7 @@ export class Data {
   private static instance: Data;
   lazyDataSource: LazyDataSource<DataSource> = new LazyDataSource();
   static readonly IMAGES: Resource[] =
-    [$r(('app.media.realImageGen_education_7')), $r(('app.media.realImageGen_education_6'))];
+    [$r('app.media.Old1'), $r('app.media.Old2')];
   static readonly MAIN_TEXT: string[] = ['校园信息聚合', '功能开发预告'];
   static readonly SUB_TEXT: string[] = ['空白预留模块', '自定义内容区域'];
   static readonly DESCRIPTION_TEXT: string[] = ['后续功能开发中，敬请期待', '更多实用功能即将上线'];
