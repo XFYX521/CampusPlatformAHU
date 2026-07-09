@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>真鸿蒙 - 管理后台</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f5f7fa;color:#2c3e50;padding:30px 20px}
+.wrap{max-width:1000px;margin:0 auto}
+h1{text-align:center;font-weight:300;font-size:28px;letter-spacing:2px;margin-bottom:4px}
+.sub{text-align:center;color:#95a5a6;font-size:14px;margin-bottom:30px}
+.nav{text-align:center;margin-bottom:30px}
+.nav a{display:inline-block;padding:8px 22px;border-radius:8px;text-decoration:none;font-size:14px;margin:0 5px}
+.nav a.on{background:#3498db;color:#fff}
+.nav a.off{background:#fff;color:#7f8c8d;border:1px solid #e0e0e0}
+.nav .logout{display:inline-block;padding:8px 22px;border-radius:8px;font-size:14px;margin:0 5px;background:#fff;color:#e74c3c!important;border:1px solid #e74c3c!important;cursor:pointer}
+.card{background:#fff;border-radius:10px;border:1px solid #e8e8e8;margin-bottom:20px;overflow:hidden}
+.card-hd{padding:20px 24px;border-bottom:1px solid #f0f0f0;display:flex;justify-content:space-between;align-items:center}
+.card-hd h2{font-size:16px;color:#2c3e50;font-weight:500}
+.card-hd .badge{background:#3498db;color:#fff;padding:4px 12px;border-radius:20px;font-size:12px}
+.card-bd{padding:20px 24px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:10px 14px;font-size:12px;color:#95a5a6;font-weight:500;border-bottom:2px solid #f0f0f0;text-transform:uppercase;letter-spacing:.5px}
+td{padding:12px 14px;font-size:14px;color:#2c3e50;border-bottom:1px solid #f8f8f8;vertical-align:middle}
+tr:hover td{background:#fafafa}
+.empty{text-align:center;padding:60px 20px;color:#bdc3c7}
+.empty .icon{font-size:48px;margin-bottom:16px}
+.btn{padding:5px 12px;border:none;border-radius:6px;font-size:12px;cursor:pointer;margin:0 3px}
+.btn-ed{background:#3498db;color:#fff}
+.btn-del{background:#e74c3c;color:#fff}
+.btn:hover{opacity:.85}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.4);z-index:100;align-items:center;justify-content:center}
+.modal.show{display:flex}
+.modal-box{background:#fff;border-radius:12px;padding:24px;width:400px;max-width:90%;box-shadow:0 10px 40px rgba(0,0,0,.15)}
+.modal-box h3{margin-bottom:16px;font-size:16px;font-weight:500}
+.modal-box label{display:block;font-size:13px;color:#555;margin-bottom:4px;margin-top:12px}
+.modal-box input{width:100%;padding:8px 12px;border:1px solid #e0e0e0;border-radius:6px;font-size:14px;outline:none}
+.modal-box input:focus{border-color:#3498db}
+.modal-acts{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+.modal-acts button{padding:8px 20px;border:none;border-radius:6px;font-size:14px;cursor:pointer}
+.modal-acts .btn-ok{background:#3498db;color:#fff}
+.modal-acts .btn-cancel{background:#f0f0f0;color:#555}
+.footer{text-align:center;color:#bdc3c7;font-size:13px;padding:30px;margin-top:20px}
+.toast{visibility:hidden;min-width:200px;background:#2c3e50;color:#fff;text-align:center;border-radius:8px;padding:12px 20px;position:fixed;bottom:30px;left:50%;transform:translateX(-50%);z-index:200;font-size:14px;transition:opacity .3s;opacity:0}
+.toast.show{visibility:visible;opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>真鸿蒙</h1>
+<p class="sub" id="subtitle">管理面板</p>
+<div class="nav">
+<a href="/admin" class="on" id="navUser">用户管理</a>
+<a href="/nav" class="off" id="navNav">站点导航</a>
+<a href="/api-docs" class="off" id="navApi">接口文档</a>
+<a class="logout" id="navLogout">退出登录</a>
+</div>
+
+<div class="card">
+<div class="card-hd"><h2>用户列表</h2><span class="badge" id="userCount">0</span></div>
+<div class="card-bd">
+<table><thead><tr><th>ID</th><th>用户名</th><th>昵称</th><th>注册时间</th><th>操作</th></tr></thead><tbody id="userBody"></tbody></table>
+<div id="emptyState" class="empty"><div class="icon">📭</div><p>暂无用户</p></div>
+</div>
+</div>
+
+<div class="card" id="logCard">
+<div class="card-hd"><h2>登录日志</h2><span class="badge" style="cursor:pointer;background:#95a5a6" onclick="loadLog()">刷新</span></div>
+<div class="card-bd" id="logBody" style="max-height:300px;overflow-y:auto;font-size:13px"><p style="color:#bdc3c7;text-align:center">加载中...</p></div>
+</div>
+
+<div class="card" id="regLogCard">
+<div class="card-hd"><h2>注册日志</h2><span class="badge" style="cursor:pointer;background:#95a5a6" onclick="loadRegLog()">刷新</span></div>
+<div class="card-bd" id="regLogBody" style="max-height:300px;overflow-y:auto;font-size:12px;font-family:monospace;line-height:1.8"><p style="color:#bdc3c7;text-align:center">加载中...</p></div>
+</div>
+
+<div class="card hide" id="fbCard">
+<div class="card-hd"><h2>反馈管理</h2><span class="badge" style="cursor:pointer;background:#95a5a6" onclick="loadFb()">刷新</span></div>
+<div class="card-bd" id="fbBody" style="max-height:400px;overflow-y:auto;font-size:13px"><p style="color:#bdc3c7;text-align:center">加载中...</p></div>
+</div>
+
+<div class="footer">真鸿蒙 v2.0</div>
+</div>
+
+<div class="modal" id="editModal">
+<div class="modal-box">
+<h3 id="modalTitle">编辑用户</h3>
+<label>昵称</label>
+<input id="editNick" placeholder="输入新昵称">
+<label>密码（留空不修改）</label>
+<input id="editPwd" type="password" placeholder="输入新密码">
+<div class="modal-acts">
+<button class="btn-cancel" onclick="closeEdit()">取消</button>
+<button class="btn-ok" onclick="saveEdit()">保存</button>
+</div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+var token = (new URLSearchParams(location.search).get('token')||localStorage.getItem('harmony_token'));
+if(!token)location.href='/admin/login';
+localStorage.setItem('harmony_token', token);
+
+// Fix nav links
+document.getElementById('navUser').href='/admin?token='+token;
+document.getElementById('navNav').href='/nav?token='+token;
+document.getElementById('navApi').href='/api-docs?token='+token;
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function toLocal(t){
+  if(!t)return '';
+  var p=t.split(/[- :]/);
+  var d=new Date(Date.UTC(+p[0],+p[1]-1,+p[2],+p[3],+p[4],+p[5]));
+  d.setHours(d.getHours()+8);
+  return d.toISOString().replace('T',' ').slice(0,19);
+}
+
+var editingId = null;
+var userRole = '';
+
+fetch('/api/admin/me?token='+token).then(function(r){return r.json()}).then(function(d){
+  if(d.code!==200){localStorage.removeItem('harmony_token');location.href='/admin/login';return}
+  userRole = d.data.role;
+  document.getElementById('subtitle').textContent='欢迎, '+d.data.name;
+  loadUsers();
+  if(userRole==='super'){
+    loadLog(); loadRegLog(); loadFb();
+  }
+});
+
+function loadUsers(){
+  fetch('/api/admin/users?token='+token).then(function(r){return r.json()}).then(function(data){
+    if(data.code!==200){showToast('加载失败');return}
+    document.getElementById('userCount').textContent=data.data.length+' 个用户';
+    var tb=document.getElementById('userBody');tb.innerHTML='';
+    if(data.data.length===0){
+      document.querySelector('table').style.display='none';
+      document.getElementById('emptyState').style.display='block';
+      return;
+    }
+    document.querySelector('table').style.display='';
+    document.getElementById('emptyState').style.display='none';
+    var isSuper = userRole==='super';
+    for(var i=0;i<data.data.length;i++){
+      var u=data.data[i];
+      var ops = isSuper ? '<button class="btn btn-ed" onclick="editUser('+u.id+',\''+esc(u.nickname)+'\')">编辑</button><button class="btn btn-del" onclick="delUser('+u.id+')">删除</button>' : '—';
+      tb.innerHTML+='<tr><td>'+u.id+'</td><td>'+esc(u.username)+'</td><td>'+esc(u.nickname)+'</td><td>'+toLocal(u.created_at)+'</td><td>'+ops+'</td></tr>';
+    }
+  });
+}
+
+function loadLog(){
+  fetch('/api/admin/loginlog?token='+token).then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('logBody');
+    if(!d.data||!d.data.length){el.innerHTML='<p style="color:#bdc3c7;text-align:center">暂无登录记录</p>';return}
+    var h='<table><thead><tr><th>IP</th><th>账号</th><th>时间</th><th>结果</th><th>来源</th><th>角色</th></tr></thead><tbody>';
+    for(var i=0;i<d.data.length;i++){
+      var l=d.data[i];
+      var c=l.success?'#2ecc71':'#e74c3c';
+      var t=l.success?'成功':'失败';
+      h+='<tr><td style="font-family:monospace;font-size:12px">'+esc(l.ip||'-')+'</td><td>'+esc(l.username)+'</td><td>'+toLocal(l.attempt_time)+'</td><td style="color:'+c+'">'+t+'</td><td>'+(l.login_source||'-')+'</td><td>'+(l.login_role||'-')+'</td></tr>';
+    }
+    el.innerHTML=h+'</tbody></table>';
+  });
+}
+
+function loadFb(){
+  fetch('/api/admin/feedbacks?token='+token).then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('fbBody');
+    if(!d.data||!d.data.length){el.innerHTML='<p style="color:#bdc3c7;text-align:center">暂无反馈</p>';return}
+    var h='<table><thead><tr><th>ID</th><th>用户</th><th>标题</th><th>内容</th><th>时间</th></tr></thead><tbody>';
+    for(var i=0;i<d.data.length;i++){
+      var f=d.data[i];
+      h+='<tr><td>'+f.id+'</td><td>'+esc(f.username)+' ('+esc(f.nickname)+')</td><td>'+esc(f.title)+'</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(f.content)+'</td><td style="white-space:nowrap">'+toLocal(f.created_at)+'</td></tr>';
+    }
+    el.innerHTML=h+'</tbody></table>';
+  });
+}
+
+function loadRegLog(){
+  fetch('/api/admin/reglog?token='+token).then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('regLogBody');
+    if(!d.data||!d.data.length){el.innerHTML='<p style="color:#bdc3c7;text-align:center">暂无注册记录</p>';return}
+    el.innerHTML='<div style="white-space:pre-wrap">'+d.data.join('<br>')+'</div>';
+  });
+}
+
+function editUser(id, nick){
+  editingId = id;
+  document.getElementById('editNick').value = nick;
+  document.getElementById('editPwd').value = '';
+  document.getElementById('editModal').className = 'modal show';
+}
+
+function closeEdit(){
+  document.getElementById('editModal').className = 'modal';
+  editingId = null;
+}
+
+function saveEdit(){
+  if(!editingId) return;
+  var body = {nickname: document.getElementById('editNick').value};
+  var pwd = document.getElementById('editPwd').value;
+  if(pwd) body.password = pwd;
+  fetch('/api/admin/users/'+editingId+'?token='+token, {
+    method:'PUT',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  }).then(function(r){return r.json()}).then(function(d){
+    showToast(d.message);
+    closeEdit();
+    loadUsers();
+  });
+}
+
+function delUser(id){
+  if(!confirm('确定要删除这个用户？'))return;
+  fetch('/api/admin/users/'+id+'?token='+token,{method:'DELETE'}).then(function(r){return r.json()}).then(function(d){
+    showToast(d.message);
+    loadUsers();
+  });
+}
+
+function showToast(msg){
+  var el=document.getElementById('toast');
+  el.textContent=msg;
+  el.className='toast show';
+  setTimeout(function(){el.className='toast'},2000);
+}
+
+document.getElementById('navLogout').onclick=function(){
+  localStorage.removeItem('harmony_token');
+  location.href='/admin/login';
+};
+
+function switchTab(tab){
+  document.querySelectorAll('.nav a').forEach(function(a){a.className='off'});
+  document.querySelectorAll('.card').forEach(function(c){c.classList.add('hide')});
+  if(tab==='fb'){
+    document.getElementById('navFb').className='on';
+    document.getElementById('fbCard').classList.remove('hide');
+  } else {
+    document.getElementById('navUser').className='on';
+    document.querySelectorAll('.card:not(#fbCard)').forEach(function(c){c.classList.remove('hide')});
+  }
+}
+function loadFb(){
+  fetch('/api/admin/feedbacks?token='+token).then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('fbBody');
+    if(!d.data||!d.data.length){el.innerHTML='<p style="color:#bdc3c7;text-align:center">暂无反馈</p>';return}
+    var h='<table><thead><tr><th>ID</th><th>用户</th><th>标题</th><th>内容</th><th>时间</th></tr></thead><tbody>';
+    for(var i=0;i<d.data.length;i++){
+      var f=d.data[i];
+      h+='<tr><td>'+f.id+'</td><td>'+esc(f.username)+' ('+esc(f.nickname)+')</td><td>'+esc(f.title)+'</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(f.content)+'</td><td style="white-space:nowrap">'+toLocal(f.created_at)+'</td></tr>';
+    }
+    el.innerHTML=h+'</tbody></table>';
+  });
+}
+
+</script>
+</body>
+</html>

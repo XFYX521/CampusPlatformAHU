@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>用户登录</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(135deg,#2ecc71,#27ae60);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.box{background:#fff;border-radius:20px;padding:40px;width:360px;max-width:100%;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.box h1{text-align:center;color:#2c3e50;font-weight:300;font-size:28px;margin-bottom:4px;letter-spacing:2px}
+.box p{text-align:center;color:#95a5a6;font-size:14px;margin-bottom:28px}
+.g{margin-bottom:18px}
+.g label{display:block;font-size:13px;color:#7f8c8d;margin-bottom:5px;font-weight:500}
+.g input{width:100%;padding:11px 14px;border:2px solid #ecf0f1;border-radius:10px;font-size:14px;outline:none;transition:.2s}
+.g input:focus{border-color:#2ecc71}
+.pwd-wrap{position:relative}
+.pwd-wrap input{width:100%;padding-right:40px!important}
+.pwd-wrap .eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:#95a5a6;font-size:18px;user-select:none}
+.btn{width:100%;padding:12px;border:none;border-radius:10px;font-size:15px;cursor:pointer;color:#fff;transition:opacity .2s}
+.btn1{background:linear-gradient(135deg,#2ecc71,#27ae60)}
+.btn:hover{opacity:.85}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.msg{display:none;padding:10px 14px;border-radius:8px;margin-top:14px;font-size:13px;text-align:center}
+.msg.ok{display:block;background:#d4edda;color:#155724}
+.msg.er{display:block;background:#f8d7da;color:#721c24}
+.footer{text-align:center;color:#bdc3c7;font-size:12px;margin-top:24px}
+.footer a{color:#2ecc71;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>用户登录</h1>
+<div class="g"><label>用户名</label><input type="text" id="username" placeholder="输入用户名"></div>
+<div class="g">
+<label>密码</label>
+<div class="pwd-wrap">
+<input type="password" id="password" placeholder="输入密码">
+<span class="eye" id="eye1" onclick="toggle()">👁</span>
+</div>
+</div>
+<button class="btn btn1" id="loginBtn" onclick="login()">登 录</button>
+<div class="msg" id="msg"></div>
+<div class="footer">还没有账号？<a href="/register">去注册</a></div>
+</div>
+<script>
+function toggle(){
+  var e=document.getElementById('password'),i=document.getElementById('eye1');
+  if(e.type==='password'){e.type='text';i.textContent='🙈'}else{e.type='password';i.textContent='👁'}
+}
+function login(){
+  var u=document.getElementById('username').value,p=document.getElementById('password').value;
+  if(!u||!p){show('请填写完整','er');return}
+  document.getElementById('loginBtn').disabled=true;
+  document.getElementById('loginBtn').textContent='登录中...';
+  fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p})})
+  .then(function(r){return r.json()}).then(function(d){
+    document.getElementById('loginBtn').disabled=false;
+    document.getElementById('loginBtn').textContent='登 录';
+    if(d.code===200){
+      localStorage.setItem('user_token',d.data.token);
+      localStorage.setItem('user_name',d.data.username);
+      window.location.href='/user';
+    }else{show(d.message,'er')}
+  });
+}
+function show(m,t){var e=document.getElementById('msg');e.textContent=m;e.className='msg '+t}
+</script>
+</body>
+</html>

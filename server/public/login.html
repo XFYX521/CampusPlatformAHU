@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鸿蒙智享泥安 - 管理员登录</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+  .login-box { background: white; border-radius: 20px; padding: 40px; width: 360px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); }
+  .login-box h1 { text-align: center; color: #2c3e50; font-weight: 300; font-size: 28px; margin-bottom: 8px; letter-spacing: 2px; }
+  .login-box p { text-align: center; color: #95a5a6; font-size: 14px; margin-bottom: 30px; }
+  .input-group { margin-bottom: 20px; }
+  .input-group label { display: block; font-size: 13px; color: #7f8c8d; margin-bottom: 6px; font-weight: 500; }
+  .input-group input { width: 100%; padding: 12px 16px; border: 2px solid #ecf0f1; border-radius: 10px; font-size: 15px; outline: none; transition: border-color 0.2s; }
+  .input-group input:focus { border-color: #667eea; }
+.pwd-wrap{position:relative}.pwd-wrap input{width:100%;padding-right:40px!important}.eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;color:#95a5a6;font-size:18px;user-select:none;line-height:1}.eye:hover{color:#667eea}
+  .input-group input:disabled { background: #f8f8f8; cursor: not-allowed; }
+  .btn { width: 100%; padding: 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; transition: opacity 0.2s; }
+  .btn:hover { opacity: 0.9; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .error { color: #e74c3c; font-size: 13px; text-align: center; margin-top: 12px; display: none; }
+  .cooldown { color: #e67e22; font-size: 13px; text-align: center; margin-top: 12px; display: none; }
+</style>
+</head>
+<body>
+<div class="login-box">
+  <h1>鸿蒙智享泥安</h1>
+  <p>管理员登录</p>
+  <div class="input-group"><label>账号</label><input type="text" id="username" placeholder="请输入管理员账号"></div>
+  <div class="input-group"><label>密码</label><div class="pwd-wrap"><input type="password" id="password" placeholder="请输入密码"><span class="eye" id="eyePwd" onclick="togglePwd()">👁</span></div></div>
+  <button class="btn" id="loginBtn" onclick="login()">登 录</button>
+  <div class="error" id="errorMsg">账号或密码错误</div>
+  <div class="cooldown" id="cooldownMsg"></div>
+</div>
+<script>
+function togglePwd(){var e=document.getElementById("password");var i=document.getElementById("eyePwd");if(e.type==="password"){e.type="text";i.textContent="🙈"}else{e.type="password";i.textContent="👁"}}
+var cooldownTimer = null;
+
+function login(){
+  var btn = document.getElementById('loginBtn');
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+  if(!username||!password){ showError('请填写完整'); return; }
+  btn.disabled = true;
+  btn.textContent = '登录中...';
+  fetch('/api/admin/login',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({username:username,password:password})
+  }).then(function(r){return r.json()}).then(function(data){
+    if(data.code===200){
+      localStorage.setItem('harmony_token', data.data.token);
+      window.location.href='/admin?token='+data.data.token;
+    }else if(data.code===429){
+      startCooldown(data.message + ' (' + data.wait + '秒)');
+    }else{
+      showError(data.message);
+      btn.disabled = false;
+      btn.textContent = '登 录';
+    }
+  }).catch(function(){
+    showError('网络错误');
+    btn.disabled = false;
+    btn.textContent = '登 录';
+  });
+}
+
+function startCooldown(msg){
+  var btn = document.getElementById('loginBtn');
+  var cooldownEl = document.getElementById('cooldownMsg');
+  var errEl = document.getElementById('errorMsg');
+  errEl.style.display = 'none';
+  cooldownEl.style.display = 'block';
+  btn.disabled = true;
+  btn.textContent = '等待中...';
+  document.getElementById('username').disabled = true;
+  document.getElementById('password').disabled = true;
+  
+  // Extract wait seconds from message
+  var match = msg.match(/(\d+)/);
+  var seconds = match ? parseInt(match[1]) : 30;
+  
+  if(cooldownTimer) clearInterval(cooldownTimer);
+  cooldownTimer = setInterval(function(){
+    seconds--;
+    if(seconds <= 0){
+      clearInterval(cooldownTimer);
+      cooldownTimer = null;
+      cooldownEl.style.display = 'none';
+      btn.disabled = false;
+      btn.textContent = '登 录';
+      document.getElementById('username').disabled = false;
+      document.getElementById('password').disabled = false;
+    } else {
+      cooldownEl.textContent = '请 ' + seconds + ' 秒后再试';
+    }
+  }, 1000);
+}
+
+function showError(msg){
+  document.getElementById('errorMsg').textContent = msg;
+  document.getElementById('errorMsg').style.display = 'block';
+  document.getElementById('cooldownMsg').style.display = 'none';
+}
+</script>
+</body>
+</html>
