@@ -500,10 +500,10 @@ export class AvatarHelper {
       console.info('AvatarHelper: base64 length =', base64String.length);
       console.info('AvatarHelper: buffer size =', buffer.byteLength, 'bytes');
       
-      // 3. 发送HTTP请求，body: {avatar: 纯base64}
-      const requestBody = JSON.stringify({ avatar: base64String });
+      // 3. 发送HTTP请求，body: {avatar: data:image/jpeg;base64,...}
+      const requestBody = JSON.stringify({ avatar: avatarData });
       const postOptions: ApiRequestOptions = { token: token };
-      const response = await ApiClient.post('user/avatar', requestBody, postOptions);
+      const response = await ApiClient.post('api/user/avatar', requestBody, postOptions);
       
       console.info('AvatarHelper upload response:', JSON.stringify(response));
       
@@ -555,7 +555,7 @@ export class AvatarHelper {
       const token = AppStorage.get<string>('token') || '';
       const options: ApiRequestOptions = { token: token };
 
-      const response = await ApiClient.get(`user/avatar?account=${encodeURIComponent(account)}`, undefined, options);
+      const response = await ApiClient.get(`api/user/avatar/${encodeURIComponent(account)}`, undefined, options);
 
       console.info('[AvatarHelper] fetchAvatarFromServer: responseCode =', response.responseCode);
       console.info('[AvatarHelper] fetchAvatarFromServer: result type =', typeof response.result);
@@ -583,7 +583,7 @@ export class AvatarHelper {
             expectDataType: http.HttpDataType.ARRAY_BUFFER
           };
           const binaryResponse = await ApiClient.get(
-            `user/avatar?account=${encodeURIComponent(account)}`,
+            `api/user/avatar/${encodeURIComponent(account)}`,
             undefined,
             binaryOptions
           );
